@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from "react"
 
-type Theme = 'dark' | 'light' | 'system'
+type Theme = "dark" | "light" | "system"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -16,7 +16,7 @@ type ThemeProviderState = {
 }
 
 const initialState: ThemeProviderState = {
-  theme: 'system',
+  theme: "system",
   setTheme: () => null,
 }
 
@@ -24,24 +24,30 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
-  storageKey = 'portfolio-theme',
+  defaultTheme = "system",
+  storageKey = "portfolio-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage?.getItem(storageKey) as Theme) || defaultTheme
-  )
+  // Defensive initialization: avoid accessing localStorage during SSR
+  const [theme, setThemeState] = useState<Theme>(() => {
+    try {
+      if (typeof window === "undefined") return defaultTheme
+      const stored = localStorage.getItem(storageKey) as Theme | null
+      return (stored as Theme) || defaultTheme
+    } catch (e) {
+      return defaultTheme
+    }
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
 
-    root.classList.remove('light', 'dark')
+    root.classList.remove("light", "dark")
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light'
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
 
       root.classList.add(systemTheme)
       return
@@ -52,9 +58,13 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage?.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (t: Theme) => {
+      try {
+        if (typeof window !== "undefined") localStorage.setItem(storageKey, t)
+      } catch (e) {
+        /* ignore */
+      }
+      setThemeState(t)
     },
   }
 
@@ -68,8 +78,7 @@ export function ThemeProvider({
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext)
 
-  if (context === undefined)
-    throw new Error('useTheme must be used within a ThemeProvider')
+  if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider")
 
   return context
 }

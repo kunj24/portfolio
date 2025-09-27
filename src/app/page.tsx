@@ -1,0 +1,33 @@
+import HeroSection from '@/components/sections/HeroSection'
+import AboutSection from '@/components/sections/AboutSection'
+import SkillsSection from '@/components/sections/SkillsSection'
+import ContactSection from '@/components/sections/ContactSection'
+
+export default function Home() {
+  return (
+    <main className="relative">
+      <section id="home">
+        <HeroSection />
+      </section>
+
+      <section id="about">
+        <AboutSection />
+      </section>
+
+      <section id="projects" className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold mb-4">Projects</h2>
+          <p className="text-muted-foreground">Gallery coming soon...</p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <SkillsSection />
+      </section>
+
+      <section id="contact">
+        <ContactSection />
+      </section>
+    </main>
+  )
+}

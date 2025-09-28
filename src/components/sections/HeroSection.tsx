@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, Suspense } from 'react'
+import { useRef, Suspense, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
@@ -26,6 +26,18 @@ export default function HeroSection() {
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Animated title switching
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
+  const titles = ['Full Stack Dev', 'CP Enthusiast']
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length)
+    }, 3000) // Switch every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [titles.length])
 
   useFadeInAnimation(sectionRef)
   useSlideInAnimation(titleRef, 'up', { delay: 0.3 })
@@ -72,9 +84,29 @@ export default function HeroSection() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl text-primary font-medium mb-4">
                 Hello, I&apos;m
               </h2>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight">
-                Full Stack Dev
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-2">
+                Kunj Mungalpara
               </h1>
+              <div className="relative h-20 sm:h-24 lg:h-28 xl:h-32 overflow-hidden">
+                <h2 
+                  className="absolute inset-0 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text transition-all duration-1000 ease-in-out transform"
+                  style={{
+                    transform: currentTitleIndex === 0 ? 'translateY(0)' : 'translateY(-100%)',
+                    opacity: currentTitleIndex === 0 ? 1 : 0
+                  }}
+                >
+                  Full Stack Dev
+                </h2>
+                <h2 
+                  className="absolute inset-0 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text transition-all duration-1000 ease-in-out transform"
+                  style={{
+                    transform: currentTitleIndex === 1 ? 'translateY(0)' : 'translateY(100%)',
+                    opacity: currentTitleIndex === 1 ? 1 : 0
+                  }}
+                >
+                  CP Enthusiast
+                </h2>
+              </div>
             </div>
 
             <p

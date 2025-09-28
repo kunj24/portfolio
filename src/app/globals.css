@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* Root theme variables */
+:root {
+  --background: #0f1724; /* deep slate */
+  --foreground: #e6f2ff; /* soft off-white */
+  --card: #0b1220;
+  --card-foreground: #e6f2ff;
+  --popover: #0b1220;
+  --popover-foreground: #cfeeff;
+  --primary: #2ee6c1; /* teal */
+  --primary-foreground: #021016;
+  --secondary: #0f1724;
+  --secondary-foreground: #9fbdd6;
+  --muted: #071021;
+  --muted-foreground: #7b9fb6;
+  --accent: #ff4da6; /* magenta accent */
+  --accent-foreground: #1b0212;
+  --destructive: #ff5c5c;
+  --destructive-foreground: #ffffff;
+  --border: #122030;
+  --input: #122030;
+  --ring: #2ee6c1;
+  --font-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+}
+
+/* Dark theme variables (applied when `.dark` class is present on the root) */
+.dark {
+  --background: #07101a;
+  --foreground: #e6f2ff;
+  --card: #061018;
+  --card-foreground: #e6f2ff;
+  --popover: #061018;
+  --popover-foreground: #d8f0ff;
+  --primary: #2ee6c1;
+  --primary-foreground: #021016;
+  --secondary: #08121a;
+  --secondary-foreground: #a7cfe0;
+  --muted: #07101a;
+  --muted-foreground: #7b9fb6;
+  --accent: #ff4da6;
+  --accent-foreground: #1b0212;
+  --destructive: #ff5c5c;
+  --destructive-foreground: #fff;
+  --border: #07202a;
+  --input: #07202a;
+  --ring: #2ee6c1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Base styles */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(2,8,12,0.3); }
+::-webkit-scrollbar-thumb { background: rgba(46,230,193,0.9); border-radius: 3px; }
+
+/* Utility classes */
+.glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); }
+.dark .glass { background: rgba(0,0,0,0.35); }
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation link styles (used by Navigation component) */
+.nav-link {
+  color: var(--muted-foreground);
+  transition: color 180ms ease, transform 180ms ease;
+}
+.nav-link:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+.nav-link-active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Loading dots */
+.loading-dots { display: inline-flex; gap: 4px; }
+.loading-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); animation: loading 1.4s ease-in-out infinite both; }
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes loading { 0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+
+/* Enhanced font and text styling */
+.text-enhanced { 
+  color: var(--foreground);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary);
+}
+
+.text-accent-glow {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+.text-primary-enhanced {
+  color: var(--primary);
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(46, 230, 193, 0.3);
+}
+
+/* Enhanced animations and effects */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px var(--primary); }
+  50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary); }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-glow { animation: glow 2s ease-in-out infinite; }
+.animate-gradient { 
+  background-size: 200% 200%; 
+  animation: gradient 3s ease infinite; 
+}
+
+/* Hover effects */
+.hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hover-scale:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(46, 230, 193, 0.2); }
+
+.hover-zoom { transition: transform 0.3s ease; overflow: hidden; }
+.hover-zoom:hover { transform: scale(1.02); }
+
+.hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hover-lift:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
+
+/* Parallax container */
+.parallax { transform-style: preserve-3d; }
+.parallax-layer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.parallax-back { transform: translateZ(-1px) scale(2); }
+.parallax-base { transform: translateZ(0); }
+
+/* Photo frame effects */
+.photo-frame {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+.photo-frame:hover::before {
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary), var(--accent));
+  animation: gradient 2s linear infinite;
+}
+
+/* Enhanced loader animations */
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+@keyframes loader-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-loader-pulse {
+  animation: loader-pulse 2s ease-in-out infinite;
+}
+
+/* Typing Effect Cursor */
+.typing-cursor {
+  animation: cursor-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+

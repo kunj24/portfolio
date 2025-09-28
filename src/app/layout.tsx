@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import { ThemeProvider } from "@/hooks/use-theme";
+import Loader from "@/components/ui/Loader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+          <Loader />
           <Navigation />
           {children}
         </ThemeProvider>

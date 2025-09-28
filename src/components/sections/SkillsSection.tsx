@@ -59,15 +59,15 @@ function SkillBar({ name, level }: SkillBarProps) {
   const barRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div className="stagger-item mb-4">
+    <div className="stagger-item mb-4 group hover-lift transition-all duration-300">
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium">{name}</span>
-        <span className="text-xs text-muted-foreground">{level}%</span>
+        <span className="text-sm font-medium text-enhanced group-hover:text-primary-enhanced transition-colors">{name}</span>
+        <span className="text-xs text-muted-foreground group-hover:text-accent transition-colors">{level}%</span>
       </div>
-      <div className="w-full bg-secondary/20 rounded-full h-2">
+      <div className="w-full bg-secondary/20 rounded-full h-2 group-hover:h-3 transition-all duration-300">
         <div
           ref={barRef}
-          className="h-2 bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000 ease-out"
+          className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000 ease-out group-hover:shadow-lg group-hover:shadow-primary/30 animate-gradient"
           style={{ width: `${level}%` }}
         />
       </div>

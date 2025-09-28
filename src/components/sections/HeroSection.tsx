@@ -82,7 +82,7 @@ export default function HeroSection() {
                   typeSpeed={120}
                   deleteSpeed={80}
                   pauseTime={1500}
-                  className="gradient-text"
+                  className="gradient-text whitespace-nowrap"
                   cursorClassName="text-primary"
                   loop={true}
                 />

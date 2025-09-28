@@ -219,3 +219,50 @@ body {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
+
+/* Dynamic Island Navigation */
+.dynamic-island {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark .dynamic-island {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Dynamic Island Glow Effect */
+.dynamic-island-glow {
+  position: relative;
+}
+
+.dynamic-island-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.dynamic-island-glow:hover::before {
+  opacity: 0.3;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.02); }
+}

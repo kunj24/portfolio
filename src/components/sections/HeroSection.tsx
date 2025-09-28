@@ -73,7 +73,10 @@ export default function HeroSection() {
           {/* Left Content */}
           <div className="space-y-8">
             <div ref={titleRef}>
-              <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-primary font-medium mb-4">
+                Hello, I&apos;m
+              </h2>
+              <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-2">
                 <TypingEffect
                   texts={typingTexts}
                   typeSpeed={120}

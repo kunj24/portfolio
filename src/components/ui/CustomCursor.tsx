@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 interface CustomCursorProps {
-  variant?: 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
+  variant?: 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid'
 }
 
 export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
@@ -200,15 +200,6 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
               />
             ))}
           </>
-        )
-
-      case 'minimal':
-        return (
-          <div className="cursor-minimal" style={{ 
-            left: `${mousePosition.x}px`, 
-            top: `${mousePosition.y}px`,
-            transform: `translate(-50%, -50%) scale(${isClicking ? 0.5 : isHovering ? 2 : 1})`
-          }} />
         )
 
       default: // 'default'

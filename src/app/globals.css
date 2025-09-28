@@ -514,15 +514,4 @@ a, button, [role="button"] {
   mix-blend-mode: multiply;
 }
 
-/* Minimal Cursor Variant */
-.cursor-minimal {
-  position: fixed;
-  width: 2px;
-  height: 2px;
-  background: var(--primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 0 6px var(--primary);
-}
+

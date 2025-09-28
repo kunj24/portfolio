@@ -5,17 +5,16 @@ import { Palette } from 'lucide-react'
 
 const cursorOptions = [
   { id: 'none', name: 'Default Arrow', description: 'Standard system cursor' },
-  { id: 'default', name: 'Custom Default', description: 'Classic dot with ring' },
+  { id: 'default', name: 'Classic Glow', description: 'Glowing dot with ring' },
   { id: 'neon', name: 'Neon', description: 'Glowing cyberpunk style' },
   { id: 'particle', name: 'Particle', description: 'Floating particles trail' },
   { id: 'magnetic', name: 'Magnetic', description: 'Rotating magnetic field' },
   { id: 'morphing', name: 'Morphing', description: 'Shape-shifting cursor' },
   { id: 'geometric', name: 'Geometric', description: 'Triangle and square combo' },
   { id: 'liquid', name: 'Liquid', description: 'Fluid blob effect' },
-  { id: 'minimal', name: 'Minimal', description: 'Ultra-clean tiny dot' },
 ]
 
-type CursorVariant = 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
+type CursorVariant = 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid'
 
 interface CursorSelectorProps {
   onCursorChange: (cursor: CursorVariant) => void
@@ -24,6 +23,11 @@ interface CursorSelectorProps {
 
 export default function CursorSelector({ onCursorChange, currentCursor }: CursorSelectorProps) {
   const [isOpen, setIsOpen] = useState(false)
+
+  // Don't render the selector if using default arrow
+  if (currentCursor === 'none') {
+    return null
+  }
 
   return (
     <div className="fixed bottom-6 right-6 z-50">

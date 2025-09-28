@@ -59,21 +59,7 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Logo - Centered Top */}
-      <div className="fixed top-20 left-1/2 -translate-x-1/2 z-40 md:top-6 md:left-6 md:translate-x-0">
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault()
-            scrollToSection('#home')
-          }}
-          className="text-xl md:text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300 block text-center md:text-left"
-        >
-          Kunj Mungalpara
-        </a>
-      </div>
-
-      {/* Dynamic Island Navigation */}
+      {/* Dynamic Island Navigation with Logo */}
       <nav
         className={cn(
           'fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out',
@@ -84,16 +70,35 @@ export default function Navigation() {
       >
         <div
           className={cn(
-            'flex items-center justify-center',
-            'bg-black/20 backdrop-blur-xl',
-            'border border-white/10',
+            'flex items-center justify-between',
+            'bg-black/60 backdrop-blur-xl',
+            'border border-white/20',
             'transition-all duration-500 ease-out',
             'shadow-2xl shadow-primary/10',
+            'rounded-full',
             isScrolled || isHovered
-              ? 'rounded-full px-6 py-3'
-              : 'rounded-full px-4 py-2'
+              ? 'px-8 py-4 gap-8'
+              : 'px-6 py-3 gap-6'
           )}
         >
+          {/* Logo */}
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection('#home')
+            }}
+            className={cn(
+              'font-bold gradient-text hover:scale-105 transition-all duration-300 whitespace-nowrap',
+              isScrolled || isHovered
+                ? 'text-lg'
+                : 'text-base'
+            )}
+          >
+            Kunj Mungalpara
+          </a>
+
+          {/* Navigation Icons */}
           <div className="flex items-center space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon
@@ -115,8 +120,8 @@ export default function Navigation() {
                       ? 'bg-primary/20 text-primary scale-110'
                       : 'hover:bg-white/10 hover:scale-105 text-white/70 hover:text-white',
                     isScrolled || isHovered
-                      ? 'w-12 h-12'
-                      : 'w-10 h-10'
+                      ? 'w-11 h-11'
+                      : 'w-9 h-9'
                   )}
                   title={item.name}
                 >
@@ -147,13 +152,28 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
+        {/* Mobile Logo */}
+        <div className="fixed top-6 left-6 z-40">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection('#home')
+            }}
+            className="text-lg font-bold gradient-text hover:scale-105 transition-transform duration-300"
+          >
+            Kunj Mungalpara
+          </a>
+        </div>
+
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
-            'fixed top-6 left-1/2 -translate-x-1/2 z-50',
+            'fixed top-6 right-6 z-50',
             'w-12 h-12 rounded-full',
-            'bg-black/20 backdrop-blur-xl',
-            'border border-white/10',
+            'bg-black/60 backdrop-blur-xl',
+            'border border-white/20',
             'flex items-center justify-center',
             'transition-all duration-300 hover:scale-105',
             'shadow-lg shadow-primary/10'
@@ -177,7 +197,7 @@ export default function Navigation() {
               : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
           )}
         >
-          <div className="bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 p-4 shadow-2xl shadow-primary/20">
+          <div className="bg-black/70 backdrop-blur-xl rounded-2xl border border-white/20 p-4 shadow-2xl shadow-primary/20">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon

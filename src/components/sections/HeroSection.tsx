@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, Suspense } from 'react'
+import { useRef, Suspense, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-import { Download, Mail } from 'lucide-react'
+import Image from 'next/image'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import CreativeArrow from '@/components/ui/CreativeArrow'
 
@@ -26,6 +26,18 @@ export default function HeroSection() {
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Animated title switching
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
+  const titles = ['Full Stack Dev', 'CP Enthusiast']
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length)
+    }, 3000) // Switch every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [titles.length])
 
   useFadeInAnimation(sectionRef)
   useSlideInAnimation(titleRef, 'up', { delay: 0.3 })
@@ -63,67 +75,94 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/20 dark:bg-black/40 parallax-layer parallax-base" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div
-          ref={titleRef}
-          className="mb-6"
-        >
-          <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight">
-            <span className="block text-white mb-2">hello i am</span>
-            <span className="block gradient-text animate-gradient">
-              kunj mungalpara
-            </span>
-          </h1>
-        </div>
-
-        <p
-          ref={subtitleRef}
-          className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed text-enhanced"
-        >
-          Crafting immersive digital experiences through cutting-edge 
-          <span className="text-primary-enhanced"> 3D animation</span> and 
-          <span className="text-accent-glow"> interactive design</span>
-        </p>
-
-        <div
-          ref={ctaRef}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-        >
-          <button
-            onClick={() => {
-              const projectsSection = document.getElementById('projects')
-              if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-            className="group px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale"
-          >
-            View My Work
-            <CreativeArrow className="ml-2 text-white" animated />
-          </button>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-20">
           
-          <button
-            onClick={() => {
-              const contactSection = document.getElementById('contact')
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-            className="group px-8 py-4 glass hover:bg-white/20 text-white rounded-full font-semibold transition-all duration-300 hover-scale border border-white/20"
-          >
-            <Mail className="w-5 h-5 inline mr-2" />
-            Get In Touch
-          </button>
+          {/* Left Content */}
+          <div className="space-y-8">
+            <div ref={titleRef}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-primary font-medium mb-4">
+                Hello, I&apos;m
+              </h2>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-2">
+                Kunj Mungalpara
+              </h1>
+              <div className="relative h-20 sm:h-24 lg:h-28 xl:h-32 overflow-hidden">
+                <h2 
+                  className="absolute inset-0 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text transition-all duration-1000 ease-in-out transform"
+                  style={{
+                    transform: currentTitleIndex === 0 ? 'translateY(0)' : 'translateY(-100%)',
+                    opacity: currentTitleIndex === 0 ? 1 : 0
+                  }}
+                >
+                  Full Stack Dev
+                </h2>
+                <h2 
+                  className="absolute inset-0 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold gradient-text transition-all duration-1000 ease-in-out transform"
+                  style={{
+                    transform: currentTitleIndex === 1 ? 'translateY(0)' : 'translateY(100%)',
+                    opacity: currentTitleIndex === 1 ? 1 : 0
+                  }}
+                >
+                  CP Enthusiast
+                </h2>
+              </div>
+            </div>
 
-          <a
-            href="/resume.pdf"
-            download
-            className="group px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale hover:shadow-lg hover:shadow-accent/25"
-          >
-            <Download className="w-5 h-5 inline mr-2" />
-            Resume
-            <CreativeArrow className="ml-2 text-white" size="sm" animated />
-          </a>
+            <p
+              ref={subtitleRef}
+              className="text-lg sm:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-xl"
+            >
+              I am a passionate web developer, dedicated to crafting interactive and efficient web applications.
+            </p>
+
+            <div
+              ref={ctaRef}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact')
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+                className="px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg"
+              >
+                Hire Me
+              </button>
+              
+              <a
+                href="/resume.pdf"
+                download
+                className="px-8 py-4 border border-white/30 hover:border-white/50 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg hover:bg-white/10"
+              >
+                Download Resume
+              </a>
+            </div>
+          </div>
+
+          {/* Right Profile Image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative">
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale">
+                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
+                  <Image
+                    src="/images/kunj-profile.jpg"
+                    alt="Kunj Mungalpara - Full Stack Developer"
+                    fill
+                    className="object-cover object-center hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 1024px) 320px, 384px"
+                    priority
+                  />
+                </div>
+              </div>
+              
+              {/* Floating decorative elements */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float delay-1000" />
+            </div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}

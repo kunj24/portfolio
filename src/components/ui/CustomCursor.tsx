@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 
 interface CustomCursorProps {
-  variant?: 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
+  variant?: 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
 }
 
-export default function CustomCursor({ variant = 'default' }: CustomCursorProps) {
+export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
@@ -21,7 +21,7 @@ export default function CustomCursor({ variant = 'default' }: CustomCursorProps)
 
       // Add trail for particle and liquid variants
       if (variant === 'particle' || variant === 'liquid') {
-        const newTrailPoint = { x: newPos.x, y: newPos.y, id: trailId }
+        const newTrailPoint = { x: newPos.x, y: newPos.y, id: Date.now() + Math.random() }
         setTrail(prev => [...prev.slice(-8), newTrailPoint])
         setTrailId(prev => prev + 1)
       }
@@ -31,7 +31,7 @@ export default function CustomCursor({ variant = 'default' }: CustomCursorProps)
         const newParticle = { 
           x: newPos.x + (Math.random() - 0.5) * 30, 
           y: newPos.y + (Math.random() - 0.5) * 30, 
-          id: Date.now(), 
+          id: Date.now() + Math.random() * 1000, 
           opacity: 1 
         }
         setParticles(prev => [...prev, newParticle])
@@ -58,8 +58,12 @@ export default function CustomCursor({ variant = 'default' }: CustomCursorProps)
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
 
-    // Hide default cursor
-    document.body.style.cursor = 'none'
+    // Hide default cursor only for custom variants
+    if (variant !== 'none') {
+      document.body.style.cursor = 'none'
+    } else {
+      document.body.style.cursor = 'auto'
+    }
 
     return () => {
       document.removeEventListener('mousemove', updateMousePosition)
@@ -79,6 +83,11 @@ export default function CustomCursor({ variant = 'default' }: CustomCursorProps)
   }, [])
 
   const renderCursor = () => {
+    // Don't render anything for 'none' variant
+    if (variant === 'none') {
+      return null
+    }
+
     switch (variant) {
       case 'neon':
         return (

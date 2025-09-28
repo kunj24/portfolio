@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-type CursorVariant = 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
+type CursorVariant = 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
 
 interface CursorContextType {
   variant: CursorVariant
@@ -12,7 +12,7 @@ interface CursorContextType {
 const CursorContext = createContext<CursorContextType | undefined>(undefined)
 
 export function CursorProvider({ children }: { children: ReactNode }) {
-  const [variant, setVariant] = useState<CursorVariant>('default')
+  const [variant, setVariant] = useState<CursorVariant>('none')
 
   return (
     <CursorContext.Provider value={{ variant, setVariant }}>

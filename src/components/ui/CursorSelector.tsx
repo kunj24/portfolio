@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { Palette } from 'lucide-react'
 
 const cursorOptions = [
-  { id: 'default', name: 'Default', description: 'Classic dot with ring' },
+  { id: 'none', name: 'Default Arrow', description: 'Standard system cursor' },
+  { id: 'default', name: 'Custom Default', description: 'Classic dot with ring' },
   { id: 'neon', name: 'Neon', description: 'Glowing cyberpunk style' },
   { id: 'particle', name: 'Particle', description: 'Floating particles trail' },
   { id: 'magnetic', name: 'Magnetic', description: 'Rotating magnetic field' },
@@ -14,7 +15,7 @@ const cursorOptions = [
   { id: 'minimal', name: 'Minimal', description: 'Ultra-clean tiny dot' },
 ]
 
-type CursorVariant = 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
+type CursorVariant = 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid' | 'minimal'
 
 interface CursorSelectorProps {
   onCursorChange: (cursor: CursorVariant) => void

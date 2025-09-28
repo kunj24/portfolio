@@ -21,7 +21,7 @@ export default function Loader() {
     // Check if loader has already been shown in this session
     const hasShownLoader = sessionStorage.getItem('portfolio-loader-shown')
     
-    if (hasShownLoader) {
+    if (hasShownLoader) { 
       // Don't show loader if already shown in this session
       setIsVisible(false)
       return

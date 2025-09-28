@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import { Code, Palette, Zap, Globe } from 'lucide-react'
 
@@ -101,26 +102,24 @@ export default function AboutSection() {
             <div className="relative w-full aspect-square max-w-md mx-auto hover-lift">
               {/* Photo frame with gradient border */}
               <div className="photo-frame w-full h-full hover-zoom">
-                {/* Placeholder for actual photo - replace src with your photo */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center rounded-2xl">
-                  <div className="text-center p-8">
-                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-6 animate-glow flex items-center justify-center text-4xl font-bold text-white">
-                      KM
-                    </div>
-                    <h3 className="text-xl font-bold gradient-text mb-2">Kunj Mungalpara</h3>
-                    <p className="text-sm text-muted-foreground">3D Animator & Developer</p>
-                    <div className="mt-4 text-xs text-muted-foreground">
-                      📷 Add your photo here
+                {/* Profile Photo */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                  <Image 
+                    src="/images/kunj-profile.jpg" 
+                    alt="Kunj Mungalpara"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
+                  />
+                  {/* Overlay with name */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-6">
+                    <div className="text-center text-white">
+                      <h3 className="text-xl font-bold mb-1">Kunj Mungalpara</h3>
+                      <p className="text-sm opacity-90">3D Animator & Developer</p>
                     </div>
                   </div>
                 </div>
-                
-                {/* Future: Replace above div with actual image */}
-                {/* <img 
-                  src="/images/profile.jpg" 
-                  alt="Kunj Mungalpara"
-                  className="w-full h-full object-cover rounded-2xl"
-                /> */}
               </div>
               
               {/* Floating decorative elements */}

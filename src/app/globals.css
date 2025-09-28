@@ -335,3 +335,194 @@ a, button, [role="button"] {
 .custom-cursor-dot:hover {
   animation: cursor-glow 1s ease-in-out infinite;
 }
+
+/* Neon Cursor Variant */
+.cursor-neon-outer {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  box-shadow: 0 0 20px var(--accent), inset 0 0 20px var(--accent);
+}
+
+.cursor-neon-inner {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.cursor-neon-glow {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--accent)20, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  transition: transform 0.2s ease;
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Particle Cursor Variant */
+.cursor-particle-center {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.cursor-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  animation: particle-float 1s ease-out forwards;
+}
+
+.cursor-trail-point {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes particle-float {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0) translateY(-20px); opacity: 0; }
+}
+
+/* Magnetic Cursor Variant */
+.cursor-magnetic-outer {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.2s ease;
+  border-style: dashed;
+  animation: magnetic-rotate 4s linear infinite;
+}
+
+.cursor-magnetic-inner {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 15px var(--primary);
+}
+
+@keyframes magnetic-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Morphing Cursor Variant */
+.cursor-morph {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px var(--primary);
+}
+
+/* Geometric Cursor Variant */
+.cursor-geo-triangle {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 14px solid var(--primary);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 0 8px var(--primary));
+}
+
+.cursor-geo-square {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.15s ease;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Liquid Cursor Variant */
+.cursor-liquid-main {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 15px var(--primary);
+}
+
+.cursor-liquid-blob {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  filter: blur(1px);
+  mix-blend-mode: multiply;
+}
+
+/* Minimal Cursor Variant */
+.cursor-minimal {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 6px var(--primary);
+}

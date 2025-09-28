@@ -4,7 +4,8 @@ import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Loader from "@/components/ui/Loader";
-import CustomCursor from "@/components/ui/CustomCursor";
+import CursorSystem from "@/components/ui/CursorSystem";
+import { CursorProvider } from "@/hooks/use-cursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,10 +29,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
-          <CustomCursor />
-          <Loader />
-          <Navigation />
-          {children}
+          <CursorProvider>
+            <CursorSystem />
+            <Loader />
+            <Navigation />
+            {children}
+          </CursorProvider>
         </ThemeProvider>
       </body>
     </html>

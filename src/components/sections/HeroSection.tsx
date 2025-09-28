@@ -61,9 +61,9 @@ export default function HeroSection() {
           className="mb-6"
         >
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight">
-            <span className="block text-white mb-2">Creative</span>
+            <span className="block text-white mb-2">hello i am</span>
             <span className="block gradient-text animate-gradient">
-              3D Animator
+              kunj mungalpara
             </span>
           </h1>
         </div>

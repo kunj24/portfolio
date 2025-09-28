@@ -93,7 +93,7 @@ export default function HeroSection() {
               ref={subtitleRef}
               className="text-lg sm:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-xl"
             >
-              I am a passionate web developer, dedicated to crafting interactive and efficient web applications.
+              Web developer by day, competitive programmer by night — I craft interactive, efficient applications.
             </p>
 
             <div

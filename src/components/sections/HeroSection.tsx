@@ -2,8 +2,9 @@
 
 import { useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import { ChevronDown, Download, Mail } from 'lucide-react'
+import { Download, Mail } from 'lucide-react'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
+import CreativeArrow from '@/components/ui/CreativeArrow'
 
 // Dynamic import for 3D component to avoid SSR issues
 const Hero3D = dynamic(() => import('@/components/3d/Hero3D'), {
@@ -42,17 +43,24 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted/10 to-background"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted/10 to-background parallax"
     >
-      {/* 3D Background */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* 3D Background with parallax */}
+      <div className="absolute inset-0 w-full h-full parallax-layer parallax-back">
         <Suspense fallback={<div className="w-full h-full bg-muted/20" />}>
           <Hero3D className="w-full h-full" />
         </Suspense>
       </div>
 
+      {/* Parallax floating elements */}
+      <div className="absolute inset-0 parallax-layer" style={{ transform: 'translateZ(-0.5px) scale(1.5)' }}>
+        <div className="absolute top-1/4 left-10 w-4 h-4 bg-primary/40 rounded-full animate-float blur-sm" />
+        <div className="absolute top-3/4 right-10 w-6 h-6 bg-accent/40 rounded-full animate-float delay-1000 blur-sm" />
+        <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-secondary/40 rounded-full animate-float delay-2000 blur-sm" />
+      </div>
+
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20 dark:bg-black/40" />
+      <div className="absolute inset-0 bg-black/20 dark:bg-black/40 parallax-layer parallax-base" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
@@ -70,11 +78,11 @@ export default function HeroSection() {
 
         <p
           ref={subtitleRef}
-          className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
+          className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed text-enhanced"
         >
           Crafting immersive digital experiences through cutting-edge 
-          <span className="text-primary font-semibold"> 3D animation</span> and 
-          <span className="text-accent font-semibold"> interactive design</span>
+          <span className="text-primary-enhanced"> 3D animation</span> and 
+          <span className="text-accent-glow"> interactive design</span>
         </p>
 
         <div
@@ -88,12 +96,10 @@ export default function HeroSection() {
                 projectsSection.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="group px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+            className="group px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale"
           >
             View My Work
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
-              →
-            </span>
+            <CreativeArrow className="ml-2 text-white" animated />
           </button>
           
           <button
@@ -103,7 +109,7 @@ export default function HeroSection() {
                 contactSection.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="group px-8 py-4 glass hover:bg-white/20 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 border border-white/20"
+            className="group px-8 py-4 glass hover:bg-white/20 text-white rounded-full font-semibold transition-all duration-300 hover-scale border border-white/20"
           >
             <Mail className="w-5 h-5 inline mr-2" />
             Get In Touch
@@ -112,10 +118,11 @@ export default function HeroSection() {
           <a
             href="/resume.pdf"
             download
-            className="group px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent/25"
+            className="group px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale hover:shadow-lg hover:shadow-accent/25"
           >
             <Download className="w-5 h-5 inline mr-2" />
             Resume
+            <CreativeArrow className="ml-2 text-white" size="sm" animated />
           </a>
         </div>
 
@@ -130,15 +137,12 @@ export default function HeroSection() {
             aria-label="Scroll to about section"
           >
             <span className="text-sm mb-2 font-medium">Scroll to explore</span>
-            <ChevronDown className="w-6 h-6 animate-bounce group-hover:scale-110 transition-transform duration-300" />
+            <CreativeArrow direction="down" size="lg" className="text-white/70 group-hover:text-white animate-bounce" animated />
           </button>
         </div>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-10 w-4 h-4 bg-primary/60 rounded-full animate-float blur-sm" />
-      <div className="absolute top-3/4 right-10 w-6 h-6 bg-accent/60 rounded-full animate-float delay-1000 blur-sm" />
-      <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-secondary/60 rounded-full animate-float delay-2000 blur-sm" />
+
     </section>
   )
 }

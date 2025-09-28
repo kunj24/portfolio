@@ -96,25 +96,38 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Image/Visual */}
+          {/* Photo Section */}
           <div ref={imageRef} className="relative">
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              {/* Placeholder for profile image or 3D avatar */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-2xl glass animate-pulse" />
-              <div className="absolute inset-4 bg-gradient-to-tr from-primary/10 to-transparent rounded-xl" />
+            <div className="relative w-full aspect-square max-w-md mx-auto hover-lift">
+              {/* Photo frame with gradient border */}
+              <div className="photo-frame w-full h-full hover-zoom">
+                {/* Placeholder for actual photo - replace src with your photo */}
+                <div className="w-full h-full bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center rounded-2xl">
+                  <div className="text-center p-8">
+                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-6 animate-glow flex items-center justify-center text-4xl font-bold text-white">
+                      KM
+                    </div>
+                    <h3 className="text-xl font-bold gradient-text mb-2">Kunj Mungalpara</h3>
+                    <p className="text-sm text-muted-foreground">3D Animator & Developer</p>
+                    <div className="mt-4 text-xs text-muted-foreground">
+                      📷 Add your photo here
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Future: Replace above div with actual image */}
+                {/* <img 
+                  src="/images/profile.jpg" 
+                  alt="Kunj Mungalpara"
+                  className="w-full h-full object-cover rounded-2xl"
+                /> */}
+              </div>
               
               {/* Floating decorative elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float" />
               <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/20 rounded-full blur-xl animate-float delay-1000" />
-              
-              {/* Center content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 animate-glow" />
-                  <p className="text-lg font-semibold gradient-text">Kunj Mungalpara</p>
-                  <p className="text-sm text-muted-foreground">3D Animator & Developer</p>
-                </div>
-              </div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-accent rounded-full animate-pulse" />
+              <div className="absolute bottom-1/4 -right-6 w-2 h-2 bg-primary rounded-full animate-pulse delay-500" />
             </div>
           </div>
         </div>
@@ -124,7 +137,7 @@ export default function AboutSection() {
           {highlights.map((highlight) => (
             <div
               key={highlight.title}
-              className="stagger-item group p-6 glass rounded-xl hover:bg-primary/5 transition-all duration-300 hover:scale-105"
+              className="stagger-item group p-6 glass rounded-xl hover:bg-primary/5 transition-all duration-300 hover-scale hover-lift"
             >
               <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
                 {highlight.icon}

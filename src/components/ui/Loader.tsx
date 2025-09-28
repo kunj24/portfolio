@@ -3,16 +3,32 @@
 import { useEffect, useState } from 'react'
 
 export default function Loader() {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
+    // Check if loader has already been shown in this session
+    const hasShownLoader = sessionStorage.getItem('portfolio-loader-shown')
+    
+    if (hasShownLoader) {
+      // Don't show loader if already shown in this session
+      setIsVisible(false)
+      return
+    }
+
+    // Show loader for first time in session
+    setIsVisible(true)
+    
     // Simulate loading progress
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsVisible(false), 500)
+          setTimeout(() => {
+            setIsVisible(false)
+            // Mark loader as shown for this session
+            sessionStorage.setItem('portfolio-loader-shown', 'true')
+          }, 500)
           return 100
         }
         return prev + 2
@@ -28,18 +44,39 @@ export default function Loader() {
     <div className="fixed inset-0 z-[9999] bg-gradient-to-br from-background via-card to-background flex items-center justify-center">
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
+        {/* Use a small seeded PRNG so server and client render the same values */}
+        {[...Array(20)].map((_, i) => {
+          // deterministic PRNG (mulberry32) so values match between server & client
+          const mulberry32 = (seed: number) => {
+            return () => {
+              let t = (seed += 0x6d2b79f5)
+              t = Math.imul(t ^ (t >>> 15), t | 1)
+              t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+              return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+            }
+          }
+
+          const seedBase = 1337
+          const r = mulberry32(seedBase + i)
+
+          const left = `${Math.floor(r() * 100)}%`
+          const top = `${Math.floor(r() * 100)}%`
+          const animationDelay = `${(r() * 3).toFixed(6)}s`
+          const animationDuration = `${(3 + r() * 2).toFixed(6)}s`
+
+          return (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+              style={{
+                left,
+                top,
+                animationDelay,
+                animationDuration
+              }}
+            />
+          )
+        })}
       </div>
 
       {/* Main loader content */}

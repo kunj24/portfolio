@@ -95,10 +95,10 @@ export default function Navigation() {
                       scrollToSection(item.href)
                     }}
                     className={cn(
-                      'px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary',
+                      'px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 nav-link',
                       activeSection === item.href.substring(1)
-                        ? 'text-primary bg-primary/10'
-                        : 'text-muted-foreground hover:bg-primary/5'
+                        ? 'nav-link-active bg-primary/5'
+                        : 'hover:bg-primary/5'
                     )}
                   >
                     {item.name}

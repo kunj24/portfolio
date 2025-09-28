@@ -10,10 +10,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "3D Animation Portfolio",
-  description: "A modern, responsive 3D animation portfolio showcasing creative works and interactive experiences.",
+  title: "Kunj Mungalpara",
+  description: "A modern, responsive 3D animation portfolio by Kunj Mungalpara.",
   keywords: ["3D animation", "portfolio", "Three.js", "React", "creative", "interactive"],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Kunj Mungalpara" }],
   viewport: "width=device-width, initial-scale=1",
 };
 

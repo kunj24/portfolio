@@ -1,4 +1,4 @@
-# 3D Animation Portfolio
+# Kunj Mungalpara
 
 A modern, responsive 3D animation portfolio built with Next.js, Three.js, and GSAP. Features interactive 3D elements, smooth scroll animations, dark/light mode, and a working contact form.
 

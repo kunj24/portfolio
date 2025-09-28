@@ -111,7 +111,7 @@ export default function AboutSection() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 animate-glow" />
-                  <p className="text-lg font-semibold gradient-text">Your Name</p>
+                  <p className="text-lg font-semibold gradient-text">Kunj Mungalpara</p>
                   <p className="text-sm text-muted-foreground">3D Animator & Developer</p>
                 </div>
               </div>

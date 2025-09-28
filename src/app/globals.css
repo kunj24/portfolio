@@ -3,50 +3,50 @@
 
 /* Root theme variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #0ea5e9;
-  --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --destructive: #ef4444;
+  --background: #0f1724; /* deep slate */
+  --foreground: #e6f2ff; /* soft off-white */
+  --card: #0b1220;
+  --card-foreground: #e6f2ff;
+  --popover: #0b1220;
+  --popover-foreground: #cfeeff;
+  --primary: #2ee6c1; /* teal */
+  --primary-foreground: #021016;
+  --secondary: #0f1724;
+  --secondary-foreground: #9fbdd6;
+  --muted: #071021;
+  --muted-foreground: #7b9fb6;
+  --accent: #ff4da6; /* magenta accent */
+  --accent-foreground: #1b0212;
+  --destructive: #ff5c5c;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0ea5e9;
-  --font-inter: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --border: #122030;
+  --input: #122030;
+  --ring: #2ee6c1;
+  --font-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
 }
 
 /* Dark theme variables (applied when `.dark` class is present on the root) */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --card: #111111;
-  --card-foreground: #ededed;
-  --popover: #111111;
-  --popover-foreground: #ededed;
-  --primary: #38bdf8;
-  --primary-foreground: #0f172a;
-  --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
-  --accent-foreground: #f8fafc;
-  --destructive: #dc2626;
-  --destructive-foreground: #f8fafc;
-  --border: #334155;
-  --input: #334155;
-  --ring: #38bdf8;
+  --background: #07101a;
+  --foreground: #e6f2ff;
+  --card: #061018;
+  --card-foreground: #e6f2ff;
+  --popover: #061018;
+  --popover-foreground: #d8f0ff;
+  --primary: #2ee6c1;
+  --primary-foreground: #021016;
+  --secondary: #08121a;
+  --secondary-foreground: #a7cfe0;
+  --muted: #07101a;
+  --muted-foreground: #7b9fb6;
+  --accent: #ff4da6;
+  --accent-foreground: #1b0212;
+  --destructive: #ff5c5c;
+  --destructive-foreground: #fff;
+  --border: #07202a;
+  --input: #07202a;
+  --ring: #2ee6c1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,8 +72,8 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); }
-::-webkit-scrollbar-thumb { background: rgba(14,165,233,0.9); border-radius: 3px; }
+::-webkit-scrollbar-track { background: rgba(2,8,12,0.3); }
+::-webkit-scrollbar-thumb { background: rgba(46,230,193,0.9); border-radius: 3px; }
 
 /* Utility classes */
 .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); }
@@ -83,6 +83,20 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Navigation link styles (used by Navigation component) */
+.nav-link {
+  color: var(--muted-foreground);
+  transition: color 180ms ease, transform 180ms ease;
+}
+.nav-link:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+.nav-link-active {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* Loading dots */

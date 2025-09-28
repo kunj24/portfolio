@@ -24,11 +24,6 @@ interface CursorSelectorProps {
 export default function CursorSelector({ onCursorChange, currentCursor }: CursorSelectorProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  // Don't render the selector if using default arrow
-  if (currentCursor === 'none') {
-    return null
-  }
-
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <button

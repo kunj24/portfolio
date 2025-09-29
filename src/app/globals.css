@@ -312,13 +312,15 @@ body {
   }
 }
 
-/* Cursor hover effects */
+/* Cursor hover effects - only when custom cursor is active */
 .cursor-interactive {
   cursor: none !important;
 }
 
-/* Enhanced cursor for different elements */
-a, button, [role="button"] {
+/* Enhanced cursor for different elements - only when custom cursor is active */
+body.custom-cursor-active a, 
+body.custom-cursor-active button, 
+body.custom-cursor-active [role="button"] {
   cursor: none;
 }
 
@@ -512,6 +514,104 @@ a, button, [role="button"] {
   z-index: 9998;
   filter: blur(1px);
   mix-blend-mode: multiply;
+}
+
+/* Pointer Cursor Styles for Interactive Elements */
+.custom-cursor-pointer {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 12px solid var(--primary);
+  border-right: 6px solid transparent;
+  border-bottom: 16px solid var(--primary);
+  border-top: 6px solid transparent;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 12px var(--primary)) drop-shadow(0 0 20px var(--primary));
+  animation: pointer-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pointer-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px var(--primary));
+    transform: scale(1);
+  }
+  50% { 
+    filter: drop-shadow(0 0 16px var(--primary)) drop-shadow(0 0 24px var(--primary));
+    transform: scale(1.1);
+  }
+}
+
+.cursor-neon-pointer {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--accent);
+  border-right: 4px solid transparent;
+  border-bottom: 12px solid var(--accent);
+  border-top: 4px solid transparent;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 12px var(--accent));
+  animation: pointer-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pointer-glow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px var(--accent));
+  }
+  50% { 
+    filter: drop-shadow(0 0 16px var(--accent)) drop-shadow(0 0 24px var(--accent));
+  }
+}
+
+/* Skill Cards Light Effects */
+.skill-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(46, 230, 193, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(46, 230, 193, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-icon-glow {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.skill-icon-glow:hover::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+  border-radius: inherit;
+  z-index: -1;
+  animation: skill-glow-rotate 2s linear infinite;
+}
+
+@keyframes skill-glow-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes skill-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.skill-card:hover .skill-icon-glow {
+  animation: skill-float 3s ease-in-out infinite;
 }
 
 

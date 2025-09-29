@@ -45,9 +45,15 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
                            !!target.closest('a') || 
                            !!target.closest('button') ||
                            target.style.cursor === 'pointer' ||
-                           target.classList.contains('cursor-pointer')
+                           target.classList.contains('cursor-pointer') ||
+                           target.hasAttribute('href') ||
+                           target.getAttribute('role') === 'button'
       
       setIsHovering(isInteractive)
+    }
+
+    const handleMouseLeave = () => {
+      setIsHovering(false)
     }
 
     const handleMouseDown = () => setIsClicking(true)
@@ -55,22 +61,27 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
 
     document.addEventListener('mousemove', updateMousePosition)
     document.addEventListener('mouseover', handleMouseOver)
+    document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
 
     // Hide default cursor only for custom variants
     if (variant !== 'none') {
       document.body.style.cursor = 'none'
+      document.body.classList.add('custom-cursor-active')
     } else {
-      document.body.style.cursor = 'auto'
+      document.body.style.cursor = ''
+      document.body.classList.remove('custom-cursor-active')
     }
 
     return () => {
       document.removeEventListener('mousemove', updateMousePosition)
       document.removeEventListener('mouseover', handleMouseOver)
+      document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
-      document.body.style.cursor = 'auto'
+      document.body.style.cursor = ''
+      document.body.classList.remove('custom-cursor-active')
     }
   }, [variant, trailId])
 
@@ -92,133 +103,205 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
       case 'neon':
         return (
           <>
-            <div className="cursor-neon-outer" style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
-            <div className="cursor-neon-inner" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isClicking ? 0.5 : 1})`
-            }} />
-            <div className="cursor-neon-glow" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isHovering ? 2 : 1})`
-            }} />
+            {isHovering ? (
+              <div className="cursor-neon-pointer" style={{ 
+                left: `${mousePosition.x}px`, 
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`
+              }} />
+            ) : (
+              <>
+                <div className="cursor-neon-outer" style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
+                <div className="cursor-neon-inner" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isClicking ? 0.5 : 1})`
+                }} />
+                <div className="cursor-neon-glow" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isHovering ? 2 : 1})`
+                }} />
+              </>
+            )}
           </>
         )
 
       case 'particle':
         return (
           <>
-            <div className="cursor-particle-center" style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
-            {particles.map(particle => (
-              <div
-                key={particle.id}
-                className="cursor-particle"
-                style={{
-                  left: `${particle.x}px`,
-                  top: `${particle.y}px`,
-                  opacity: Math.max(0, 1 - (Date.now() - particle.id) / 1000)
-                }}
-              />
-            ))}
-            {trail.map((point, index) => (
-              <div
-                key={point.id}
-                className="cursor-trail-point"
-                style={{
-                  left: `${point.x}px`,
-                  top: `${point.y}px`,
-                  opacity: (index + 1) / trail.length * 0.5
-                }}
-              />
-            ))}
+            {isHovering ? (
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              <>
+                <div className="cursor-particle-center" style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }} />
+                {particles.map(particle => (
+                  <div
+                    key={particle.id}
+                    className="cursor-particle"
+                    style={{
+                      left: `${particle.x}px`,
+                      top: `${particle.y}px`,
+                      opacity: Math.max(0, 1 - (Date.now() - particle.id) / 1000)
+                    }}
+                  />
+                ))}
+                {trail.map((point, index) => (
+                  <div
+                    key={point.id}
+                    className="cursor-trail-point"
+                    style={{
+                      left: `${point.x}px`,
+                      top: `${point.y}px`,
+                      opacity: (index + 1) / trail.length * 0.5
+                    }}
+                  />
+                ))}
+              </>
+            )}
           </>
         )
 
       case 'magnetic':
         return (
           <>
-            <div className="cursor-magnetic-outer" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1}) rotate(${Date.now() / 50}deg)`
-            }} />
-            <div className="cursor-magnetic-inner" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isClicking ? 0.3 : 1})`
-            }} />
+            {isHovering ? (
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              <>
+                <div className="cursor-magnetic-outer" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1}) rotate(${Date.now() / 50}deg)`
+                }} />
+                <div className="cursor-magnetic-inner" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isClicking ? 0.3 : 1})`
+                }} />
+              </>
+            )}
           </>
         )
 
       case 'morphing':
         return (
-          <div className="cursor-morph" style={{ 
-            left: `${mousePosition.x}px`, 
-            top: `${mousePosition.y}px`,
-            transform: `translate(-50%, -50%) scale(${isClicking ? 0.7 : 1})`,
-            borderRadius: isHovering ? '0%' : '50%',
-            width: isHovering ? '40px' : '20px',
-            height: isHovering ? '40px' : '20px'
-          }} />
+          <>
+            {isHovering ? (
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              <div className="cursor-morph" style={{ 
+                left: `${mousePosition.x}px`, 
+                top: `${mousePosition.y}px`,
+                transform: `translate(-50%, -50%) scale(${isClicking ? 0.7 : 1})`,
+                borderRadius: isHovering ? '0%' : '50%',
+                width: isHovering ? '40px' : '20px',
+                height: isHovering ? '40px' : '20px'
+              }} />
+            )}
+          </>
         )
 
       case 'geometric':
         return (
           <>
-            <div className="cursor-geo-triangle" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) rotate(${Date.now() / 20}deg) scale(${isHovering ? 1.5 : 1})`
-            }} />
-            <div className="cursor-geo-square" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) rotate(${-Date.now() / 30}deg) scale(${isClicking ? 0.5 : 1})`
-            }} />
+            {isHovering ? (
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              <>
+                <div className="cursor-geo-triangle" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) rotate(${Date.now() / 20}deg) scale(${isHovering ? 1.5 : 1})`
+                }} />
+                <div className="cursor-geo-square" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) rotate(${-Date.now() / 30}deg) scale(${isClicking ? 0.5 : 1})`
+                }} />
+              </>
+            )}
           </>
         )
 
       case 'liquid':
         return (
           <>
-            <div className="cursor-liquid-main" style={{ 
-              left: `${mousePosition.x}px`, 
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`
-            }} />
-            {trail.map((point, index) => (
-              <div
-                key={point.id}
-                className="cursor-liquid-blob"
-                style={{
-                  left: `${point.x}px`,
-                  top: `${point.y}px`,
-                  transform: `translate(-50%, -50%) scale(${(index + 1) / trail.length})`,
-                  opacity: (index + 1) / trail.length * 0.6
-                }}
-              />
-            ))}
+            {isHovering ? (
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              <>
+                <div className="cursor-liquid-main" style={{ 
+                  left: `${mousePosition.x}px`, 
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`
+                }} />
+                {trail.map((point, index) => (
+                  <div
+                    key={point.id}
+                    className="cursor-liquid-blob"
+                    style={{
+                      left: `${point.x}px`,
+                      top: `${point.y}px`,
+                      transform: `translate(-50%, -50%) scale(${(index + 1) / trail.length})`,
+                      opacity: (index + 1) / trail.length * 0.6
+                    }}
+                  />
+                ))}
+              </>
+            )}
           </>
         )
 
       default: // 'default'
         return (
           <>
-            <div className="custom-cursor-dot" style={{
-              left: `${mousePosition.x}px`,
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`,
-            }} />
-            <div className="custom-cursor-ring" style={{
-              left: `${mousePosition.x}px`,
-              top: `${mousePosition.y}px`,
-              transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
-            }} />
-            <div className="custom-cursor-trail" style={{
-              left: `${mousePosition.x}px`,
-              top: `${mousePosition.y}px`,
-            }} />
+            {isHovering ? (
+              // Pointer cursor for interactive elements
+              <div className="custom-cursor-pointer" style={{
+                left: `${mousePosition.x}px`,
+                top: `${mousePosition.y}px`,
+                transform: `translate(-20%, -10%) scale(${isClicking ? 0.8 : 1})`,
+              }} />
+            ) : (
+              // Normal cursor
+              <>
+                <div className="custom-cursor-dot" style={{
+                  left: `${mousePosition.x}px`,
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isClicking ? 0.8 : 1})`,
+                }} />
+                <div className="custom-cursor-ring" style={{
+                  left: `${mousePosition.x}px`,
+                  top: `${mousePosition.y}px`,
+                  transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
+                }} />
+                <div className="custom-cursor-trail" style={{
+                  left: `${mousePosition.x}px`,
+                  top: `${mousePosition.y}px`,
+                }} />
+              </>
+            )}
           </>
         )
     }

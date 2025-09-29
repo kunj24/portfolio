@@ -1,5 +1,6 @@
 import HeroSection from '@/components/sections/HeroSection'
 import AboutSection from '@/components/sections/AboutSection'
+import ProjectsSection from '@/components/sections/ProjectsSection'
 import SkillsSection from '@/components/sections/SkillsSection'
 import ContactSection from '@/components/sections/ContactSection'
 
@@ -14,11 +15,8 @@ export default function Home() {
         <AboutSection />
       </section>
 
-      <section id="projects" className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4">Projects</h2>
-          <p className="text-muted-foreground">Gallery coming soon...</p>
-        </div>
+      <section id="projects">
+        <ProjectsSection />
       </section>
 
       <section id="skills">

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 /* Root theme variables */
@@ -10,20 +11,20 @@
   --popover: #0b1220;
   --popover-foreground: #cfeeff;
   --primary: #2ee6c1; /* teal */
+  --primary-rgb: 46, 230, 193;
   --primary-foreground: #021016;
   --secondary: #0f1724;
   --secondary-foreground: #9fbdd6;
   --muted: #071021;
   --muted-foreground: #7b9fb6;
   --accent: #ff4da6; /* magenta accent */
+  --accent-rgb: 255, 77, 166;
   --accent-foreground: #1b0212;
   --destructive: #ff5c5c;
   --destructive-foreground: #ffffff;
   --border: #122030;
   --input: #122030;
   --ring: #2ee6c1;
-  --font-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
 }
 
 /* Dark theme variables (applied when `.dark` class is present on the root) */
@@ -57,17 +58,53 @@
 }
 
 /* Base styles */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* { 
+  box-sizing: border-box; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
 body {
   margin: 0;
   padding: 0;
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+
+/* Ensure all text elements have proper font inheritance */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Force font loading for critical text */
+.font-display {
+  font-display: swap;
+}
+
+/* Fallback for gradient text when CSS variables fail */
+.gradient-text {
+  background: linear-gradient(135deg, #2ee6c1, #ff4da6);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ensure text is visible if gradient fails */
+@supports not (-webkit-background-clip: text) {
+  .gradient-text {
+    color: #2ee6c1;
+  }
 }
 
 /* Scrollbar */
@@ -873,6 +910,92 @@ body.custom-cursor-active [role="button"] {
   pointer-events: none;
   z-index: 1;
 }
+
+/* Enhanced Project Cards Animation */
+.project-card {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s;
+}
+
+.project-card:hover::before {
+  left: 100%;
+}
+
+.project-card:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Floating animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.project-card:nth-child(odd) {
+  animation: float 6s ease-in-out infinite;
+}
+
+.project-card:nth-child(even) {
+  animation: float 6s ease-in-out infinite reverse;
+}
+
+/* Pause animation on hover for better UX */
+.project-card:hover {
+  animation-play-state: paused;
+}
+
+/* Enhanced gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, 
+    rgb(var(--primary-rgb)), 
+    rgb(var(--accent-rgb)),
+    rgb(var(--primary-rgb))
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Stagger animation delays */
+.project-card:nth-child(1) { animation-delay: 0s; }
+.project-card:nth-child(2) { animation-delay: 0.5s; }
+.project-card:nth-child(3) { animation-delay: 1s; }
+.project-card:nth-child(4) { animation-delay: 1.5s; }
+.project-card:nth-child(5) { animation-delay: 2s; }
 
 @keyframes twinkle {
   0%, 100% { 

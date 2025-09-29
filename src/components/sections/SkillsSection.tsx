@@ -1,26 +1,132 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, MouseEvent, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 
 const skills = [
-  { name: "Python", icon: "🐍", color: "from-yellow-400 to-blue-500", bgColor: "bg-yellow-500/10" },
-  { name: "JavaScript", icon: "⚡", color: "from-yellow-400 to-orange-500", bgColor: "bg-yellow-500/10" },
-  { name: "TypeScript", icon: "📘", color: "from-blue-400 to-blue-600", bgColor: "bg-blue-500/10" },
-  { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500", bgColor: "bg-cyan-500/10" },
-  { name: "Next.js", icon: "▲", color: "from-gray-400 to-gray-600", bgColor: "bg-gray-500/10" },
-  { name: "Node.js", icon: "🟢", color: "from-green-400 to-green-600", bgColor: "bg-green-500/10" },
-  { name: "TensorFlow", icon: "🧠", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" },
-  { name: "PyTorch", icon: "🔥", color: "from-red-400 to-orange-500", bgColor: "bg-red-500/10" },
-  { name: "MongoDB", icon: "🍃", color: "from-green-400 to-teal-500", bgColor: "bg-green-500/10" },
-  { name: "PostgreSQL", icon: "🐘", color: "from-blue-400 to-indigo-500", bgColor: "bg-blue-500/10" },
-  { name: "Git", icon: "📝", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" },
-  { name: "Docker", icon: "🐳", color: "from-blue-400 to-cyan-500", bgColor: "bg-blue-500/10" },
-  { name: "AWS", icon: "☁️", color: "from-orange-400 to-yellow-500", bgColor: "bg-orange-500/10" },
-  { name: "Linux", icon: "🐧", color: "from-gray-400 to-black", bgColor: "bg-gray-500/10" },
-  { name: "Pandas", icon: "🐼", color: "from-purple-400 to-pink-500", bgColor: "bg-purple-500/10" },
-  { name: "Jupyter", icon: "📓", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" }
+  { name: "HTML", icon: "HTML", bgGradient: "from-orange-500 to-red-500", glowColor: "#E34F26" },
+  { name: "CSS", icon: "CSS", bgGradient: "from-blue-500 to-blue-600", glowColor: "#1572B6" },
+  { name: "Tailwind CSS", icon: "Tailwind CSS", bgGradient: "from-cyan-400 to-teal-500", glowColor: "#06B6D4" },
+  { name: "JavaScript", icon: "JS", bgGradient: "from-yellow-400 to-orange-500", glowColor: "#F7DF1E" },
+  { name: "TypeScript", icon: "TS", bgGradient: "from-blue-500 to-blue-700", glowColor: "#3178C6" },
+  { name: "React", icon: "⚛", bgGradient: "from-cyan-400 to-blue-500", glowColor: "#61DAFB" },
+  { name: "Next.js", icon: "N", bgGradient: "from-gray-600 to-gray-800", glowColor: "#FFFFFF" },
+  { name: "Node.js", icon: "🟢", bgGradient: "from-green-500 to-green-600", glowColor: "#339933" },
+  { name: "Express.js", icon: "ex", bgGradient: "from-gray-700 to-gray-900", glowColor: "#68A063" },
+  { name: ".NET", icon: ".NET", bgGradient: "from-purple-600 to-blue-600", glowColor: "#512BD4" },
+  { name: "MongoDB", icon: "M", bgGradient: "from-green-600 to-green-700", glowColor: "#47A248" },
+  { name: "C", icon: "C", bgGradient: "from-blue-600 to-indigo-700", glowColor: "#A8B9CC" },
+  { name: "C++", icon: "C++", bgGradient: "from-blue-500 to-purple-600", glowColor: "#00599C" },
+  { name: "Java", icon: "Java", bgGradient: "from-orange-600 to-red-600", glowColor: "#F89820" },
+  { name: "C#", icon: "C#", bgGradient: "from-purple-600 to-indigo-700", glowColor: "#68217A" },
+  { name: "Git", icon: "Git", bgGradient: "from-orange-500 to-red-500", glowColor: "#F05032" },
+  { name: "GitHub", icon: "GitHub", bgGradient: "from-gray-700 to-gray-900", glowColor: "#FFFFFF" },
+  { name: "Postman", icon: "Postman", bgGradient: "from-orange-500 to-orange-600", glowColor: "#FF6C37" }
 ]
+
+// StarField component for background particles
+function StarField() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Don't render on server to avoid hydration mismatch
+  if (!mounted) {
+    return <div className="star-field" />
+  }
+
+  return (
+    <div className="star-field">
+      {Array.from({ length: 80 }).map((_, i) => (
+        <div
+          key={i}
+          className="star"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 4}s`,
+            animationDuration: `${2 + Math.random() * 3}s`
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Interactive Skill Card with cursor tracking
+interface SkillCardProps {
+  skill: typeof skills[0]
+  index: number
+}
+
+function SkillCard({ skill, index }: SkillCardProps) {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    
+    setMousePosition({ x, y })
+  }
+
+  const handleMouseEnter = () => setIsHovered(true)
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    setMousePosition({ x: 0, y: 0 })
+  }
+
+  return (
+    <div
+      ref={cardRef}
+      className="skill-card-wrapper group"
+      style={{ 
+        animationDelay: `${index * 0.1}s`,
+        '--skill-color': skill.glowColor
+      } as React.CSSProperties}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Main card with glassmorphism */}
+      <div className="skill-card">
+        {/* Cursor tracking radial gradient overlay */}
+        <div
+          className="cursor-radial-gradient"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, ${skill.glowColor}20, ${skill.glowColor}08 25%, transparent 50%)`
+          }}
+        />
+        
+        {/* Border gradient that follows cursor */}
+        <div
+          className="border-gradient"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, ${skill.glowColor}60, transparent 40%)`
+          }}
+        />
+        
+        {/* Card content */}
+        <div className="skill-card-content">
+          <div className="skill-icon" style={{ color: skill.glowColor }}>
+            {skill.icon}
+          </div>
+          <div className="skill-name">
+            {skill.name}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -45,42 +151,18 @@ export default function SkillsSection() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Technologies I work with to build innovative ML solutions and modern web applications.
+            Technologies I work with
           </p>
         </div>
 
-        {/* Skills Icon Grid */}
-        <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 max-w-6xl mx-auto">
-          {skills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className="group relative flex flex-col items-center p-6 rounded-2xl glass hover:bg-primary/5 transition-all duration-500 hover:scale-110 hover-lift cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Icon Container with Glow Effect */}
-              <div className={`relative w-16 h-16 rounded-2xl ${skill.bgColor} flex items-center justify-center mb-4 group-hover:shadow-2xl transition-all duration-500`}>
-                {/* Animated Glow Background */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500 animate-pulse`} />
-                
-                {/* Icon */}
-                <span className="text-3xl relative z-10 group-hover:scale-125 transition-transform duration-300">
-                  {skill.icon}
-                </span>
-                
-                {/* Border Glow */}
-                <div className={`absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r ${skill.color} bg-clip-border opacity-0 group-hover:opacity-40 transition-all duration-500`} 
-                     style={{ padding: '2px' }} />
-              </div>
-              
-              {/* Skill Name */}
-              <span className="text-sm font-medium text-center group-hover:text-primary transition-colors duration-300">
-                {skill.name}
-              </span>
-              
-              {/* Floating Light Effect */}
-              <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary/30 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-all duration-500" />
-            </div>
-          ))}
+        {/* Interactive Technologies Grid with Cursor Tracking */}
+        <div className="relative">
+          <StarField />
+          <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto relative z-10">
+            {skills.map((skill, index) => (
+              <SkillCard key={skill.name} skill={skill} index={index} />
+            ))}
+          </div>
         </div>
 
         {/* Stats */}

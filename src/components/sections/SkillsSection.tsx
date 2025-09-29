@@ -151,7 +151,7 @@ export default function SkillsSection() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Technologies I work with to build innovative ML solutions and modern web applications.
+            Technologies I work with
           </p>
         </div>
 

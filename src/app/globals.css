@@ -312,13 +312,15 @@ body {
   }
 }
 
-/* Cursor hover effects */
+/* Cursor hover effects - only when custom cursor is active */
 .cursor-interactive {
   cursor: none !important;
 }
 
-/* Enhanced cursor for different elements */
-a, button, [role="button"] {
+/* Enhanced cursor for different elements - only when custom cursor is active */
+body.custom-cursor-active a, 
+body.custom-cursor-active button, 
+body.custom-cursor-active [role="button"] {
   cursor: none;
 }
 
@@ -512,6 +514,57 @@ a, button, [role="button"] {
   z-index: 9998;
   filter: blur(1px);
   mix-blend-mode: multiply;
+}
+
+/* Pointer Cursor Styles for Interactive Elements */
+.custom-cursor-pointer {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 12px solid var(--primary);
+  border-right: 6px solid transparent;
+  border-bottom: 16px solid var(--primary);
+  border-top: 6px solid transparent;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 12px var(--primary)) drop-shadow(0 0 20px var(--primary));
+  animation: pointer-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pointer-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px var(--primary));
+    transform: scale(1);
+  }
+  50% { 
+    filter: drop-shadow(0 0 16px var(--primary)) drop-shadow(0 0 24px var(--primary));
+    transform: scale(1.1);
+  }
+}
+
+.cursor-neon-pointer {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--accent);
+  border-right: 4px solid transparent;
+  border-bottom: 12px solid var(--accent);
+  border-top: 4px solid transparent;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 12px var(--accent));
+  animation: pointer-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pointer-glow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px var(--accent));
+  }
+  50% { 
+    filter: drop-shadow(0 0 16px var(--accent)) drop-shadow(0 0 24px var(--accent));
+  }
 }
 
 

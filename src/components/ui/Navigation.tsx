@@ -115,7 +115,7 @@ export default function Navigation() {
                   className={cn(
                     'group relative flex items-center justify-center',
                     'transition-all duration-300 ease-out',
-                    'rounded-full',
+                    'rounded-full cursor-pointer',
                     isActive
                       ? 'bg-primary/20 text-primary scale-110'
                       : 'hover:bg-white/10 hover:scale-105 text-white/70 hover:text-white',

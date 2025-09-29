@@ -62,39 +62,22 @@ export default function AboutSection() {
           <div ref={contentRef} className="space-y-6">
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
               <p>
-                I&apos;m a passionate <span className="text-primary font-semibold">3D animator</span> and 
-                <span className="text-primary font-semibold"> frontend developer</span> with over 5 years 
-                of experience creating immersive digital experiences that captivate and inspire.
+                I am a highly motivated <span className="text-primary font-semibold">B.Tech Computer Science and Engineering</span> student at
+                Charotar University of Science and Technology with a strong passion for <span className="text-primary font-semibold">Machine Learning</span> and
+                <span className="text-primary font-semibold"> Web Development</span>.
               </p>
               <p>
-                My journey began with traditional animation, but I quickly fell in love with the 
-                possibilities of web-based 3D graphics. Today, I specialize in creating interactive 
-                portfolios, product visualizations, and creative web applications that push the 
-                boundaries of what&apos;s possible in the browser.
+                I&apos;m seeking opportunities to leverage my technical skills in Python, ML frameworks,
+                and full-stack development to contribute to innovative projects and real-world solutions.
               </p>
               <p>
-                When I&apos;m not coding or animating, you&apos;ll find me exploring new technologies, 
-                contributing to open-source projects, or sharing knowledge with the creative community.
+                I enjoy building intuitive web applications, experimenting with ML models, and continuously
+                learning new technologies to bridge the gap between research and practical, user-facing
+                applications.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-8">
-              <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                React Three Fiber
-              </span>
-              <span className="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">
-                GSAP
-              </span>
-              <span className="px-4 py-2 bg-secondary/10 text-secondary-foreground rounded-full text-sm font-medium">
-                Three.js
-              </span>
-              <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                WebGL
-              </span>
-              <span className="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">
-                Blender
-              </span>
-            </div>
+            {/* Skills tags removed per request */}
           </div>
 
           {/* Photo Section */}
@@ -116,7 +99,7 @@ export default function AboutSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-6">
                     <div className="text-center text-white">
                       <h3 className="text-xl font-bold mb-1">Kunj Mungalpara</h3>
-                      <p className="text-sm opacity-90">3D Animator & Developer</p>
+                      <p className="text-sm opacity-90">Developer</p>
                     </div>
                   </div>
                 </div>

@@ -3,43 +3,18 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
-import { Code, Palette, Zap, Globe } from 'lucide-react'
 
-const highlights = [
-  {
-    icon: <Code className="w-8 h-8" />,
-    title: "Frontend Development",
-    description: "Expert in React, Next.js, TypeScript, and modern web technologies"
-  },
-  {
-    icon: <Palette className="w-8 h-8" />,
-    title: "3D Animation",
-    description: "Creating immersive experiences with Three.js, React Three Fiber, and WebGL"
-  },
-  {
-    icon: <Zap className="w-8 h-8" />,
-    title: "Performance",
-    description: "Optimization-focused development for smooth, responsive user experiences"
-  },
-  {
-    icon: <Globe className="w-8 h-8" />,
-    title: "Interactive Design",
-    description: "Bridging the gap between design and development with creative solutions"
-  }
-]
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
-  const highlightsRef = useRef<HTMLDivElement>(null)
 
   useFadeInAnimation(sectionRef)
   useSlideInAnimation(titleRef, 'up', { delay: 0.2 })
   useSlideInAnimation(contentRef, 'left', { delay: 0.4 })
   useSlideInAnimation(imageRef, 'right', { delay: 0.4 })
-  useSlideInAnimation(highlightsRef, 'up', { delay: 0.6 })
 
   return (
     <section
@@ -112,24 +87,6 @@ export default function AboutSection() {
               <div className="absolute bottom-1/4 -right-6 w-2 h-2 bg-primary rounded-full animate-pulse delay-500" />
             </div>
           </div>
-        </div>
-
-        {/* Highlights Grid */}
-        <div ref={highlightsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((highlight) => (
-            <div
-              key={highlight.title}
-              className="stagger-item group p-6 glass rounded-xl hover:bg-primary/5 transition-all duration-300 hover-scale hover-lift"
-            >
-              <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
-                {highlight.icon}
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{highlight.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {highlight.description}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

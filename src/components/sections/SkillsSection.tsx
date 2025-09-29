@@ -5,48 +5,48 @@ import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 
 const skillCategories = [
   {
-    title: "Frontend Development",
+    title: "Machine Learning",
     skills: [
-      { name: "React / Next.js", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 92 },
-      { name: "HTML5 / CSS3", level: 98 },
+      { name: "Python", level: 90 },
+      { name: "TensorFlow / Keras", level: 85 },
+      { name: "PyTorch", level: 80 },
+      { name: "Scikit-learn", level: 88 },
     ]
   },
   {
-    title: "3D & Animation",
+    title: "Web Development",
     skills: [
-      { name: "Three.js", level: 88 },
-      { name: "React Three Fiber", level: 85 },
-      { name: "GSAP", level: 90 },
-      { name: "Blender", level: 80 },
+      { name: "React / Next.js", level: 85 },
+      { name: "JavaScript / TypeScript", level: 88 },
+      { name: "HTML5 / CSS3", level: 90 },
+      { name: "Node.js", level: 78 },
+    ]
+  },
+  {
+    title: "Data Analysis",
+    skills: [
+      { name: "Pandas / NumPy", level: 88 },
+      { name: "Matplotlib / Seaborn", level: 85 },
+      { name: "Jupyter Notebooks", level: 90 },
+      { name: "SQL", level: 80 },
     ]
   },
   {
     title: "Tools & Platforms",
     skills: [
-      { name: "Git / GitHub", level: 95 },
-      { name: "Figma", level: 85 },
-      { name: "VS Code", level: 98 },
-      { name: "Node.js", level: 80 },
-    ]
-  },
-  {
-    title: "Creative Software",
-    skills: [
-      { name: "After Effects", level: 85 },
-      { name: "Photoshop", level: 80 },
-      { name: "Cinema 4D", level: 75 },
-      { name: "Substance Painter", level: 70 },
+      { name: "Git / GitHub", level: 90 },
+      { name: "VS Code", level: 95 },
+      { name: "Google Colab", level: 88 },
+      { name: "Linux", level: 75 },
     ]
   }
 ]
 
 const certifications = [
-  "React Developer Certification",
-  "Three.js Fundamentals",
-  "Advanced GSAP Animations",
-  "WebGL & Shaders Mastery"
+  "Machine Learning Fundamentals",
+  "Python for Data Science",
+  "React Development",
+  "Full-Stack Web Development"
 ]
 
 interface SkillBarProps {
@@ -96,12 +96,11 @@ export default function SkillsSection() {
             ref={titleRef}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
           >
-            <span className="gradient-text">Skills</span> & Expertise
+            <span className="gradient-text">Technical</span> Skills
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit for creating immersive digital experiences 
-            and cutting-edge web applications.
+            Technologies I work with to build innovative ML solutions and modern web applications.
           </p>
         </div>
 

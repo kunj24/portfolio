@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, MouseEvent } from 'react'
+import { useRef, useState, MouseEvent, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 
 const skills = [
@@ -26,6 +26,17 @@ const skills = [
 
 // StarField component for background particles
 function StarField() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Don't render on server to avoid hydration mismatch
+  if (!mounted) {
+    return <div className="star-field" />
+  }
+
   return (
     <div className="star-field">
       {Array.from({ length: 80 }).map((_, i) => (

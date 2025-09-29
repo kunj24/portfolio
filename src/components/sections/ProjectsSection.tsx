@@ -11,7 +11,12 @@ const projects = [
     technologies: ["React", "Node.js", "MongoDB", "Express"],
     githubUrl: "https://github.com/kunj24/Electrotrack",
     category: "Full Stack",
-    featured: true
+    featured: true,
+    colors: {
+      primary: "59, 130, 246", // blue
+      secondary: "147, 51, 234", // purple
+      accent: "16, 185, 129" // emerald
+    }
   },
   {
     id: 2,
@@ -20,7 +25,12 @@ const projects = [
     technologies: ["Python", "TensorFlow", "OpenCV", "Flask", "ML"],
     githubUrl: "https://github.com/kunj24/facebeats",
     category: "AI/ML",
-    featured: true
+    featured: true,
+    colors: {
+      primary: "236, 72, 153", // pink
+      secondary: "168, 85, 247", // violet
+      accent: "34, 197, 94" // green
+    }
   },
   {
     id: 3,
@@ -29,7 +39,12 @@ const projects = [
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     githubUrl: "https://github.com/kunj24/wanderlust",
     category: "Web App",
-    featured: true
+    featured: true,
+    colors: {
+      primary: "34, 197, 94", // green
+      secondary: "14, 165, 233", // sky
+      accent: "251, 191, 36" // amber
+    }
   },
   {
     id: 4,
@@ -38,7 +53,12 @@ const projects = [
     technologies: ["React", "TypeScript", "Supabase", "OpenAI API"],
     githubUrl: "https://github.com/kunj24/Thinkly",
     category: "Productivity",
-    featured: true
+    featured: true,
+    colors: {
+      primary: "251, 146, 60", // orange
+      secondary: "239, 68, 68", // red
+      accent: "168, 85, 247" // violet
+    }
   },
   {
     id: 5,
@@ -47,7 +67,12 @@ const projects = [
     technologies: ["Python", "Bash", "Kali Linux", "Metasploit"],
     githubUrl: "https://github.com/kunj24/HACK-MASTER",
     category: "Cybersecurity",
-    featured: true
+    featured: true,
+    colors: {
+      primary: "239, 68, 68", // red
+      secondary: "15, 23, 42", // slate
+      accent: "156, 163, 175" // gray
+    }
   }
 ]
 
@@ -76,51 +101,87 @@ function ProjectCard({ project, index }: ProjectCardProps) {
     setMousePosition({ x: 50, y: 50 })
   }
 
+  const handleArrowClick = () => {
+    // Smooth scroll to top of page or next section
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <div
       ref={cardRef}
-      className="group relative bg-gradient-to-br from-muted/20 to-muted/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20"
+      className="group relative backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-700 hover:transform hover:scale-[1.02] hover:rotate-1"
       style={{ 
         animationDelay: `${index * 0.15}s`,
+        background: `linear-gradient(135deg, 
+          rgba(${project.colors.primary}, 0.1) 0%,
+          rgba(${project.colors.secondary}, 0.08) 50%,
+          rgba(${project.colors.accent}, 0.05) 100%)`,
         transform: isHovered 
-          ? `perspective(1000px) rotateY(${(mousePosition.x - 50) * 0.1}deg) rotateX(${(mousePosition.y - 50) * -0.1}deg) scale(1.05)` 
-          : 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)'
+          ? `perspective(1200px) rotateY(${(mousePosition.x - 50) * 0.08}deg) rotateX(${(mousePosition.y - 50) * -0.08}deg) scale(1.02)` 
+          : 'perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1)',
+        boxShadow: isHovered 
+          ? `0 25px 50px -12px rgba(${project.colors.primary}, 0.25), 0 0 0 1px rgba(${project.colors.primary}, 0.1)`
+          : '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05)'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Animated Gradient Overlay */}
+      {/* Dynamic Color Overlay */}
       <div 
-        className={`absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/15 to-purple/20 transition-all duration-700 ${isHovered ? 'opacity-100 scale-110' : 'opacity-0 scale-100'}`}
+        className={`absolute inset-0 transition-all duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
         style={{
           background: isHovered 
-            ? `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--primary-rgb), 0.3), rgba(var(--accent-rgb), 0.2), transparent 70%)`
+            ? `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
+                rgba(${project.colors.primary}, 0.25) 0%,
+                rgba(${project.colors.secondary}, 0.15) 40%,
+                rgba(${project.colors.accent}, 0.1) 80%,
+                transparent 100%)`
             : undefined
         }}
       />
       
-      {/* Dynamic Glow Effect */}
+      {/* Animated Glow Effect */}
       <div 
-        className={`absolute inset-0 transition-all duration-700 ${isHovered ? 'opacity-80' : 'opacity-0'}`}
+        className={`absolute inset-0 transition-all duration-700 ${isHovered ? 'opacity-60' : 'opacity-0'}`}
         style={{
-          background: isHovered 
-            ? `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--primary-rgb), 0.4), rgba(var(--accent-rgb), 0.3), transparent 60%)`
-            : undefined,
-          filter: 'blur(20px)',
-          transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
+            rgba(${project.colors.primary}, 0.4) 0%,
+            rgba(${project.colors.secondary}, 0.2) 50%,
+            transparent 70%)`,
+          filter: 'blur(40px)',
+          transform: isHovered ? 'scale(1.5)' : 'scale(1)'
         }}
       />
 
-      {/* Animated Border */}
+      {/* Rotating Border Animation */}
       <div 
-        className={`absolute inset-0 rounded-2xl transition-all duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 rounded-3xl transition-all duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
         style={{
-          background: `conic-gradient(from ${index * 72}deg, rgba(var(--primary-rgb), 0.5), rgba(var(--accent-rgb), 0.5), rgba(var(--primary-rgb), 0.5))`,
-          padding: '2px',
+          background: `conic-gradient(from ${index * 72 + (isHovered ? 180 : 0)}deg, 
+            rgba(${project.colors.primary}, 0.6) 0deg,
+            rgba(${project.colors.secondary}, 0.4) 120deg,
+            rgba(${project.colors.accent}, 0.6) 240deg,
+            rgba(${project.colors.primary}, 0.6) 360deg)`,
+          padding: '1px',
           mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           maskComposite: 'xor',
-          WebkitMaskComposite: 'xor'
+          WebkitMaskComposite: 'xor',
+          animation: isHovered ? 'spin 8s linear infinite' : undefined
+        }}
+      />
+
+      {/* Shimmer Effect */}
+      <div 
+        className={`absolute inset-0 transition-all duration-1000 ${isHovered ? 'translate-x-full' : '-translate-x-full'}`}
+        style={{
+          background: `linear-gradient(90deg, 
+            transparent 0%,
+            rgba(${project.colors.primary}, 0.1) 25%,
+            rgba(${project.colors.accent}, 0.2) 50%,
+            rgba(${project.colors.primary}, 0.1) 75%,
+            transparent 100%)`,
+          transform: `translateX(${isHovered ? '100%' : '-100%'})`
         }}
       />
       
@@ -128,13 +189,31 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div>
-            <span className="inline-block px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full mb-3">
+            <span 
+              className="inline-block px-4 py-2 text-xs font-semibold rounded-full mb-3 transition-all duration-300"
+              style={{
+                background: `linear-gradient(135deg, rgba(${project.colors.primary}, 0.2), rgba(${project.colors.secondary}, 0.1))`,
+                color: `rgb(${project.colors.primary})`,
+                border: `1px solid rgba(${project.colors.primary}, 0.3)`,
+                boxShadow: isHovered ? `0 0 20px rgba(${project.colors.primary}, 0.3)` : undefined
+              }}
+            >
               {project.category}
             </span>
-            <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+            <h3 className="text-2xl font-bold text-white mb-2 transition-all duration-300 hover:scale-105">
+              {project.title}
+            </h3>
           </div>
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <div 
+            className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 hover:rotate-12"
+            style={{
+              background: `linear-gradient(135deg, rgba(${project.colors.primary}, 0.9), rgba(${project.colors.secondary}, 0.7))`,
+              boxShadow: isHovered 
+                ? `0 0 30px rgba(${project.colors.primary}, 0.5), 0 0 60px rgba(${project.colors.secondary}, 0.3)`
+                : `0 5px 15px rgba(${project.colors.primary}, 0.3)`
+            }}
+          >
+            <svg className="w-7 h-7 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </div>
@@ -145,16 +224,20 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           {project.description}
         </p>
 
-        {/* Technologies with stagger animation */}
+        {/* Enhanced Technologies with stagger animation */}
         <div className="mb-6">
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={tech}
-                className={`px-3 py-1 text-xs font-medium bg-white/10 text-white rounded-full border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-110 hover:shadow-lg ${isHovered ? 'animate-pulse' : ''}`}
+                className="px-3 py-2 text-xs font-semibold rounded-full border transition-all duration-500 hover:scale-110 hover:rotate-3 cursor-default"
                 style={{
+                  background: `linear-gradient(135deg, rgba(${project.colors.accent}, 0.15), rgba(${project.colors.primary}, 0.1))`,
+                  color: `rgb(${project.colors.accent})`,
+                  borderColor: `rgba(${project.colors.accent}, 0.3)`,
                   animationDelay: `${techIndex * 0.1}s`,
-                  transform: isHovered ? `translateY(-${techIndex * 2}px)` : 'translateY(0px)'
+                  transform: isHovered ? `translateY(-${techIndex * 2}px) scale(1.05)` : 'translateY(0px) scale(1)',
+                  boxShadow: isHovered ? `0 5px 15px rgba(${project.colors.accent}, 0.2)` : undefined
                 }}
               >
                 {tech}
@@ -181,9 +264,11 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
             <div className={`absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transition-transform duration-500 ${isHovered ? 'translate-x-0' : 'translate-x-full'}`} />
           </a>
-          <button className={`px-4 py-3 border border-white/20 text-white rounded-lg transition-all duration-500 hover:bg-white/10 relative overflow-hidden group ${
-            isHovered ? 'rotate-12 scale-110' : ''
-          }`}>
+          <button 
+            onClick={handleArrowClick}
+            className={`px-4 py-3 border border-white/20 text-white rounded-lg transition-all duration-500 hover:bg-white/10 relative overflow-hidden group ${
+              isHovered ? 'rotate-12 scale-110' : ''
+            }`}>
             <svg className="w-5 h-5 transition-transform duration-500 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>

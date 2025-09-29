@@ -3,87 +3,32 @@
 import { useRef } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 
-const skillCategories = [
-  {
-    title: "Machine Learning",
-    skills: [
-      { name: "Python", level: 90 },
-      { name: "TensorFlow / Keras", level: 85 },
-      { name: "PyTorch", level: 80 },
-      { name: "Scikit-learn", level: 88 },
-    ]
-  },
-  {
-    title: "Web Development",
-    skills: [
-      { name: "React / Next.js", level: 85 },
-      { name: "JavaScript / TypeScript", level: 88 },
-      { name: "HTML5 / CSS3", level: 90 },
-      { name: "Node.js", level: 78 },
-    ]
-  },
-  {
-    title: "Data Analysis",
-    skills: [
-      { name: "Pandas / NumPy", level: 88 },
-      { name: "Matplotlib / Seaborn", level: 85 },
-      { name: "Jupyter Notebooks", level: 90 },
-      { name: "SQL", level: 80 },
-    ]
-  },
-  {
-    title: "Tools & Platforms",
-    skills: [
-      { name: "Git / GitHub", level: 90 },
-      { name: "VS Code", level: 95 },
-      { name: "Google Colab", level: 88 },
-      { name: "Linux", level: 75 },
-    ]
-  }
+const skills = [
+  { name: "Python", icon: "🐍", color: "from-yellow-400 to-blue-500", bgColor: "bg-yellow-500/10" },
+  { name: "JavaScript", icon: "⚡", color: "from-yellow-400 to-orange-500", bgColor: "bg-yellow-500/10" },
+  { name: "TypeScript", icon: "📘", color: "from-blue-400 to-blue-600", bgColor: "bg-blue-500/10" },
+  { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500", bgColor: "bg-cyan-500/10" },
+  { name: "Next.js", icon: "▲", color: "from-gray-400 to-gray-600", bgColor: "bg-gray-500/10" },
+  { name: "Node.js", icon: "🟢", color: "from-green-400 to-green-600", bgColor: "bg-green-500/10" },
+  { name: "TensorFlow", icon: "🧠", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" },
+  { name: "PyTorch", icon: "🔥", color: "from-red-400 to-orange-500", bgColor: "bg-red-500/10" },
+  { name: "MongoDB", icon: "🍃", color: "from-green-400 to-teal-500", bgColor: "bg-green-500/10" },
+  { name: "PostgreSQL", icon: "🐘", color: "from-blue-400 to-indigo-500", bgColor: "bg-blue-500/10" },
+  { name: "Git", icon: "📝", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" },
+  { name: "Docker", icon: "🐳", color: "from-blue-400 to-cyan-500", bgColor: "bg-blue-500/10" },
+  { name: "AWS", icon: "☁️", color: "from-orange-400 to-yellow-500", bgColor: "bg-orange-500/10" },
+  { name: "Linux", icon: "🐧", color: "from-gray-400 to-black", bgColor: "bg-gray-500/10" },
+  { name: "Pandas", icon: "🐼", color: "from-purple-400 to-pink-500", bgColor: "bg-purple-500/10" },
+  { name: "Jupyter", icon: "📓", color: "from-orange-400 to-red-500", bgColor: "bg-orange-500/10" }
 ]
-
-const certifications = [
-  "Machine Learning Fundamentals",
-  "Python for Data Science",
-  "React Development",
-  "Full-Stack Web Development"
-]
-
-interface SkillBarProps {
-  name: string
-  level: number
-  delay?: number
-}
-
-function SkillBar({ name, level }: SkillBarProps) {
-  const barRef = useRef<HTMLDivElement>(null)
-
-  return (
-    <div className="stagger-item mb-4 group hover-lift transition-all duration-300">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-enhanced group-hover:text-primary-enhanced transition-colors">{name}</span>
-        <span className="text-xs text-muted-foreground group-hover:text-accent transition-colors">{level}%</span>
-      </div>
-      <div className="w-full bg-secondary/20 rounded-full h-2 group-hover:h-3 transition-all duration-300">
-        <div
-          ref={barRef}
-          className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000 ease-out group-hover:shadow-lg group-hover:shadow-primary/30 animate-gradient"
-          style={{ width: `${level}%` }}
-        />
-      </div>
-    </div>
-  )
-}
 
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
-  const certificationsRef = useRef<HTMLDivElement>(null)
 
   useFadeInAnimation(sectionRef)
-  useStaggerAnimation(gridRef, '.skill-category', { delay: 0.3 })
-  useFadeInAnimation(certificationsRef, { delay: 0.8 })
+  useStaggerAnimation(gridRef, '.group', { delay: 0.3 })
 
   return (
     <section
@@ -104,45 +49,38 @@ export default function SkillsSection() {
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div ref={gridRef} className="grid md:grid-cols-2 gap-8 mb-16">
-          {skillCategories.map((category) => (
+        {/* Skills Icon Grid */}
+        <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6 max-w-6xl mx-auto">
+          {skills.map((skill, index) => (
             <div
-              key={category.title}
-              className="skill-category glass p-6 rounded-xl hover:bg-primary/5 transition-all duration-300"
+              key={skill.name}
+              className="group relative flex flex-col items-center p-6 rounded-2xl glass hover:bg-primary/5 transition-all duration-500 hover:scale-110 hover-lift cursor-pointer"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <h3 className="text-xl font-semibold mb-6 text-center gradient-text">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
-
-                  />
-                ))}
+              {/* Icon Container with Glow Effect */}
+              <div className={`relative w-16 h-16 rounded-2xl ${skill.bgColor} flex items-center justify-center mb-4 group-hover:shadow-2xl transition-all duration-500`}>
+                {/* Animated Glow Background */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500 animate-pulse`} />
+                
+                {/* Icon */}
+                <span className="text-3xl relative z-10 group-hover:scale-125 transition-transform duration-300">
+                  {skill.icon}
+                </span>
+                
+                {/* Border Glow */}
+                <div className={`absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r ${skill.color} bg-clip-border opacity-0 group-hover:opacity-40 transition-all duration-500`} 
+                     style={{ padding: '2px' }} />
               </div>
+              
+              {/* Skill Name */}
+              <span className="text-sm font-medium text-center group-hover:text-primary transition-colors duration-300">
+                {skill.name}
+              </span>
+              
+              {/* Floating Light Effect */}
+              <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary/30 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-all duration-500" />
             </div>
           ))}
-        </div>
-
-        {/* Certifications */}
-        <div ref={certificationsRef} className="text-center">
-          <h3 className="text-2xl font-semibold mb-8 gradient-text">
-            Certifications & Achievements
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {certifications.map((cert) => (
-              <div
-                key={cert}
-                className="px-6 py-3 glass rounded-full hover:bg-primary/10 transition-all duration-300 hover:scale-105"
-              >
-                <span className="text-sm font-medium">{cert}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Stats */}

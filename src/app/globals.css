@@ -567,4 +567,51 @@ body.custom-cursor-active [role="button"] {
   }
 }
 
+/* Skill Cards Light Effects */
+.skill-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(46, 230, 193, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(46, 230, 193, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-icon-glow {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.skill-icon-glow:hover::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+  border-radius: inherit;
+  z-index: -1;
+  animation: skill-glow-rotate 2s linear infinite;
+}
+
+@keyframes skill-glow-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes skill-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.skill-card:hover .skill-icon-glow {
+  animation: skill-float 3s ease-in-out infinite;
+}
+
 

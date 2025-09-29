@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 /* Root theme variables */
@@ -10,20 +11,20 @@
   --popover: #0b1220;
   --popover-foreground: #cfeeff;
   --primary: #2ee6c1; /* teal */
+  --primary-rgb: 46, 230, 193;
   --primary-foreground: #021016;
   --secondary: #0f1724;
   --secondary-foreground: #9fbdd6;
   --muted: #071021;
   --muted-foreground: #7b9fb6;
   --accent: #ff4da6; /* magenta accent */
+  --accent-rgb: 255, 77, 166;
   --accent-foreground: #1b0212;
   --destructive: #ff5c5c;
   --destructive-foreground: #ffffff;
   --border: #122030;
   --input: #122030;
   --ring: #2ee6c1;
-  --font-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
 }
 
 /* Dark theme variables (applied when `.dark` class is present on the root) */
@@ -57,17 +58,53 @@
 }
 
 /* Base styles */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* { 
+  box-sizing: border-box; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
 body {
   margin: 0;
   padding: 0;
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+}
+
+/* Ensure all text elements have proper font inheritance */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Force font loading for critical text */
+.font-display {
+  font-display: swap;
+}
+
+/* Fallback for gradient text when CSS variables fail */
+.gradient-text {
+  background: linear-gradient(135deg, #2ee6c1, #ff4da6);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ensure text is visible if gradient fails */
+@supports not (-webkit-background-clip: text) {
+  .gradient-text {
+    color: #2ee6c1;
+  }
 }
 
 /* Scrollbar */

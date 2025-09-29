@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import { ThemeProvider } from "@/hooks/use-theme";
@@ -10,6 +10,14 @@ import { CursorProvider } from "@/hooks/use-cursor";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: 'swap',
+  preload: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -17,7 +25,11 @@ export const metadata: Metadata = {
   description: "A modern, responsive 3D animation portfolio by Kunj Mungalpara.",
   keywords: ["3D animation", "portfolio", "Three.js", "React", "creative", "interactive"],
   authors: [{ name: "Kunj Mungalpara" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -27,7 +39,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
           <CursorProvider>
             <CursorSystem />

@@ -951,44 +951,13 @@ body.custom-cursor-active [role="button"] {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Advanced floating animation keyframes */
+/* Floating animation keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   33% { transform: translateY(-10px) rotate(1deg); }
   66% { transform: translateY(-5px) rotate(-1deg); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
-    transform: scale(1.02);
-  }
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%) skewX(-15deg); }
-  100% { transform: translateX(100%) skewX(-15deg); }
-}
-
-@keyframes morph {
-  0%, 100% { border-radius: 24px; }
-  25% { border-radius: 32px 24px 32px 24px; }
-  50% { border-radius: 40px; }
-  75% { border-radius: 24px 32px 24px 32px; }
-}
-
-@keyframes color-shift {
-  0%, 100% { filter: hue-rotate(0deg) saturate(1); }
-  25% { filter: hue-rotate(90deg) saturate(1.2); }
-  50% { filter: hue-rotate(180deg) saturate(0.8); }
-  75% { filter: hue-rotate(270deg) saturate(1.1); }
-}
-
-/* Project card enhancements */
 .project-card:nth-child(odd) {
   animation: float 6s ease-in-out infinite;
 }
@@ -997,11 +966,12 @@ body.custom-cursor-active [role="button"] {
   animation: float 6s ease-in-out infinite reverse;
 }
 
+/* Pause animation on hover for better UX */
 .project-card:hover {
-  animation: pulse-glow 2s ease-in-out infinite, morph 4s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
-/* Enhanced gradient text with animation */
+/* Enhanced gradient text */
 .gradient-text {
   background: linear-gradient(135deg, 
     rgb(var(--primary-rgb)), 
@@ -1020,62 +990,12 @@ body.custom-cursor-active [role="button"] {
   50% { background-position: 100% 50%; }
 }
 
-/* Magnetic effect for interactive elements */
-.magnetic {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.magnetic:hover {
-  transform: scale(1.05) translateZ(0);
-}
-
-/* Glassmorphism enhancements */
-.glass-enhanced {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.37),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Stagger animation delays for cards */
+/* Stagger animation delays */
 .project-card:nth-child(1) { animation-delay: 0s; }
-.project-card:nth-child(2) { animation-delay: 0.2s; }
-.project-card:nth-child(3) { animation-delay: 0.4s; }
-.project-card:nth-child(4) { animation-delay: 0.6s; }
-.project-card:nth-child(5) { animation-delay: 0.8s; }
-
-/* Clean Project Cards - High Visibility Text */
-.group {
-  background: rgba(24, 24, 27, 0.5) !important;
-  border: 1px solid rgba(39, 39, 42, 1) !important;
-}
-
-.group:hover {
-  background: rgba(24, 24, 27, 0.7) !important;
-  border-color: rgba(63, 63, 70, 1) !important;
-}
-
-/* Ensure maximum text visibility */
-.group h3 {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.group p {
-  color: #a1a1aa !important;
-  line-height: 1.6;
-}
-
-.group span {
-  color: #d4d4d8 !important;
-}
-
-.group:hover span {
-  color: #ffffff !important;
-}
+.project-card:nth-child(2) { animation-delay: 0.5s; }
+.project-card:nth-child(3) { animation-delay: 1s; }
+.project-card:nth-child(4) { animation-delay: 1.5s; }
+.project-card:nth-child(5) { animation-delay: 2s; }
 
 @keyframes twinkle {
   0%, 100% { 

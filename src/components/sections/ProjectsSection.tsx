@@ -43,8 +43,8 @@ const projects = [
   {
     id: 5,
     title: "HACK-MASTER",
-    description: "Crop-prediction system that lets farmers input local parameters (rainfall, soil type, temperature, available area) and returns recommended crops and planting strategies using ML models.",
-    technologies: ["Python", "scikit-learn", "TensorFlow", "Pandas", "Flask"],
+  description: "Crop-prediction system that lets farmers input local parameters (rainfall, soil type, temperature, available area) and returns recommended crops and planting strategies using ML models.",
+  technologies: ["Python", "scikit-learn", "TensorFlow", "Pandas", "Flask"],
     githubUrl: "https://github.com/kunj24/HACK-MASTER",
     category: "AI/ML",
     featured: true

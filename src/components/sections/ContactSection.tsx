@@ -17,13 +17,13 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: Github,
-    href: 'https://github.com/yourusername',
+    href: 'https://github.com/kunj24',
     color: 'hover:text-gray-700 dark:hover:text-gray-300'
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    href: 'https://linkedin.com/in/yourusername',
+    href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
     color: 'hover:text-blue-600'
   },
   {
@@ -44,7 +44,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+91 xxxxxxxxx',
+    value: '+91 xxxxxxxxx (contact via email)',
     href: '#'
   },
   {
@@ -80,11 +80,14 @@ export default function ContactSection() {
     setIsSubmitting(true)
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Create mailto link with form data
+      const subject = encodeURIComponent(data.subject)
+      const body = encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+      )
       
-      // In a real app, you would send the data to your backend
-      console.log('Form submitted:', data)
+      // Open user's email client with pre-filled data
+      window.location.href = `mailto:kunjmungalpara@gmail.com?subject=${subject}&body=${body}`
       
       setIsSubmitted(true)
       reset()
@@ -315,12 +318,10 @@ export default function ContactSection() {
                 Ready to start a project?
               </h4>
               <p className="text-sm text-muted-foreground mb-4">
-                Let&apos;s schedule a call to discuss your ideas and see how we can work together.
+                Let&apos;s schedule a call to discuss your ideas. Send me an email with your preferred time slots.
               </p>
               <a
-                href="https://calendly.com/yourname"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:kunjmungalpara@gmail.com?subject=Schedule a Call - Project Discussion&body=Hi Kunj,%0D%0A%0D%0AI'd like to schedule a call to discuss a potential project.%0D%0A%0D%0AProject details:%0D%0A-%0D%0A%0D%0APreferred time slots:%0D%0A-%0D%0A%0D%0ABest regards"
                 className="inline-flex items-center px-4 py-2 bg-accent hover:bg-accent/90 text-white text-sm rounded-lg font-medium transition-all duration-300 hover:scale-105"
               >
                 Schedule a Call

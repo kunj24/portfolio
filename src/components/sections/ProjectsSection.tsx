@@ -55,7 +55,7 @@ interface ProjectCardProps {
   project: typeof projects[0]
   index: number
 }
-
+  
 function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })

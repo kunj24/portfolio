@@ -43,10 +43,10 @@ const projects = [
   {
     id: 5,
     title: "HACK-MASTER",
-    description: "Comprehensive cybersecurity toolkit for penetration testing and security analysis with advanced features.",
-    technologies: ["Python", "Bash", "Kali Linux", "Metasploit"],
+    description: "Crop-prediction system that lets farmers input local parameters (rainfall, soil type, temperature, available area) and returns recommended crops and planting strategies using ML models.",
+    technologies: ["Python", "scikit-learn", "TensorFlow", "Pandas", "Flask"],
     githubUrl: "https://github.com/kunj24/HACK-MASTER",
-    category: "Cybersecurity",
+    category: "AI/ML",
     featured: true
   }
 ]

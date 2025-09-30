@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from 'lucide-react'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import { cn } from '@/lib/utils'
+import emailjs from '@emailjs/browser'
 
 interface ContactFormData {
   name: string
@@ -80,22 +81,58 @@ export default function ContactSection() {
     setIsSubmitting(true)
     
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(data.subject)
-      const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+      // Check if environment variables are loaded
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      
+      console.log('EmailJS Config Check:', {
+        serviceId: serviceId ? 'Set' : 'Missing',
+        templateId: templateId ? 'Set' : 'Missing', 
+        publicKey: publicKey ? 'Set' : 'Missing'
+      })
+      
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is incomplete. Please check your environment variables.')
+      }
+
+      // Initialize EmailJS
+      emailjs.init(publicKey)
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: data.name,           // For {{name}} in template
+          from_name: data.name,      // For {{from_name}} in template  
+          from_email: data.email,    // For {{from_email}} in template
+          subject: data.subject,     // For {{subject}} in template
+          message: data.message      // For {{message}} in template
+        }
       )
       
-      // Open user's email client with pre-filled data
-      window.location.href = `mailto:kunjmungalpara@gmail.com?subject=${subject}&body=${body}`
-      
+      console.log('Email sent successfully:', result)
       setIsSubmitted(true)
-      reset()
       
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000)
+      // Reset form after successful submission
+      setTimeout(() => {
+        reset()
+        setIsSubmitted(false)
+      }, 3000)
+      
     } catch (error) {
-      console.error('Error submitting form:', error)
+      console.error('Error sending email:', error)
+      
+      // More detailed error message
+      let errorMessage = 'Failed to send message. '
+      if (error instanceof Error) {
+        errorMessage += error.message
+      } else {
+        errorMessage += 'Please check your internet connection and try again.'
+      }
+      
+      alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -141,7 +178,12 @@ export default function ContactSection() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form 
+              onSubmit={handleSubmit(onSubmit)} 
+              className="space-y-6"
+              noValidate
+              autoComplete="on"
+            >
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -154,8 +196,11 @@ export default function ContactSection() {
                     })}
                     type="text"
                     id="name"
+                    autoComplete="name"
+                    autoCapitalize="words"
+                    spellCheck="false"
                     className={cn(
-                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300',
+                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
                       errors.name && 'border-red-500 focus:ring-red-500'
                     )}
                     placeholder="Your name"
@@ -179,8 +224,10 @@ export default function ContactSection() {
                     })}
                     type="email"
                     id="email"
+                    autoComplete="email"
+                    spellCheck="false"
                     className={cn(
-                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300',
+                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
                       errors.email && 'border-red-500 focus:ring-red-500'
                     )}
                     placeholder="your@email.com"
@@ -202,8 +249,10 @@ export default function ContactSection() {
                   })}
                   type="text"
                   id="subject"
+                  autoComplete="off"
+                  spellCheck="true"
                   className={cn(
-                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300',
+                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
                     errors.subject && 'border-red-500 focus:ring-red-500'
                   )}
                   placeholder="What's this about?"
@@ -224,8 +273,10 @@ export default function ContactSection() {
                   })}
                   id="message"
                   rows={6}
+                  autoComplete="off"
+                  spellCheck="true"
                   className={cn(
-                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none',
+                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 resize-none',
                     errors.message && 'border-red-500 focus:ring-red-500'
                   )}
                   placeholder="Tell me about your project..."

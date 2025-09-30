@@ -43,10 +43,10 @@ const projects = [
   {
     id: 5,
     title: "HACK-MASTER",
-    description: "Comprehensive cybersecurity toolkit for penetration testing and security analysis with advanced features.",
-    technologies: ["Python", "Bash", "Kali Linux", "Metasploit"],
+    description: "AI-driven audio and signal analysis project that uses machine learning to detect patterns and anomalies in audio streams.",
+    technologies: ["Python", "TensorFlow", "Librosa", "PyTorch", "ML"],
     githubUrl: "https://github.com/kunj24/HACK-MASTER",
-    category: "Cybersecurity",
+    category: "AI/ML",
     featured: true
   }
 ]

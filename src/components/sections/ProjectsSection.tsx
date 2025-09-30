@@ -34,10 +34,10 @@ const projects = [
   {
     id: 4,
     title: "Thinkly",
-    description: "Intelligent note-taking and knowledge management system with AI-powered insights and smart organization.",
-    technologies: ["React", "TypeScript", "Supabase", "OpenAI API"],
+    description: "Learning platform built with the MERN stack, featuring courses, user progress tracking, and instructor dashboards.",
+    technologies: ["MongoDB", "Express", "React", "Node.js", "TypeScript"],
     githubUrl: "https://github.com/kunj24/Thinkly",
-    category: "Productivity",
+  category: "MERN Stack",
     featured: true
   },
   {

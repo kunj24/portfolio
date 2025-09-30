@@ -34,17 +34,17 @@ const projects = [
   {
     id: 4,
     title: "Thinkly",
-    description: "Intelligent note-taking and knowledge management system with AI-powered insights and smart organization.",
-    technologies: ["React", "TypeScript", "Supabase", "OpenAI API"],
+    description: "Learning platform built with the MERN stack, featuring courses, user progress tracking, and instructor dashboards.",
+    technologies: ["MongoDB", "Express", "React", "Node.js", "TypeScript"],
     githubUrl: "https://github.com/kunj24/Thinkly",
-    category: "Productivity",
+  category: "MERN Stack",
     featured: true
   },
   {
     id: 5,
     title: "HACK-MASTER",
-    description: "AI-driven audio and signal analysis project that uses machine learning to detect patterns and anomalies in audio streams.",
-    technologies: ["Python", "TensorFlow", "Librosa", "PyTorch", "ML"],
+  description: "Crop-prediction system that lets farmers input local parameters (rainfall, soil type, temperature, available area) and returns recommended crops and planting strategies using ML models.",
+  technologies: ["Python", "scikit-learn", "TensorFlow", "Pandas", "Flask"],
     githubUrl: "https://github.com/kunj24/HACK-MASTER",
     category: "AI/ML",
     featured: true

@@ -38,19 +38,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@yourname.com',
-    href: 'mailto:hello@yourname.com'
+    value: 'kunjmungalpara@gmail.com',
+    href: 'mailto:kunjmungalpara@gmail.com'
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567'
+    value: '+91 xxxxxxxxx',
+    href: '#'
   },
   {
     icon: MapPin,
     label: 'Location',
-    value: 'New York, NY',
+    value: 'Junagadh, Gujarat, India',
     href: '#'
   }
 ]

@@ -164,12 +164,10 @@ export default function SkillsSection() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mt-16 max-w-md mx-auto">
           {[
-            { number: "50+", label: "Projects Completed" },
-            { number: "5+", label: "Years Experience" },
-            { number: "20+", label: "Happy Clients" },
-            { number: "100%", label: "Passion Driven" }
+            { number: "4+", label: "Projects Completed" },
+            { number: "2+", label: "Months Experience" }
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">

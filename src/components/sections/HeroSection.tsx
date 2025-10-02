@@ -113,8 +113,8 @@ export default function HeroSection() {
               </button>
               
               <a
-                href="/resume.pdf"
-                download
+                href="/RESUME.pdf"
+                download="Kunj_Mungalpara_Resume.pdf"
                 className="px-8 py-4 border border-white/30 hover:border-white/50 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg hover:bg-white/10"
               >
                 Download Resume

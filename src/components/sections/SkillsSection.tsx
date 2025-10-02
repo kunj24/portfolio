@@ -13,15 +13,13 @@ const skills = [
   { name: "Next.js", icon: "N", bgGradient: "from-gray-600 to-gray-800", glowColor: "#FFFFFF" },
   { name: "Node.js", icon: "🟢", bgGradient: "from-green-500 to-green-600", glowColor: "#339933" },
   { name: "Express.js", icon: "ex", bgGradient: "from-gray-700 to-gray-900", glowColor: "#68A063" },
-  { name: ".NET", icon: ".NET", bgGradient: "from-purple-600 to-blue-600", glowColor: "#512BD4" },
   { name: "MongoDB", icon: "M", bgGradient: "from-green-600 to-green-700", glowColor: "#47A248" },
   { name: "C", icon: "C", bgGradient: "from-blue-600 to-indigo-700", glowColor: "#A8B9CC" },
   { name: "C++", icon: "C++", bgGradient: "from-blue-500 to-purple-600", glowColor: "#00599C" },
   { name: "Java", icon: "Java", bgGradient: "from-orange-600 to-red-600", glowColor: "#F89820" },
-  { name: "C#", icon: "C#", bgGradient: "from-purple-600 to-indigo-700", glowColor: "#68217A" },
+  { name: "Python", icon: "Py", bgGradient: "from-yellow-300 to-blue-500", glowColor: "#3776AB" },
   { name: "Git", icon: "Git", bgGradient: "from-orange-500 to-red-500", glowColor: "#F05032" },
-  { name: "GitHub", icon: "GitHub", bgGradient: "from-gray-700 to-gray-900", glowColor: "#FFFFFF" },
-  { name: "Postman", icon: "Postman", bgGradient: "from-orange-500 to-orange-600", glowColor: "#FF6C37" }
+  { name: "GitHub", icon: "GitHub", bgGradient: "from-gray-700 to-gray-900", glowColor: "#FFFFFF" }
 ]
 
 // StarField component for background particles

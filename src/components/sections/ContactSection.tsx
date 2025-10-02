@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from 'lucide-react'
+import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import { cn } from '@/lib/utils'
 import emailjs from '@emailjs/browser'
@@ -27,12 +27,7 @@ const socialLinks = [
     href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
     color: 'hover:text-blue-600'
   },
-  {
-    name: 'Twitter',
-    icon: Twitter,
-    href: 'https://twitter.com/yourusername',
-    color: 'hover:text-blue-400'
-  }
+  
 ]
 
 const contactInfo = [

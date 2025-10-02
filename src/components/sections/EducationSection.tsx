@@ -9,7 +9,7 @@ export default function EducationSection() {
           Education
         </h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-400">
-          My academic journey and achievements
+          My academic journey 
         </p>
       </div>
 

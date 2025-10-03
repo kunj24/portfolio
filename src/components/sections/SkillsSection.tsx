@@ -1,8 +1,9 @@
-'use client'
+"use client"
 
-import { useRef, useState, MouseEvent, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMongodb, SiC, SiCplusplus, SiPython, SiGit, SiGithub } from 'react-icons/si'
+import ChromaGrid, { ChromaItem } from '@/components/ui/ChromaGrid'
 
 const skills = [
   { name: "HTML", icon: <SiHtml5 />, bgGradient: "from-orange-500 to-red-500", glowColor: "#E34F26" },
@@ -53,79 +54,6 @@ function StarField() {
   )
 }
 
-// Interactive Skill Card with cursor tracking
-interface SkillCardProps {
-  skill: typeof skills[0]
-  index: number
-}
-
-function SkillCard({ skill, index }: SkillCardProps) {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-    
-    const rect = cardRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    setMousePosition({ x, y })
-  }
-
-  const handleMouseEnter = () => setIsHovered(true)
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-    setMousePosition({ x: 0, y: 0 })
-  }
-
-  return (
-    <div
-      ref={cardRef}
-      className="skill-card-wrapper group"
-      style={{ 
-        animationDelay: `${index * 0.1}s`,
-        '--skill-color': skill.glowColor
-      } as React.CSSProperties}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Main card with glassmorphism */}
-      <div className="skill-card">
-        {/* Cursor tracking radial gradient overlay */}
-        <div
-          className="cursor-radial-gradient"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, ${skill.glowColor}20, ${skill.glowColor}08 25%, transparent 50%)`
-          }}
-        />
-        
-        {/* Border gradient that follows cursor */}
-        <div
-          className="border-gradient"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, ${skill.glowColor}60, transparent 40%)`
-          }}
-        />
-        
-        {/* Card content */}
-        <div className="skill-card-content">
-          <div className="skill-icon" style={{ color: skill.glowColor }}>
-            {skill.icon}
-          </div>
-          <div className="skill-name">
-            {skill.name}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -153,13 +81,23 @@ export default function SkillsSection() {
           </p>
         </div>
 
-        {/* Interactive Technologies Grid with Cursor Tracking */}
+        {/* ChromaGrid Skills */}
         <div className="relative">
           <StarField />
-          <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto relative z-10">
-            {skills.map((skill, index) => (
-              <SkillCard key={skill.name} skill={skill} index={index} />
-            ))}
+          <div ref={gridRef} className="relative z-10">
+            <ChromaGrid
+              radius={320}
+              className="justify-center"
+              items={skills.map((s) => {
+                const bg = `linear-gradient(135deg, ${s.glowColor}33, #0b1220)`
+                return {
+                  icon: s.icon,
+                  title: s.name,
+                  borderColor: s.glowColor,
+                  gradient: bg
+                } as ChromaItem
+              })}
+            />
           </div>
         </div>
 

@@ -75,13 +75,14 @@ export default function SkillsSection() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
           >
             <VariableProximity
-              label="Technical"
+              label="Technical Skills"
               fromFontVariationSettings="'wght' 400, 'wdth' 100"
               toFontVariationSettings="'wght' 700, 'wdth' 90"
               containerRef={titleRef as React.MutableRefObject<HTMLElement | null>}
               radius={220}
-              className="gradient-text"
-            /> Skills
+              gradientWords={[0]}
+              className=""
+            />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

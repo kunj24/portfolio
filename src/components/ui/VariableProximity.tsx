@@ -51,6 +51,7 @@ interface VariableProximityProps extends HTMLAttributes<HTMLSpanElement> {
   radius?: number
   falloff?: 'linear' | 'exponential' | 'gaussian'
   className?: string
+  gradientWords?: number[] // array of word indices that should have gradient
   onClick?: () => void
   style?: CSSProperties
 }
@@ -64,6 +65,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
     radius = 100,
     falloff = 'linear',
     className = '',
+    gradientWords = [],
     onClick,
     style,
     ...restProps
@@ -172,13 +174,14 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
         <span key={wordIndex} className="inline-block whitespace-nowrap">
           {word.split('').map(letter => {
             const currentLetterIndex = letterIndex++
+            const shouldHaveGradient = gradientWords.includes(wordIndex)
             return (
                 <motion.span
                   key={currentLetterIndex}
                   ref={el => {
                     letterRefs.current[currentLetterIndex] = el as HTMLSpanElement
                   }}
-                  className={className}
+                  className={shouldHaveGradient ? 'gradient-text' : ''}
                   style={{
                     display: 'inline-block',
                     fontVariationSettings: interpolatedSettingsRef.current[currentLetterIndex]

@@ -26,41 +26,38 @@ export default function AboutSection() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
           >
             <VariableProximity
-              label="About Me"
+              label="About"
               fromFontVariationSettings="'wght' 400, 'wdth' 100"
               toFontVariationSettings="'wght' 700, 'wdth' 90"
               containerRef={titleRef as React.MutableRefObject<HTMLElement | null>}
               radius={220}
               className="gradient-text"
-            />
+            /> Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Passionate Computer Science student specializing in machine learning and modern web development.
+          </p>
         </div>
 
-  <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 items-start mb-20">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Content */}
           <div ref={contentRef} className="space-y-6">
-            <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+            <div className="space-y-4 text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               <p>
-                I am a highly motivated <span className="text-primary font-semibold">B.Tech Computer Science and Engineering</span> student at
-                Charotar University of Science and Technology with a strong passion for <span className="text-primary font-semibold">Machine Learning</span> and
-                <span className="text-primary font-semibold"> Web Development</span>.
+                I&apos;m a driven <span className="text-primary font-semibold">B.Tech Computer Science & Engineering</span> student at 
+                Charotar University of Science and Technology with a strong focus on <span className="text-primary font-semibold">machine learning</span> and 
+                <span className="text-primary font-semibold"> web development</span>. I design and build end-to-end web applications and prototype ML models that address practical problems.
               </p>
               <p>
-                I&apos;m seeking opportunities to leverage my technical skills in Python, ML frameworks,
-                and full-stack development to contribute to innovative projects and real-world solutions.
+                I&apos;m seeking opportunities to apply my skills in <span className="text-primary font-semibold">Python, ML frameworks</span>, and 
+                <span className="text-primary font-semibold"> full-stack development</span> to create impactful, production-ready solutions. I enjoy turning research ideas into user-facing products and continuously expanding my toolset to follow modern engineering practices.
               </p>
               <p>
-                I enjoy building intuitive web applications, experimenting with ML models, and continuously
-                learning new technologies to bridge the gap between research and practical, user-facing
-                applications.
+                I love collaborating across teams, shipping clean, maintainable code, and exploring new architectures and ML techniques that bridge research and real-world applications.
               </p>
             </div>
-
-            {/* Skills tags removed per request */}
           </div>
-
-          {/* Image removed - single-column content only */}
         </div>
       </div>
     </section>

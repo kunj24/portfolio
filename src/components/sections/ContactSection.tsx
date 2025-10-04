@@ -6,6 +6,7 @@ import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import { cn } from '@/lib/utils'
 import emailjs from '@emailjs/browser'
+import VariableProximity from '@/components/ui/VariableProximity'
 
 interface ContactFormData {
   name: string
@@ -144,7 +145,15 @@ export default function ContactSection() {
             ref={titleRef}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
           >
-            Let&apos;s <span className="gradient-text">Connect</span>
+            <VariableProximity
+              label="Let's Connect"
+              fromFontVariationSettings="'wght' 400, 'wdth' 100"
+              toFontVariationSettings="'wght' 700, 'wdth' 90"
+              containerRef={titleRef as React.MutableRefObject<HTMLElement | null>}
+              radius={220}
+              gradientWords={[0]}
+              className=""
+            />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

@@ -20,6 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+
 export const metadata: Metadata = {
   title: "Kunj Mungalpara",
   description: "A modern, responsive 3D animation portfolio by Kunj Mungalpara.",

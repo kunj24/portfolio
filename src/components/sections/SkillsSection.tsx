@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMongodb, SiC, SiCplusplus, SiPython, SiGit, SiGithub } from 'react-icons/si'
+import VariableProximity from '@/components/ui/VariableProximity'
 import ChromaGrid, { ChromaItem } from '@/components/ui/ChromaGrid'
 
 const skills = [
@@ -73,7 +74,15 @@ export default function SkillsSection() {
             ref={titleRef}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
           >
-            <span className="gradient-text">Technical</span> Skills
+            <VariableProximity
+              label="Technical Skills"
+              fromFontVariationSettings="'wght' 400, 'wdth' 100"
+              toFontVariationSettings="'wght' 700, 'wdth' 90"
+              containerRef={titleRef as React.MutableRefObject<HTMLElement | null>}
+              radius={220}
+              gradientWords={[0]}
+              className=""
+            />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

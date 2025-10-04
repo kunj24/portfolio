@@ -46,16 +46,18 @@ export default function AboutSection() {
           <div ref={contentRef} className="space-y-6">
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               <p>
-                I&apos;m a driven <span className="text-primary font-semibold">B.Tech Computer Science & Engineering</span> student at 
-                Charotar University of Science and Technology with a strong focus on <span className="text-primary font-semibold">machine learning</span> and 
-                <span className="text-primary font-semibold"> web development</span>. I design and build end-to-end web applications and prototype ML models that address practical problems.
+                I am a highly motivated <span className="text-primary font-semibold">B.Tech Computer Science and Engineering</span> student at
+                Charotar University of Science and Technology with a strong passion for <span className="text-primary font-semibold">Machine Learning</span> and
+                <span className="text-primary font-semibold"> Web Development</span>.
               </p>
               <p>
-                I&apos;m seeking opportunities to apply my skills in <span className="text-primary font-semibold">Python, ML frameworks</span>, and 
-                <span className="text-primary font-semibold"> full-stack development</span> to create impactful, production-ready solutions. I enjoy turning research ideas into user-facing products and continuously expanding my toolset to follow modern engineering practices.
+                I&apos;m seeking opportunities to leverage my technical skills in Python, ML frameworks,
+                and full-stack development to contribute to innovative projects and real-world solutions.
               </p>
               <p>
-                I love collaborating across teams, shipping clean, maintainable code, and exploring new architectures and ML techniques that bridge research and real-world applications.
+                I enjoy building intuitive web applications, experimenting with ML models, and continuously
+                learning new technologies to bridge the gap between research and practical, user-facing
+                applications.
               </p>
             </div>
           </div>

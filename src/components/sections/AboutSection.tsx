@@ -47,19 +47,17 @@ export default function AboutSection() {
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               <p>
                 I am a highly motivated <span className="text-primary font-semibold">B.Tech Computer Science and Engineering</span> student at
-                Charotar University of Science and Technology. I focus on rapid prototyping and iterative development,
-                turning ideas into working web experiences that integrate <span className="text-primary font-semibold">Machine Learning</span> and
-                <span className="text-primary font-semibold"> modern web technologies</span>.
+                Charotar University of Science and Technology with a strong passion for <span className="text-primary font-semibold">Machine Learning</span> and
+                <span className="text-primary font-semibold"> Web Development</span>.
               </p>
               <p>
-                I&apos;m actively seeking opportunities where I can apply my skills in Python, ML frameworks, and
-                full-stack development to solve practical problems. I prioritize shipping minimum lovable products,
-                validating assumptions quickly, and improving them through user feedback.
+                I&apos;m seeking opportunities to leverage my technical skills in Python, ML frameworks,
+                and full-stack development to contribute to innovative projects and real-world solutions.
               </p>
               <p>
-                I enjoy building intuitive web applications, iterating on ML models, and learning new tools and patterns
-                that help bridge research and production. My approach is hands-on: prototype fast, test often, and
-                refine until the product delivers clear value for users.
+                I enjoy building intuitive web applications, experimenting with ML models, and continuously
+                learning new technologies to bridge the gap between research and practical, user-facing
+                applications.
               </p>
             </div>
           </div>

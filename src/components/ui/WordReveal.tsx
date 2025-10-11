@@ -22,7 +22,25 @@ export default function WordReveal({ text, className = '', delay = 0 }: WordReve
     return <span className={className}>{text}</span>
   }
 
-  const words = text.split(' ')
+  // If the incoming text contains no spaces (e.g., pasted without spaces),
+  // attempt to split into readable tokens using transitions (uppercase letters, digits, punctuation).
+  let words: string[] = []
+  if (text.includes(' ')) {
+    words = text.split(' ')
+  } else {
+    // Insert splits before capital letters and around punctuation/digits
+    // e.g. "IamahighlymotivatedB.Tech" -> ["I am a highly motivated B.", "Tech"] approx
+    // We'll use a regex to split on boundaries where a lowercase is followed by uppercase, or before digits/punctuation
+    const tokens = text
+      // split before uppercase (but not at the start)
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      // split between letters and digits
+      .replace(/([a-zA-Z])([0-9])/g, '$1 $2')
+      .replace(/([0-9])([a-zA-Z])/g, '$1 $2')
+      // replace punctuation with space + punctuation to keep them visible
+      .replace(/([.,/#!$%^&*;:{}=\-_`~()\[\]])/g, ' $1 ')
+    words = tokens.split(/\s+/).filter(Boolean)
+  }
 
   return (
     <span ref={containerRef} className={`word-reveal ${className}`}>
@@ -59,27 +77,45 @@ function WordRevealInitializer({ containerRef, delay = 0 }: { containerRef: Reac
       return
     }
 
-  let io: IntersectionObserver | null = null
-  type AnimHandle = { kill?: () => void } | null
-  let anim: AnimHandle = null
+    let io: IntersectionObserver | null = null
+    type AnimHandle = { kill?: () => void } | null
+    let anim: AnimHandle = null
+    let isAnimating = false
 
     const runAnimation = () => {
+      // prevent double-start
+      if (isAnimating) return
+      isAnimating = true
       import('gsap').then(({ gsap }) => {
+        if (anim && typeof anim.kill === 'function') anim.kill()
         anim = gsap.fromTo(
           children,
           { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.04, delay: delay / 1000 }
+          { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.04, delay: delay / 1000, onComplete: () => { isAnimating = false } }
         )
       })
     }
-
+    const resetWords = () => {
+      // kill running animation and reset inline styles so it can replay
+      if (anim && typeof anim.kill === 'function') {
+        try { anim.kill() } catch {}
+        anim = null
+      }
+      isAnimating = false
+      children.forEach((c) => {
+        const el = c as HTMLElement
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(12px)'
+      })
+    }
     if ('IntersectionObserver' in window) {
-      io = new IntersectionObserver((entries, observer) => {
+      io = new IntersectionObserver((entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             runAnimation()
-            observer.disconnect()
-            break
+          } else {
+            // reset so it can animate again next time it becomes visible
+            resetWords()
           }
         }
       }, { threshold: 0.05 })
@@ -89,7 +125,6 @@ function WordRevealInitializer({ containerRef, delay = 0 }: { containerRef: Reac
       // Fallback: run immediately
       runAnimation()
     }
-
     return () => {
       if (io) io.disconnect()
       if (anim && typeof anim.kill === 'function') anim.kill()

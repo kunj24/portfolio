@@ -184,8 +184,9 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           <div
             className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
             style={{
+              // stronger local spotlight on hover (brighter and tighter)
               background:
-                'radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)'
+                'radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.28), transparent 60%)'
             }}
           />
           <div className="relative z-10 flex-1 p-2 box-border flex items-center justify-center">
@@ -232,13 +233,15 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
         ref={fadeRef}
         className="absolute inset-0 pointer-events-none transition-opacity duration-[250ms] z-40"
         style={{
-          backdropFilter: 'grayscale(1) brightness(0.78)',
-          WebkitBackdropFilter: 'grayscale(1) brightness(0.78)',
+          // Increase overall spotlight brightness and reduce grayscale so colors pop
+          backdropFilter: 'grayscale(0) brightness(1.15) saturate(1.05)',
+          WebkitBackdropFilter: 'grayscale(0) brightness(1.15) saturate(1.05)',
           background: 'rgba(0,0,0,0.001)',
+          // enlarge bright core and make the falloff gentler to create a stronger circular spotlight
           maskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)',
+            'radial-gradient(circle var(--r) at var(--x) var(--y), white 0%, white 30%, rgba(255,255,255,0.95)45%, rgba(255,255,255,0.85)60%, rgba(255,255,255,0.60)75%, rgba(255,255,255,0.30)88%, transparent 100%)',
           WebkitMaskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)',
+            'radial-gradient(circle var(--r) at var(--x) var(--y), white 0%, white 30%, rgba(255,255,255,0.95)45%, rgba(255,255,255,0.85)60%, rgba(255,255,255,0.60)75%, rgba(255,255,255,0.30)88%, transparent 100%)',
           opacity: 1
         }}
       />

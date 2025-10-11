@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import VariableProximity from '@/components/ui/VariableProximity'
+import WordReveal from '@/components/ui/WordReveal'
 
 
 export default function AboutSection() {
@@ -46,18 +47,13 @@ export default function AboutSection() {
           <div ref={contentRef} className="space-y-6">
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               <p>
-                I am a highly motivated <span className="text-primary font-semibold">B.Tech Computer Science and Engineering</span> student at
-                Charotar University of Science and Technology with a strong passion for <span className="text-primary font-semibold">Machine Learning</span> and
-                <span className="text-primary font-semibold"> Web Development</span>.
+                <WordReveal text={"I am a highly motivated B.Tech Computer Science and Engineering student at Charotar University of Science and Technology with a strong passion for Machine Learning and Web Development."} delay={200} />
               </p>
               <p>
-                I&apos;m seeking opportunities to leverage my technical skills in Python, ML frameworks,
-                and full-stack development to contribute to innovative projects and real-world solutions.
+                <WordReveal text={"I'm seeking opportunities to leverage my technical skills in Python, ML frameworks, and full-stack development to contribute to innovative projects and real-world solutions."} delay={900} />
               </p>
               <p>
-                I enjoy building intuitive web applications, experimenting with ML models, and continuously
-                learning new technologies to bridge the gap between research and practical, user-facing
-                applications.
+                <WordReveal text={"I enjoy building intuitive web applications, experimenting with ML models, and continuously learning new technologies to bridge the gap between research and practical, user-facing applications."} delay={1600} />
               </p>
             </div>
           </div>

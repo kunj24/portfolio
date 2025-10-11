@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
-import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMongodb, SiC, SiCplusplus, SiPython, SiGit, SiGithub } from 'react-icons/si'
+import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiFlutter, SiNodedotjs, SiExpress, SiEjs, SiMongodb, SiC, SiCplusplus, SiPython, SiGit, SiGithub } from 'react-icons/si'
 import VariableProximity from '@/components/ui/VariableProximity'
 import ChromaGrid, { ChromaItem } from '@/components/ui/ChromaGrid'
 
@@ -13,9 +13,11 @@ const skills = [
   { name: "JavaScript", icon: <SiJavascript />, bgGradient: "from-yellow-400 to-orange-500", glowColor: "#F7DF1E" },
   { name: "TypeScript", icon: <SiTypescript />, bgGradient: "from-blue-500 to-blue-700", glowColor: "#3178C6" },
   { name: "React", icon: <SiReact />, bgGradient: "from-cyan-400 to-blue-500", glowColor: "#61DAFB" },
+  { name: "Flutter", icon: <SiFlutter />, bgGradient: "from-blue-400 to-blue-700", glowColor: "#02569B" },
   { name: "Next.js", icon: <SiNextdotjs />, bgGradient: "from-gray-600 to-gray-800", glowColor: "#FFFFFF" },
   { name: "Node.js", icon: <SiNodedotjs />, bgGradient: "from-green-500 to-green-600", glowColor: "#339933" },
   { name: "Express.js", icon: <SiExpress />, bgGradient: "from-gray-700 to-gray-900", glowColor: "#68A063" },
+  { name: "EJS", icon: <SiEjs />, bgGradient: "from-red-400 to-red-600", glowColor: "#A91E50" },
   { name: "MongoDB", icon: <SiMongodb />, bgGradient: "from-green-600 to-green-700", glowColor: "#47A248" },
   { name: "C", icon: <SiC />, bgGradient: "from-blue-600 to-indigo-700", glowColor: "#A8B9CC" },
   { name: "C++", icon: <SiCplusplus />, bgGradient: "from-blue-500 to-purple-600", glowColor: "#00599C" },

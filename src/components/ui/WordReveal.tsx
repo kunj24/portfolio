@@ -9,7 +9,7 @@ interface WordRevealProps {
 }
 
 export default function WordReveal({ text, className = '', delay = 0 }: WordRevealProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLSpanElement | null>(null)
 
   useEffect(() => {
     // nothing else — the hook will attach ScrollTrigger to the containerRef
@@ -19,13 +19,13 @@ export default function WordReveal({ text, className = '', delay = 0 }: WordReve
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (prefersReduced) {
-    return <div className={className}>{text}</div>
+    return <span className={className}>{text}</span>
   }
 
   const words = text.split(' ')
 
   return (
-    <div ref={containerRef} className={`word-reveal ${className}`}>
+    <span ref={containerRef} className={`word-reveal ${className}`}>
       {words.map((word, i) => (
         <span key={`${word}-${i}`} className="inline-block mr-1 opacity-0 transform" style={{ display: 'inline-block' }}>
           {word}
@@ -33,11 +33,11 @@ export default function WordReveal({ text, className = '', delay = 0 }: WordReve
       ))}
       {/* Attach stagger animation after render */}
       <WordRevealInitializer containerRef={containerRef} delay={delay} />
-    </div>
+    </span>
   )
 }
 
-function WordRevealInitializer({ containerRef, delay = 0 }: { containerRef: React.RefObject<HTMLDivElement | null>, delay?: number }) {
+function WordRevealInitializer({ containerRef, delay = 0 }: { containerRef: React.RefObject<HTMLSpanElement | null>, delay?: number }) {
   const initRef = useRef(false)
   useEffect(() => {
   if (initRef.current) return

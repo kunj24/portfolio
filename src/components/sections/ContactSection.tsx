@@ -325,12 +325,9 @@ export default function ContactSection() {
                   <Wrapper
                     key={info.label}
                     {...wrapperProps}
-                    className={cn(
-                      'flex items-center p-4 glass rounded-lg',
-                      isClickable ? 'hover:bg-primary/5 transition-all duration-300 hover:scale-105 group' : ''
-                    )}
+                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 hover:scale-105 group"
                   >
-                    <div className={cn('p-3 bg-primary/10 rounded-lg mr-4', isClickable ? 'group-hover:bg-primary/20 transition-colors duration-300' : '')}>
+                    <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors duration-300">
                       <info.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>

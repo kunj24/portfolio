@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
+import { Mail, MapPin, Phone, Github, Linkedin, Instagram } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import emailjs from '@emailjs/browser'
 import VariableProximity from '@/components/ui/VariableProximity'
@@ -26,6 +26,12 @@ const socialLinks = [
     icon: Linkedin,
     href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
     color: 'hover:text-blue-600'
+  },
+  {
+    name: 'Instagram',
+    icon: Instagram,
+    href: 'https://instagram.com/kunj_mungalpara',
+    color: 'hover:text-pink-600'
   },
   
 ]

@@ -51,6 +51,12 @@ export default function RootLayout({
             <Loader />
             <Navigation />
             {children}
+            <footer className="w-full bg-foreground/5 dark:bg-background/90">
+              <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between border-t border-border">
+                <div className="text-xl font-bold tracking-wider text-primary">Kunj Mungalpara</div>
+                <div className="text-sm text-muted-foreground">© 2025 Kunj Mungalpara. All rights reserved.</div>
+              </div>
+            </footer>
           </CursorProvider>
         </ThemeProvider>
       </body>

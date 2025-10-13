@@ -29,24 +29,25 @@
 
 /* Dark theme variables (applied when `.dark` class is present on the root) */
 .dark {
-  --background: #07101a;
-  --foreground: #e6f2ff;
-  --card: #061018;
-  --card-foreground: #e6f2ff;
-  --popover: #061018;
-  --popover-foreground: #d8f0ff;
+  /* Slightly lighter dark palette to reduce contrast and harshness */
+  --background: #0b1720; /* lighter than #07101a */
+  --foreground: #e9f6ff;
+  --card: #0e1a23; /* subtle lift */
+  --card-foreground: #e9f6ff;
+  --popover: #0e1a23;
+  --popover-foreground: #e6f8ff;
   --primary: #2ee6c1;
   --primary-foreground: #021016;
-  --secondary: #08121a;
-  --secondary-foreground: #a7cfe0;
-  --muted: #07101a;
-  --muted-foreground: #7b9fb6;
+  --secondary: #0c1a22;
+  --secondary-foreground: #b6dbe8;
+  --muted: #0b1720;
+  --muted-foreground: #8aa7bb;
   --accent: #ff4da6;
   --accent-foreground: #1b0212;
   --destructive: #ff5c5c;
   --destructive-foreground: #fff;
-  --border: #07202a;
-  --input: #07202a;
+  --border: #0d2832; /* softened border */
+  --input: #0d2832;
   --ring: #2ee6c1;
 }
 
@@ -114,7 +115,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button {
 
 /* Utility classes */
 .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); }
-.dark .glass { background: rgba(0,0,0,0.35); }
+.dark .glass { background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.04); }
 .gradient-text {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;

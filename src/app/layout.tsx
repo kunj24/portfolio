@@ -51,6 +51,9 @@ export default function RootLayout({
             <Loader />
             <Navigation />
             {children}
+            <footer className="py-4 text-center text-muted-foreground text-sm">
+              © 2025 Kunj Mungalpara. All rights reserved.
+            </footer>
           </CursorProvider>
         </ThemeProvider>
       </body>

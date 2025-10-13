@@ -40,7 +40,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+91 xxxxxxxxx (contact via email)',
+    value: '+91 78xxxxxxx6 (contact via email)',
     href: '#'
   },
   {

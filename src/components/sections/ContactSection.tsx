@@ -2,8 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
-import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
+import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import emailjs from '@emailjs/browser'
 import VariableProximity from '@/components/ui/VariableProximity'
@@ -68,10 +67,7 @@ export default function ContactSection() {
     reset
   } = useForm<ContactFormData>()
 
-  useFadeInAnimation(sectionRef)
-  useSlideInAnimation(titleRef, 'up', { delay: 0.2 })
-  useSlideInAnimation(formRef, 'left', { delay: 0.4 })
-  useSlideInAnimation(infoRef, 'right', { delay: 0.4 })
+  // Animations removed per user request: no entrance or interaction animations on contact page
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
@@ -89,7 +85,7 @@ export default function ContactSection() {
       })
       
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is incomplete. Please check your environment variables.')
+        throw new Error('EmailJS configuration is incomplete. Please check   your environment variables.')
       }
 
       // Initialize EmailJS
@@ -294,24 +290,13 @@ export default function ContactSection() {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  'w-full px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed',
-                  isSubmitting && 'animate-pulse'
+                  'w-full px-8 py-4 bg-primary text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
                 )}
               >
                 {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <div className="loading-dots mr-2">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    Sending...
-                  </span>
+                  <span className="block text-center">Sending...</span>
                 ) : (
-                  <span className="flex items-center justify-center">
-                    <Send className="w-5 h-5 mr-2" />
-                    Send Message
-                  </span>
+                  <span className="block text-center">Send Message</span>
                 )}
               </button>
             </form>
@@ -329,21 +314,29 @@ export default function ContactSection() {
             </div>
 
             <div className="space-y-6">
-              {contactInfo.map((info) => (
-                <a
-                  key={info.label}
-                  href={info.href}
-                  className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 hover:scale-105 group"
-                >
-                  <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors duration-300">
-                    <info.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium">{info.value}</p>
-                  </div>
-                </a>
-              ))}
+              {contactInfo.map((info) => {
+                const isClickable = !!info.href && info.href !== '#'
+                const Wrapper: React.ElementType = isClickable ? 'a' : 'div'
+                const wrapperProps = isClickable
+                  ? { href: info.href }
+                  : {}
+
+                return (
+                  <Wrapper
+                    key={info.label}
+                    {...wrapperProps}
+                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 hover:scale-105 group"
+                  >
+                    <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors duration-300">
+                      <info.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">{info.label}</p>
+                      <p className="font-medium">{info.value}</p>
+                    </div>
+                  </Wrapper>
+                )
+              })}
             </div>
 
             <div className="pt-8 border-t border-border">
@@ -355,10 +348,7 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn(
-                      'p-3 glass rounded-lg hover:scale-110 transition-all duration-300',
-                      social.color
-                    )}
+                    className={cn('p-3 glass rounded-lg', social.color)}
                     aria-label={social.name}
                   >
                     <social.icon className="w-6 h-6" />

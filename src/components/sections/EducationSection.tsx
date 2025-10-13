@@ -33,9 +33,6 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2022 - 2027</span>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-primary text-white">
-                  Details
-                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -64,9 +61,6 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2022 - 2023</span>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-purple-500 text-white">
-                  Details
-                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -95,9 +89,6 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2020 - 2021</span>
-                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-orange-400 text-white">
-                  Details
-                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />

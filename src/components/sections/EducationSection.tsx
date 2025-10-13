@@ -15,10 +15,10 @@ export default function EducationSection() {
 
       <div className="space-y-8 max-w-4xl mx-auto">
         {/* Bachelor's Degree */}
-        <div className="bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 hover:shadow-xl transition-shadow duration-300">
+        <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
           <div className="flex items-start space-x-4">
-            <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full">
-              <GraduationCap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+            <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
+              <GraduationCap className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
@@ -33,6 +33,9 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2022 - 2027</span>
+                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-primary text-white">
+                  Details
+                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -43,10 +46,10 @@ export default function EducationSection() {
         </div>
 
         {/* Higher Secondary */}
-        <div className="bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 hover:shadow-xl transition-shadow duration-300">
+        <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
           <div className="flex items-start space-x-4">
-            <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full">
-              <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+            <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
+              <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400 transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
@@ -61,6 +64,9 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2022 - 2023</span>
+                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-purple-500 text-white">
+                  Details
+                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -71,10 +77,10 @@ export default function EducationSection() {
         </div>
 
         {/* Secondary School */}
-        <div className="bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 hover:shadow-xl transition-shadow duration-300">
+        <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
           <div className="flex items-start space-x-4">
-            <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-full">
-              <GraduationCap className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+            <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
+              <GraduationCap className="h-6 w-6 text-orange-600 dark:text-orange-400 transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
@@ -89,6 +95,9 @@ export default function EducationSection() {
               <div className="flex items-center text-neutral-600 dark:text-neutral-400 mb-3">
                 <Calendar className="h-4 w-4 mr-2" />
                 <span>2020 - 2021</span>
+                <span className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full bg-orange-400 text-white">
+                  Details
+                </span>
               </div>
               <div className="flex items-center">
                 <Award className="h-4 w-4 mr-2 text-green-600" />

@@ -19,19 +19,19 @@ const socialLinks = [
     name: 'GitHub',
     icon: Github,
     href: 'https://github.com/kunj24',
-    color: 'hover:text-gray-700 dark:hover:text-gray-300'
+    color: 'hover:text-gray-700 dark:hover:text-gray-300 hover:shadow-gray-700/25 dark:hover:shadow-gray-300/25 hover:drop-shadow-[0_0_8px_rgba(55,65,81,0.5)] dark:hover:drop-shadow-[0_0_8px_rgba(209,213,219,0.5)]'
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
     href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
-    color: 'hover:text-blue-600'
+    color: 'hover:text-blue-600 hover:shadow-blue-600/25 hover:drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]'
   },
   {
     name: 'Instagram',
     icon: Instagram,
     href: 'https://instagram.com/kunj_mungalpara',
-    color: 'hover:text-pink-600'
+    color: 'hover:text-pink-600 hover:shadow-pink-600/25 hover:drop-shadow-[0_0_8px_rgba(219,39,119,0.5)]'
   },
   
 ]
@@ -354,10 +354,10 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn('p-3 glass rounded-lg', social.color)}
+                    className={cn('p-3 glass rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg', social.color)}
                     aria-label={social.name}
                   >
-                    <social.icon className="w-6 h-6" />
+                    <social.icon className="w-6 h-6 transition-colors duration-300" />
                   </a>
                 ))}
               </div>

@@ -19,19 +19,19 @@ const socialLinks = [
     name: 'GitHub',
     icon: Github,
     href: 'https://github.com/kunj24',
-    color: 'hover:text-gray-700 dark:hover:text-gray-300 hover:shadow-gray-700/25 dark:hover:shadow-gray-300/25 hover:drop-shadow-[0_0_8px_rgba(55,65,81,0.5)] dark:hover:drop-shadow-[0_0_8px_rgba(209,213,219,0.5)]'
+    color: 'text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:shadow-gray-700/25 dark:hover:shadow-gray-300/25 hover:drop-shadow-[0_0_12px_rgba(55,65,81,0.7)] dark:hover:drop-shadow-[0_0_12px_rgba(209,213,219,0.7)]'
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
     href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
-    color: 'hover:text-blue-600 hover:shadow-blue-600/25 hover:drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]'
+    color: 'text-blue-500 hover:text-blue-600 hover:shadow-blue-600/25 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.7)]'
   },
   {
     name: 'Instagram',
     icon: Instagram,
     href: 'https://instagram.com/kunj_mungalpara',
-    color: 'hover:text-pink-600 hover:shadow-pink-600/25 hover:drop-shadow-[0_0_8px_rgba(219,39,119,0.5)]'
+    color: 'text-pink-500 hover:text-pink-600 hover:shadow-pink-600/25 hover:drop-shadow-[0_0_12px_rgba(219,39,119,0.7)]'
   },
   
 ]

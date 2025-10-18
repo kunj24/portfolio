@@ -16,6 +16,8 @@ export default function EducationSection() {
       <div className="space-y-8 max-w-4xl mx-auto">
         {/* Bachelor's Degree */}
         <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+          {/* colored hover overlay (blue) */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-blue-500/6 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="flex items-start space-x-4">
             <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
               <GraduationCap className="h-6 w-6 text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110" />
@@ -44,6 +46,8 @@ export default function EducationSection() {
 
         {/* Higher Secondary */}
         <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+          {/* colored hover overlay (purple) */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-purple-500/6 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="flex items-start space-x-4">
             <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
               <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400 transition-transform duration-300 group-hover:scale-110" />
@@ -72,6 +76,8 @@ export default function EducationSection() {
 
         {/* Secondary School */}
         <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+          {/* colored hover overlay (orange) */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-orange-400/6 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="flex items-start space-x-4">
             <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
               <GraduationCap className="h-6 w-6 text-orange-600 dark:text-orange-400 transition-transform duration-300 group-hover:scale-110" />

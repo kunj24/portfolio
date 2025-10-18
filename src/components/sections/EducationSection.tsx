@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { GraduationCap, MapPin, Calendar, Award } from 'lucide-react'
 
@@ -15,7 +17,7 @@ export default function EducationSection() {
 
       <div className="space-y-8 max-w-4xl mx-auto">
         {/* Bachelor's Degree */}
-        <div className="group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-600/25 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.7)]">
+        <div className="education-card group bg-white dark:bg-neutral-900 rounded-lg p-6 shadow-lg border border-neutral-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-600/25 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.7)]">
           {/* colored hover overlay (blue) */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-blue-500/6 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="flex items-start space-x-4">

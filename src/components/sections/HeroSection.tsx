@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { useFadeInAnimation, useSlideInAnimation } from '@/hooks/useGSAP'
 import CreativeArrow from '@/components/ui/CreativeArrow'
 import TypingEffect from '@/components/ui/TypingEffect'
+import MagneticButton from '@/components/ui/MagneticButton'
+import FloatingElement from '@/components/ui/FloatingElement'
 
 // Dynamic import for 3D component to avoid SSR issues
 const Hero3D = dynamic(() => import('@/components/3d/Hero3D'), {
@@ -98,50 +100,56 @@ export default function HeroSection() {
 
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center sm:justify-start"
             >
-              <button
-                onClick={() => {
-                  const contactSection = document.getElementById('contact')
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' })
-                  }
-                }}
-                className="px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg"
-              >
-                Hire Me
-              </button>
+              <MagneticButton intensity={0.2} className="w-full sm:w-auto">
+                <button
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact')
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
+                  className="w-full px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg animate-pulse-glow"
+                >
+                  Hire Me
+                </button>
+              </MagneticButton>
               
-              <a
-                href="/RESUME.pdf"
-                download="Kunj_Mungalpara_Resume.pdf"
-                className="px-8 py-4 border border-white/30 hover:border-white/50 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg hover:bg-white/10"
-              >
-                Download Resume
-              </a>
+              <MagneticButton intensity={0.15} className="w-full sm:w-auto">
+                <a
+                  href="/RESUME.pdf"
+                  download="Kunj_Mungalpara_Resume.pdf"
+                  className="w-full block px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg text-center animate-pulse-glow"
+                >
+                  Download Resume
+                </a>
+              </MagneticButton>
             </div>
           </div>
 
           {/* Right Profile Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale">
-                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
-                  <Image
-                    src="/images/kunj-profile.jpg"
-                    alt="Kunj Mungalpara - Full Stack Developer"
-                    fill
-                    className="object-cover object-center hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 1024px) 320px, 384px"
-                    priority
-                  />
+            <FloatingElement direction="up" intensity={15} duration={4}>
+              <div className="relative">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
+                    <Image
+                      src="/images/kunj-profile.jpg"
+                      alt="Kunj Mungalpara - Full Stack Developer"
+                      fill
+                      className="object-cover object-center hover:scale-110 transition-transform duration-500"
+                      sizes="(max-width: 1024px) 320px, 384px"
+                      priority
+                    />
+                  </div>
                 </div>
+                
+                {/* Floating decorative elements */}
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float" />
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float delay-1000" />
               </div>
-              
-              {/* Floating decorative elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float" />
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float delay-1000" />
-            </div>
+            </FloatingElement>
           </div>
         </div>
 
@@ -152,7 +160,7 @@ export default function HeroSection() {
         >
           <button
             onClick={scrollToNext}
-            className="group flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300"
+            className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group"
             aria-label="Scroll to about section"
           >
             <span className="text-sm mb-2 font-medium">Scroll to explore</span>
@@ -160,8 +168,6 @@ export default function HeroSection() {
           </button>
         </div>
       </div>
-
-
     </section>
   )
 }

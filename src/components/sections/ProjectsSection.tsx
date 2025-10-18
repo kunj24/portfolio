@@ -80,7 +80,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={cardRef}
-      className="project-card group relative bg-gradient-to-br from-muted/20 to-muted/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20"
+      className="project-card group relative bg-gradient-to-br from-black/80 to-gray-900/90 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20"
       style={{ 
         animationDelay: `${index * 0.15}s`,
         transform: isHovered 
@@ -124,6 +124,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           WebkitMaskComposite: 'xor'
         }}
       />
+      
+      {/* Dark overlay for better contrast */}
+      <div className="absolute inset-0 bg-black/20 rounded-2xl" />
       
       <div className="relative z-10 p-8 h-full flex flex-col">
         {/* Header */}

@@ -116,13 +116,21 @@ export default function HeroSection() {
                 </button>
               </MagneticButton>
               
-              <MagneticButton intensity={0.15} className="w-full sm:w-auto">
+              <MagneticButton intensity={0.15} className="w-full sm:w-auto group">
                 <a
                   href="/RESUME.pdf"
                   download="Kunj_Mungalpara_Resume.pdf"
-                  className="w-full block px-8 py-4 border border-white/30 hover:border-white/50 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg hover:bg-white/10 text-center"
+                  className="w-full block px-8 py-4 border border-purple-500/50 hover:border-purple-400/70 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg text-center relative overflow-hidden bg-gradient-to-r from-purple-600/20 to-blue-600/20 hover:from-purple-500/30 hover:to-blue-500/30 animate-cool-glow"
                 >
-                  Download Resume
+                  {/* Cool animated overlay effect */}
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10 flex items-center justify-center gap-2">
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                      <path d="M14 2v6h6M16 13a1 1 0 0 1-1 1h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V10a1 1 0 0 1 2 0v2h2a1 1 0 0 1 1 1z"/>
+                    </svg>
+                    Download Resume
+                  </div>
                 </a>
               </MagneticButton>
             </div>

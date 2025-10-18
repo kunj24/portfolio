@@ -5,6 +5,7 @@ import Navigation from "@/components/ui/Navigation";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Loader from "@/components/ui/Loader";
 import CursorSystem from "@/components/ui/CursorSystem";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { CursorProvider } from "@/hooks/use-cursor";
 
 const inter = Inter({
@@ -48,6 +49,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
           <CursorProvider>
             <CursorSystem />
+            <ScrollProgress />
             <Loader />
             <Navigation />
             {children}

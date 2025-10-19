@@ -113,6 +113,7 @@ export default function HeroSection() {
                   className="w-full px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg animate-pulse-glow"
                 >
                   Hire Me
+                  
                 </button>
               </MagneticButton>
               

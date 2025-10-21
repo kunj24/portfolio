@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Loader from "@/components/ui/Loader";
 import CursorSystem from "@/components/ui/CursorSystem";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import InteractiveBackground from "@/components/ui/InteractiveBackground";
+import AnimatedMesh from "@/components/ui/AnimatedMesh";
 import { CursorProvider } from "@/hooks/use-cursor";
 
 const inter = Inter({
@@ -48,6 +50,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
           <CursorProvider>
+            <AnimatedMesh />
+            <InteractiveBackground />
             <CursorSystem />
             <ScrollProgress />
             <Loader />

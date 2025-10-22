@@ -80,7 +80,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={cardRef}
-      className="project-card group relative bg-gradient-to-br from-black/80 to-gray-900/90 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20"
+      className="project-card group relative bg-gradient-to-br from-black/80 to-gray-900/90 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20 animate-card-glow animate-morph"
       style={{ 
         animationDelay: `${index * 0.15}s`,
         transform: isHovered 

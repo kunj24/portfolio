@@ -116,7 +116,6 @@ export default function HeroSection() {
                   
                 </button>
               </MagneticButton>
-              
               <MagneticButton intensity={0.15} className="w-full sm:w-auto">
                 <a
                   href="/RESUME.pdf"
@@ -133,7 +132,7 @@ export default function HeroSection() {
           <div className="flex justify-center lg:justify-end">
             <FloatingElement direction="up" intensity={15} duration={4}>
               <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow animate-breathe">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
                     <Image
                       src="/images/kunj-profile.jpg"
@@ -147,8 +146,8 @@ export default function HeroSection() {
                 </div>
                 
                 {/* Floating decorative elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float" />
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float delay-1000" />
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float animate-wave" />
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float animate-wave delay-1000" />
               </div>
             </FloatingElement>
           </div>

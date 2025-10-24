@@ -137,6 +137,62 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button {
   font-weight: 600;
 }
 
+/* Certificate animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-10px) rotate(5deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-5px) rotate(-3deg);
+    opacity: 1;
+  }
+}
+
+@keyframes certificateHover {
+  0% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02) rotate(1deg);
+  }
+  100% {
+    transform: translateY(-2px) scale(1.01) rotate(0.5deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-certificate-hover {
+  animation: certificateHover 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
 /* Loading dots */
 .loading-dots { display: inline-flex; gap: 4px; }
 .loading-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); animation: loading 1.4s ease-in-out infinite both; }

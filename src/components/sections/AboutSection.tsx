@@ -15,6 +15,7 @@ export default function AboutSection() {
   useSlideInAnimation(titleRef, 'up', { delay: 0.2 })
   useSlideInAnimation(contentRef, 'left', { delay: 0.4 })
 
+  
   return (
     <section
       ref={sectionRef}

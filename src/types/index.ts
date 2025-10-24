@@ -50,3 +50,17 @@ export interface Animation {
   delay?: number;
   ease?: string;
 }
+
+export interface Certificate {
+  id: string;
+  title: string;
+  organization: string;
+  category: 'programming' | 'algorithms' | 'machine-learning' | 'web-development' | 'competition';
+  dateEarned: string;
+  pdfUrl: string;
+  thumbnailUrl?: string;
+  description: string;
+  skills: string[];
+  credentialId?: string;
+  verificationUrl?: string;
+}

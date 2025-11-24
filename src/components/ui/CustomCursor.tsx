@@ -10,9 +10,18 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
-  const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([])
-  const [particles, setParticles] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([])
+  const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([])  
+  const [particles, setParticles] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([])  
   const [trailId, setTrailId] = useState(0)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  // Detect touch device
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      return ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || false
+    }
+    setIsTouchDevice(Boolean(checkTouchDevice()))
+  }, [])
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -65,8 +74,8 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
 
-    // Hide default cursor only for custom variants
-    if (variant !== 'none') {
+    // Hide default cursor only for custom variants and non-touch devices
+    if (variant !== 'none' && !isTouchDevice) {
       document.body.style.cursor = 'none'
       document.body.classList.add('custom-cursor-active')
     } else {
@@ -83,7 +92,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
       document.body.style.cursor = ''
       document.body.classList.remove('custom-cursor-active')
     }
-  }, [variant, trailId])
+  }, [variant, trailId, isTouchDevice])
 
   // Clean up old particles
   useEffect(() => {
@@ -94,8 +103,8 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   }, [])
 
   const renderCursor = () => {
-    // Don't render anything for 'none' variant
-    if (variant === 'none') {
+    // Don't render anything for 'none' variant or on touch devices
+    if (variant === 'none' || isTouchDevice) {
       return null
     }
 

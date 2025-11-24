@@ -152,53 +152,56 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        {/* Mobile Logo */}
-        <div className="fixed top-6 left-6 z-40">
+        {/* Mobile Logo - with safe area support */}
+        <div className="fixed top-6 left-4 z-40 safe-top">
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault()
               scrollToSection('#home')
             }}
-            className="text-lg font-bold gradient-text hover:scale-105 transition-transform duration-300"
+            className="text-base sm:text-lg font-bold gradient-text hover:scale-105 transition-transform duration-300 block py-2 px-2"
+            style={{ minHeight: '44px' }}
           >
-            Kunj Mungalpara
+            <span className="hidden sm:inline">Kunj Mungalpara</span>
+            <span className="sm:hidden">Kunj M.</span>
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - improved touch target */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
-            'fixed top-6 right-6 z-50',
-            'w-12 h-12 rounded-full',
-            'bg-black/60 backdrop-blur-xl',
-            'border border-white/20',
+            'fixed top-4 right-4 z-50 safe-top',
+            'w-12 h-12 min-w-[44px] min-h-[44px] rounded-full',
+            'bg-black/70 backdrop-blur-xl',
+            'border border-white/30',
             'flex items-center justify-center',
             'transition-all duration-300 hover:scale-105',
-            'shadow-lg shadow-primary/10'
+            'shadow-lg shadow-primary/20',
+            'touch-manipulation'
           )}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className="w-5 h-5 text-white" />
+            <X className="w-6 h-6 text-white" />
           ) : (
-            <Menu className="w-5 h-5 text-white" />
+            <Menu className="w-6 h-6 text-white" />
           )}
         </button>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - improved positioning and touch targets */}
         <div
           className={cn(
-            'fixed top-20 left-1/2 -translate-x-1/2 z-40',
+            'fixed inset-x-4 top-20 z-40 safe-top',
             'transition-all duration-500 ease-out origin-top',
             isMobileMenuOpen
               ? 'opacity-100 scale-100 translate-y-0'
               : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
           )}
         >
-          <div className="bg-black/70 backdrop-blur-xl rounded-2xl border border-white/20 p-4 shadow-2xl shadow-primary/20">
-            <div className="flex flex-col space-y-2">
+          <div className="bg-black/80 backdrop-blur-xl rounded-2xl border border-white/30 p-3 sm:p-4 shadow-2xl shadow-primary/30 mx-auto max-w-sm">
+            <div className="flex flex-col space-y-1">
               {navItems.map((item) => {
                 const Icon = item.icon
                 const isActive = activeSection === item.href.substring(1)
@@ -212,15 +215,16 @@ export default function Navigation() {
                       scrollToSection(item.href)
                     }}
                     className={cn(
-                      'flex items-center space-x-3 px-4 py-3 rounded-xl',
-                      'transition-all duration-300',
+                      'flex items-center space-x-3 px-4 py-4 rounded-xl',
+                      'transition-all duration-300 min-h-[48px]',
+                      'touch-manipulation cursor-pointer',
                       isActive
-                        ? 'bg-primary/20 text-primary'
-                        : 'text-white/80 hover:text-white hover:bg-white/10'
+                        ? 'bg-primary/25 text-primary border border-primary/30'
+                        : 'text-white/90 hover:text-white hover:bg-white/15 active:bg-white/20'
                     )}
                   >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{item.name}</span>
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    <span className="font-medium text-base">{item.name}</span>
                   </a>
                 )
               })}
@@ -228,11 +232,12 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay - improved for touch */}
         {isMobileMenuOpen && (
           <div
-            className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm touch-manipulation"
             onClick={() => setIsMobileMenuOpen(false)}
+            onTouchEnd={() => setIsMobileMenuOpen(false)}
           />
         )}
       </div>

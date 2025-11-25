@@ -126,6 +126,9 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   }
 
   const handleMove = (e: React.PointerEvent) => {
+    // Only apply complex mouse tracking on non-touch devices
+    if (e.pointerType === 'touch') return
+    
     const rect = rootRef.current!.getBoundingClientRect()
     moveTo(e.clientX - rect.left, e.clientY - rect.top)
     gsap.to(fadeRef.current, { opacity: 0, duration: 0.25, overwrite: true })
@@ -155,7 +158,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       ref={rootRef}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className={`relative w-full h-full flex flex-wrap justify-center items-start gap-2 ${className}`}
+      className={`relative w-full min-h-[300px] sm:min-h-[400px] flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 px-2 ${className}`}
       style={{
         '--r': `${radius}px`,
         '--x': '50%',
@@ -169,7 +172,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           onClick={() => handleCardClick(c.url)}
           role={c.url ? 'link' : 'button'}
           aria-label={c.title}
-          className="group relative flex flex-col w-[120px] sm:w-[140px] md:w-[160px] rounded-[10px] overflow-hidden transition-transform duration-200 ease-out cursor-pointer hover:-translate-y-1"
+          className="group relative flex flex-col w-[80px] h-[90px] sm:w-[100px] sm:h-[110px] md:w-[120px] md:h-[130px] lg:w-[140px] lg:h-[150px] rounded-[8px] sm:rounded-[10px] overflow-hidden transition-transform duration-200 ease-out cursor-pointer md:hover:-translate-y-1 touch-manipulation"
           style={{
             '--card-border': c.borderColor || 'transparent',
             // glass-like subtle background so gradients remain elegant
@@ -189,16 +192,16 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
                 'radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.28), transparent 60%)'
             }}
           />
-          <div className="relative z-10 flex-1 p-2 box-border flex items-center justify-center">
+          <div className="relative z-10 flex-1 p-1 sm:p-2 box-border flex items-center justify-center">
             {c.icon ? (
               <div
-                className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-white/6"
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-white/6"
                 style={{
                   border: '1px solid rgba(255,255,255,0.06)',
                   boxShadow: `inset 0 0 18px ${c.borderColor ? `${c.borderColor}22` : 'transparent'}`
                 }}
               >
-                <div className="text-xl sm:text-2xl md:text-3xl text-white" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.45))' }}>{c.icon}</div>
+                <div className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.45))' }}>{c.icon}</div>
               </div>
             ) : (
               <div className="w-full h-full rounded-[6px] overflow-hidden">
@@ -212,8 +215,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
               </div>
             )}
           </div>
-          <footer className="relative z-10 p-2 text-white font-sans text-center">
-            <h3 className="m-0 text-[0.82rem] font-medium tracking-wide">{c.title}</h3>
+          <footer className="relative z-10 p-1 sm:p-2 text-white font-sans text-center">
+            <h3 className="m-0 text-[0.6rem] sm:text-[0.7rem] md:text-[0.8rem] font-medium tracking-wide leading-tight">{c.title}</h3>
           </footer>
         </article>
       ))}

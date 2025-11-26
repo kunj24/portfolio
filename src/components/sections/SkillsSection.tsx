@@ -68,13 +68,13 @@ export default function SkillsSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             ref={titleRef}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
           >
             <VariableProximity
               label="Technical Skills"
@@ -86,19 +86,19 @@ export default function SkillsSection() {
               className=""
             />
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Technologies I work with
           </p>
         </div>
 
-        {/* ChromaGrid Skills */}
+        {/* ChromaGrid Skills - mobile optimized */}
         <div className="relative">
           <StarField />
           <div ref={gridRef} className="relative z-10">
             <ChromaGrid
-              radius={320}
-              className="justify-center"
+              radius={200}
+              className="justify-center max-w-full"
               items={skills.map((s) => {
                 const bg = `linear-gradient(135deg, ${s.glowColor}33, #0b1220)`
                 return {
@@ -112,17 +112,17 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mt-16 max-w-md mx-auto">
+        {/* Stats - mobile optimized */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-sm sm:max-w-md mx-auto px-4">
           {[
             { number: "4+", label: "Projects Completed" },
             { number: "2+", label: "Months Experience" }
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">
                 {stat.number}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-muted-foreground">
                 {stat.label}
               </div>
             </div>

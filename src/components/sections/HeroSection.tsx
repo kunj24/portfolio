@@ -69,22 +69,22 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/20 dark:bg-black/40 parallax-layer parallax-base" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 safe-top safe-bottom">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center min-h-screen py-16 sm:py-20">
           
           {/* Left Content */}
           <div className="space-y-8">
-            <div ref={titleRef}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-primary font-medium mb-4">
+            <div ref={titleRef} className="text-center lg:text-left">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary font-medium mb-4">
                 Hello, I&apos;m
               </h2>
-              <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-2">
                 <TypingEffect
                   texts={typingTexts}
                   typeSpeed={120}
                   deleteSpeed={80}
                   pauseTime={1500}
-                  className="gradient-text whitespace-nowrap"
+                  className="gradient-text block overflow-hidden"
                   cursorClassName="text-primary"
                   loop={true}
                 />
@@ -93,14 +93,14 @@ export default function HeroSection() {
 
             <p
               ref={subtitleRef}
-              className="text-lg sm:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-xl"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-xl mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0"
             >
               Web developer by day, competitive programmer by night — I craft interactive, efficient applications.
             </p>
 
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row gap-4 items-center justify-center sm:justify-start"
+              className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start w-full max-w-md sm:max-w-none mx-auto lg:mx-0"
             >
               <MagneticButton intensity={0.2} className="w-full sm:w-auto">
                 <button
@@ -110,17 +110,16 @@ export default function HeroSection() {
                       contactSection.scrollIntoView({ behavior: 'smooth' })
                     }
                   }}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg animate-pulse-glow"
+                  className="w-full min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-base sm:text-lg animate-pulse-glow touch-manipulation"
                 >
                   Hire Me
-                  
                 </button>
               </MagneticButton>
               <MagneticButton intensity={0.15} className="w-full sm:w-auto">
                 <a
                   href="/RESUME.pdf"
                   download="Kunj_Mungalpara_Resume.pdf"
-                  className="w-full block px-8 py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-lg text-center animate-pulse-glow"
+                  className="w-full block min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-base sm:text-lg text-center animate-pulse-glow touch-manipulation flex items-center justify-center"
                 >
                   Download Resume
                 </a>
@@ -128,42 +127,42 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Profile Image */}
-          <div className="flex justify-center lg:justify-end">
+          {/* Profile Image - optimized for mobile */}
+          <div className="flex justify-center lg:justify-end order-first lg:order-last">
             <FloatingElement direction="up" intensity={15} duration={4}>
               <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow animate-breathe">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow animate-breathe mx-auto">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
                     <Image
                       src="/images/kunj-profile.jpg"
                       alt="Kunj Mungalpara - Full Stack Developer"
                       fill
                       className="object-cover object-center hover:scale-110 transition-transform duration-500"
-                      sizes="(max-width: 1024px) 320px, 384px"
+                      sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
                       priority
                     />
                   </div>
                 </div>
                 
-                {/* Floating decorative elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/30 rounded-full blur-xl animate-float animate-wave" />
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-float animate-wave delay-1000" />
+                {/* Floating decorative elements - reduced on mobile */}
+                <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-12 sm:w-20 h-12 sm:h-20 bg-primary/30 rounded-full blur-xl animate-float animate-wave" />
+                <div className="absolute -bottom-3 sm:-bottom-6 -left-3 sm:-left-6 w-16 sm:w-24 h-16 sm:h-24 bg-accent/30 rounded-full blur-xl animate-float animate-wave delay-1000" />
               </div>
             </FloatingElement>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - mobile optimized */}
         <div
           ref={scrollRef}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 safe-bottom"
         >
           <button
             onClick={scrollToNext}
-            className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group"
+            className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group min-h-[48px] px-4 py-2 touch-manipulation"
             aria-label="Scroll to about section"
           >
-            <span className="text-sm mb-2 font-medium">Scroll to explore</span>
+            <span className="text-xs sm:text-sm mb-1 sm:mb-2 font-medium">Scroll to explore</span>
             <CreativeArrow direction="down" size="lg" className="text-white/70 group-hover:text-white animate-bounce" animated />
           </button>
         </div>

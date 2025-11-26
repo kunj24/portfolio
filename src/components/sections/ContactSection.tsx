@@ -139,13 +139,13 @@ export default function ContactSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-muted/10 to-background"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-muted/10 to-background"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             ref={titleRef}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
           >
             <VariableProximity
               label="Let's Connect"
@@ -157,14 +157,14 @@ export default function ContactSection() {
               className=""
             />
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Ready to bring your ideas to life? I&apos;m always excited to discuss new projects 
             and creative opportunities.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           {/* Contact Form */}
           <div ref={formRef} className="space-y-8">
             <div>
@@ -296,13 +296,13 @@ export default function ContactSection() {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  'w-full px-8 py-4 bg-primary text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
+                  'w-full min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation transition-all duration-300 hover:bg-primary/90 active:scale-95'
                 )}
               >
                 {isSubmitting ? (
-                  <span className="block text-center">Sending...</span>
+                  <span className="block text-center text-base">Sending...</span>
                 ) : (
-                  <span className="block text-center">Send Message</span>
+                  <span className="block text-center text-base">Send Message</span>
                 )}
               </button>
             </form>
@@ -331,7 +331,7 @@ export default function ContactSection() {
                   <Wrapper
                     key={info.label}
                     {...wrapperProps}
-                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 hover:scale-105 group"
+                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 md:hover:scale-105 group touch-manipulation min-h-[64px]"
                   >
                     <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors duration-300">
                       <info.icon className="w-6 h-6 text-primary" />
@@ -354,7 +354,7 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn('p-3 glass rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg', social.color)}
+                    className={cn('p-3 glass rounded-lg transition-all duration-300 md:hover:scale-110 md:hover:shadow-lg touch-manipulation min-w-[48px] min-h-[48px] flex items-center justify-center', social.color)}
                     aria-label={social.name}
                   >
                     <social.icon className="w-6 h-6 transition-colors duration-300" />

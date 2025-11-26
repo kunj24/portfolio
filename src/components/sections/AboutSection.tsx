@@ -19,13 +19,13 @@ export default function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-muted/20 to-background"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-muted/20 to-background"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             ref={titleRef}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
           >
             <VariableProximity
               label="About Me"
@@ -37,16 +37,16 @@ export default function AboutSection() {
               className=""
             />
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Passionate Computer Science student specializing in machine learning and modern web development.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto text-center">
           {/* Content */}
-          <div ref={contentRef} className="space-y-6">
-            <div className="space-y-4 text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
+          <div ref={contentRef} className="space-y-4 sm:space-y-6">
+            <div className="space-y-3 sm:space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto px-4">
               <p>
                 <WordReveal text={"I am a highly motivated B.Tech Computer Science and Engineering student at Charotar University of Science and Technology with a strong passion for Machine Learning and Web Development."} delay={200} />
               </p>

@@ -6,6 +6,7 @@ A modern, responsive 3D animation portfolio built with Next.js, Three.js, and GS
 
 ## Features
 
+
 - 🎨 Interactive 3D hero section with React Three Fiber
 - ✨ Smooth scroll animations powered by GSAP
 - 🌙 Dark/Light mode with persistent theme

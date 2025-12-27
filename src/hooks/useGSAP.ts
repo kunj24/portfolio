@@ -7,12 +7,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
+  // Lightweight resize / orientation handler to keep triggers aligned on mobile
+  let resizeTimeout: number | null = null
+  const handleRefresh = () => {
+    if (resizeTimeout) window.clearTimeout(resizeTimeout)
+    // Debounce rapid resize/orientation events
+    resizeTimeout = window.setTimeout(() => {
+      try { ScrollTrigger.refresh() } catch {}
+    }, 120)
+  }
+  window.addEventListener('orientationchange', handleRefresh)
+  window.addEventListener('resize', handleRefresh)
 }
 
 export function useGSAPScrollTrigger() {
   useEffect(() => {
     // Refresh ScrollTrigger on mount
-    ScrollTrigger.refresh()
+    try { ScrollTrigger.refresh() } catch {}
     
     return () => {
       // Clean up all ScrollTriggers on unmount

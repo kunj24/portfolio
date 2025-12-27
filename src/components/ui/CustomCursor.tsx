@@ -14,6 +14,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   const [particles, setParticles] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([])  
   const [trailId, setTrailId] = useState(0)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [tapRipples, setTapRipples] = useState<Array<{ x: number; y: number; id: number }>>([])
 
   // Detect touch device
   useEffect(() => {
@@ -68,11 +69,22 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
     const handleMouseDown = () => setIsClicking(true)
     const handleMouseUp = () => setIsClicking(false)
 
+    // Touch support: create ripple and approximate pointer
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0]
+      setMousePosition({ x: touch.clientX, y: touch.clientY })
+      setTapRipples(prev => [...prev, { x: touch.clientX, y: touch.clientY, id: Date.now() + Math.random() }])
+      setIsClicking(true)
+    }
+    const handleTouchEnd = () => setIsClicking(false)
+
     document.addEventListener('mousemove', updateMousePosition)
     document.addEventListener('mouseover', handleMouseOver)
     document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('mousedown', handleMouseDown)
     document.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('touchstart', handleTouchStart, { passive: true })
+    document.addEventListener('touchend', handleTouchEnd)
 
     // Hide default cursor only for custom variants and non-touch devices
     if (variant !== 'none' && !isTouchDevice) {
@@ -89,6 +101,8 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchend', handleTouchEnd)
       document.body.style.cursor = ''
       document.body.classList.remove('custom-cursor-active')
     }
@@ -102,10 +116,39 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
     return () => clearInterval(interval)
   }, [])
 
+  // Clean up old tap ripples
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTapRipples(prev => prev.filter(r => Date.now() - r.id < 600))
+    }, 120)
+    return () => clearInterval(interval)
+  }, [])
+
   const renderCursor = () => {
-    // Don't render anything for 'none' variant or on touch devices
-    if (variant === 'none' || isTouchDevice) {
+    // Don't render anything for 'none' variant
+    if (variant === 'none') {
       return null
+    }
+    // Touch devices: show only ripple feedback & minimal indicator
+    if (isTouchDevice) {
+      return (
+        <>
+          {tapRipples.map(r => (
+            <div
+              key={r.id}
+              className="fixed pointer-events-none z-[9996] rounded-full"
+              style={{
+                left: r.x - 40,
+                top: r.y - 40,
+                width: 80,
+                height: 80,
+                background: 'radial-gradient(circle, rgba(var(--primary-rgb),0.35) 0%, rgba(var(--primary-rgb),0) 70%)',
+                animation: 'cursor-glow 0.8s ease-out',
+              }}
+            />
+          ))}
+        </>
+      )
     }
 
     switch (variant) {

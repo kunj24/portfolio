@@ -26,10 +26,11 @@ const projects = [
   {
     id: 3,
     title: "Wanderlust",
-    description: "Travel planning and discovery platform with interactive maps, itinerary builder, and community features.",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    description: "Full-stack hotel listing platform with user authentication, review system, and MongoDB Atlas cloud database. Features secure CRUD operations, star ratings, and responsive design.",
+    technologies: ["Node.js", "Express", "MongoDB", "EJS", "Bootstrap", "Passport.js"],
     githubUrl: "https://github.com/kunj24/wanderlust",
-    category: "Web App",
+    liveUrl: "https://wanderlust-sylk.onrender.com",
+    category: "Full Stack",
     featured: true
   },
   {
@@ -182,25 +183,55 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 bg-gradient-to-r from-primary to-accent text-white px-6 py-3.5 rounded-lg font-medium text-center transition-all duration-500 group relative overflow-hidden flex items-center justify-center touch-manipulation ${
-              (!isTouch && isHovered) ? 'shadow-2xl shadow-primary/40 transform scale-105' : 'shadow-lg shadow-primary/25'
+            className={`flex-1 bg-gradient-to-r from-primary to-accent text-white px-6 py-3.5 rounded-lg font-medium text-center transition-all duration-500 group relative overflow-hidden flex items-center justify-center touch-manipulation border border-primary/30 hover:border-primary ${
+              (!isTouch && isHovered) ? 'shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)] transform scale-105 border-primary' : 'shadow-md shadow-primary/15'
             }`}
           >
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/30 via-primary/30 to-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-gradient-x" />
+            
+            {/* Shine effect */}
+            <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12" />
+            
+            {/* Pulse ring effect */}
+            <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100">
+              <div className="absolute inset-0 rounded-lg animate-ping bg-primary/30" style={{ animationDuration: '2s' }} />
+            </div>
+            
             <span className="relative z-10 flex items-center justify-center gap-2 text-base">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 transition-all duration-500 group-hover:scale-125 group-hover:rotate-[360deg]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              GitHub
+              <span className="group-hover:tracking-widest transition-all duration-500">GitHub</span>
             </span>
-            <div className={`absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transition-transform duration-500 ${(!isTouch && isHovered) ? 'translate-x-0' : 'translate-x-full'}`} />
           </a>
-          <button className={`min-w-[48px] min-h-[48px] px-4 py-3.5 border border-white/25 text-white rounded-lg transition-all duration-500 md:hover:bg-white/15 relative overflow-hidden group touch-manipulation ${
-            (!isTouch && isHovered) ? 'rotate-12 scale-110' : ''
-          }`}>
-            <svg className="w-5 h-5 transition-transform duration-500 md:group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </button>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-5 py-3.5 bg-white/10 hover:bg-gradient-to-r hover:from-accent/40 hover:to-primary/40 border border-white/40 hover:border-accent text-white rounded-lg font-medium transition-all duration-500 group relative overflow-hidden flex items-center justify-center gap-2 touch-manipulation ${
+                (!isTouch && isHovered) ? 'transform scale-110 shadow-[0_0_20px_rgba(var(--accent-rgb),0.4)] border-accent' : ''
+              }`}
+            >
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md" />
+              
+              {/* Shine sweep */}
+              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
+              
+              {/* Pulse effect */}
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100">
+                <div className="absolute inset-0 rounded-lg animate-pulse bg-accent/20" />
+              </div>
+              
+              <svg className="w-4 h-4 relative z-10 transition-all duration-500 group-hover:scale-125 group-hover:rotate-[360deg]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <span className="text-sm font-semibold relative z-10 group-hover:tracking-widest transition-all duration-500">Live</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Home, User, Briefcase, Code, Mail } from 'lucide-react'
+import { Menu, X, Home, User, Briefcase, Code, Mail, Award } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -9,6 +9,7 @@ const navItems = [
   { name: 'About', href: '#about', icon: User },
   { name: 'Skills', href: '#skills', icon: Code },
   { name: 'Projects', href: '#projects', icon: Briefcase },
+  { name: 'Certifications', href: '#certifications', icon: Award },
   { name: 'Contact', href: '#contact', icon: Mail },
 ]
 

@@ -53,7 +53,7 @@ const certifications: Certification[] = [
     credentialUrl: "https://drive.google.com/file/d/1PYJxqtoGP4dFAysU9WA_Xwm6J_wkmN-z/view?usp=drive_link",
     skills: ["Algorithm Design", "Algorithm Analysis", "Complexity", "Optimization"],
     description: "Successfully completed 8-week NPTEL course on advanced algorithm design and analysis techniques. Score: 50%",
-    color: "#D35400"
+    color: "#9B59B6"
   },
   {
     id: 4,
@@ -101,20 +101,38 @@ export default function CertificationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30 relative overflow-hidden"
+      className="py-16 sm:py-20 md:py-24 px-5 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30 relative overflow-hidden"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+      {/* Background Effects - Subtle and calm */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+        {/* Animated gradient blobs - more subtle */}
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl animate-blob" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        
+        {/* Floating particles - fewer and more subtle */}
+        <div className="absolute inset-0">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-primary/20 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${8 + Math.random() * 12}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 px-2"
           >
             <VariableProximity
               label="Certifications & Achievements"
@@ -127,7 +145,7 @@ export default function CertificationsSection() {
             />
           </h2>
           <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
             Professional certifications and continuous learning
           </p>
         </div>
@@ -135,46 +153,99 @@ export default function CertificationsSection() {
         {/* Certifications Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
         >
-          {certifications.map((cert) => (
+          {certifications.map((cert, index) => (
             <div
               key={cert.id}
-              className="cert-card group relative"
+              className="cert-card group relative animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
               onMouseEnter={() => setHoveredId(cert.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="relative h-full bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary/30 overflow-hidden">
-                {/* Animated gradient overlay */}
+              <div className="relative h-full bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm border border-white/5 rounded-xl sm:rounded-2xl p-5 sm:p-5 md:p-6 transition-all duration-500 active:scale-[1.02] md:hover:scale-[1.08] md:hover:-translate-y-3 md:hover:shadow-[0_20px_80px_rgba(var(--primary-rgb),0.5)] hover:border-primary/50 overflow-hidden transform-gpu">
+                {/* Animated gradient overlay - only on hover */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"
                   style={{
-                    background: `radial-gradient(circle at center, ${cert.color}15, transparent 70%)`
+                    background: `radial-gradient(circle at center, ${cert.color}30, ${cert.color}15 50%, transparent 70%)`
+                  }}
+                />
+                
+                {/* Neon glow border */}
+                <div
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"
+                  style={{
+                    boxShadow: `inset 0 0 15px ${cert.color}60, 0 0 20px ${cert.color}40`
                   }}
                 />
 
                 {/* Glow effect */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl pointer-events-none"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 blur-3xl pointer-events-none group-hover:animate-pulse-slow"
                   style={{
-                    background: `radial-gradient(circle at center, ${cert.color}, transparent 60%)`
+                    background: `radial-gradient(circle at center, ${cert.color}, ${cert.color}80 40%, transparent 70%)`
                   }}
                 />
+
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                </div>
+
+                {/* Particle effect */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute rounded-full animate-float"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        width: `${3 + Math.random() * 5}px`,
+                        height: `${3 + Math.random() * 5}px`,
+                        backgroundColor: cert.color,
+                        boxShadow: `0 0 ${8 + Math.random() * 12}px ${cert.color}`,
+                        animationDelay: `${i * 0.2}s`,
+                        animationDuration: `${3 + Math.random() * 3}s`
+                      }}
+                    />
+                  ))}
+                </div>
 
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Header with Icon */}
                   <div className="flex items-start justify-between mb-3 sm:mb-4">
-                    <div
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12"
-                      style={{
-                        background: `linear-gradient(135deg, ${cert.color}33, ${cert.color}11)`,
-                        border: `2px solid ${cert.color}44`
-                      }}
-                    >
-                      <Award
-                        className="w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-500"
-                        style={{ color: cert.color }}
+                    <div className="relative">
+                      <div
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 relative z-10"
+                        style={{
+                          background: `linear-gradient(135deg, ${cert.color}40, ${cert.color}20)`,
+                          border: `2px solid ${cert.color}60`,
+                          boxShadow: `0 0 20px ${cert.color}40`
+                        }}
+                      >
+                        <Award
+                          className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-500 group-hover:scale-110"
+                          style={{ color: cert.color }}
+                        />
+                      </div>
+                      {/* Pulsing ring */}
+                      <div
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"
+                        style={{
+                          border: `2px solid ${cert.color}`,
+                          animationDuration: '1.5s'
+                        }}
+                      />
+                      {/* Rotating glow ring */}
+                      <div
+                        className="absolute inset-[-4px] rounded-full opacity-0 group-hover:opacity-100 animate-spin-slow"
+                        style={{
+                          background: `conic-gradient(from 0deg, ${cert.color}, transparent, ${cert.color})`,
+                          filter: 'blur(8px)'
+                        }}
                       />
                     </div>
                     {cert.credentialUrl && (
@@ -182,46 +253,48 @@ export default function CertificationsSection() {
                         href={cert.credentialUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+                        className="opacity-70 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 hover:scale-125 hover:rotate-12"
                         aria-label="View Certificate"
                       >
-                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-primary drop-shadow-lg" />
                       </a>
                     )}
                   </div>
 
                   {/* Title and Issuer */}
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3 transition-all duration-300 leading-snug">
                     {cert.title}
                   </h3>
                   <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                    <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-                    <p className="text-xs sm:text-sm font-semibold text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                    <p className="text-sm sm:text-sm font-semibold text-muted-foreground">
                       {cert.issuer}
                     </p>
                   </div>
 
                   {/* Date */}
-                  <div className="flex items-center gap-2 mb-3 sm:mb-4 text-xs sm:text-sm text-muted-foreground">
-                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4 text-sm sm:text-sm text-muted-foreground">
+                    <Calendar className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
                     <span>Issued {cert.date}</span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-sm sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-3">
                     {cert.description}
                   </p>
 
                   {/* Skills Tags */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-2 mb-4 sm:mb-4">
                     {cert.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium rounded-full border transition-all duration-300 group-hover:scale-105"
+                        className="px-2.5 sm:px-2.5 py-1 sm:py-1 text-xs sm:text-xs font-medium rounded-full border transition-all duration-300 md:group-hover:scale-110 md:group-hover:shadow-lg md:hover:brightness-125 active:scale-95"
                         style={{
-                          backgroundColor: `${cert.color}15`,
-                          borderColor: `${cert.color}40`,
-                          color: cert.color
+                          backgroundColor: `${cert.color}20`,
+                          borderColor: `${cert.color}50`,
+                          color: cert.color,
+                          boxShadow: hoveredId === cert.id ? `0 0 10px ${cert.color}40` : 'none',
+                          animationDelay: `${idx * 0.05}s`
                         }}
                       >
                         {skill}
@@ -231,7 +304,7 @@ export default function CertificationsSection() {
 
                   {/* Credential ID */}
                   {cert.credentialId && (
-                    <div className="text-[10px] sm:text-xs text-muted-foreground/70 font-mono mb-2 truncate">
+                    <div className="text-xs sm:text-xs text-muted-foreground/70 font-mono mb-2 sm:mb-3 truncate">
                       ID: {cert.credentialId}
                     </div>
                   )}
@@ -242,15 +315,18 @@ export default function CertificationsSection() {
                       href={cert.credentialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 sm:mt-4 inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-300 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 translate-y-0 sm:translate-y-2 sm:group-hover:translate-y-0"
+                      className="mt-4 sm:mt-4 inline-flex items-center gap-2 px-4 sm:px-4 py-2.5 sm:py-2 text-sm sm:text-sm font-medium rounded-lg transition-all duration-300 opacity-100 translate-y-0 active:scale-95 md:hover:scale-105 relative overflow-hidden group/btn"
                       style={{
-                        backgroundColor: `${cert.color}20`,
+                        backgroundColor: `${cert.color}25`,
                         color: cert.color,
-                        border: `1px solid ${cert.color}40`
+                        border: `1px solid ${cert.color}50`,
+                        boxShadow: `0 0 15px ${cert.color}30`
                       }}
                     >
-                      View Certificate
-                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                      {/* Button shine effect */}
+                      <div className="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                      <span className="relative z-10">View Certificate</span>
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 relative z-10 group-hover/btn:rotate-12 transition-transform duration-300" />
                     </a>
                   )}
                 </div>
@@ -268,20 +344,38 @@ export default function CertificationsSection() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12 md:mt-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mt-10 sm:mt-12 md:mt-16 max-w-4xl mx-auto px-2">
           {[
-            { number: certifications.length, label: "Certifications", icon: "🏆" },
-            { number: "6+", label: "Platforms", icon: "🌐" },
-            { number: "1000+", label: "Hours Learning", icon: "⏱️" },
+            { number: "6+", label: "Certifications", icon: "🏆" },
+            { number: "5+", label: "Platforms", icon: "🌐" },
+            { number: "500+", label: "Hours Learning", icon: "⏱️" },
             { number: "100%", label: "Completion Rate", icon: "✨" }
           ].map((stat, idx) => (
-            <div key={idx} className="text-center p-3 sm:p-4 rounded-xl bg-card/40 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all duration-300 hover:scale-105">
-              <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">{stat.icon}</div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text mb-0.5 sm:mb-1">
-                {stat.number}
-              </div>
-              <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">
-                {stat.label}
+            <div key={idx} className="group text-center p-4 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-all duration-500 active:scale-105 md:hover:scale-110 md:hover:shadow-[0_10px_40px_rgba(var(--primary-rgb),0.4)] md:hover:-translate-y-1 relative overflow-hidden transform-gpu">
+              {/* Background glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Animated border gradient */}
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(45deg, var(--primary), var(--accent), var(--primary))',
+                  backgroundSize: '200% 200%',
+                  animation: 'gradient 3s ease infinite',
+                  padding: '1px',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor'
+                }}
+              />
+              
+              <div className="relative z-10">
+                <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-2 md:group-hover:scale-125 md:group-hover:rotate-12 transition-all duration-500 inline-block">{stat.icon}</div>
+                <div className="text-2xl sm:text-2xl md:text-3xl font-bold gradient-text mb-1 sm:mb-1 md:group-hover:scale-110 transition-transform duration-500">
+                  {stat.number}
+                </div>
+                <div className="text-xs sm:text-xs md:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  {stat.label}
+                </div>
               </div>
             </div>
           ))}

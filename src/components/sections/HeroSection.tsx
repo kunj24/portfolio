@@ -117,7 +117,7 @@ export default function HeroSection() {
               </MagneticButton>
               <MagneticButton intensity={0.15} className="w-full sm:w-auto">
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1s2vIOfeZhJ7f4YK92harJbWrNliRdbrN"
+                  href="https://drive.google.com/uc?export=download&id=101c580Vf24QVbgVv34OEdp8wbd-74Up1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full block min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-full font-semibold transition-all duration-300 hover-scale text-base sm:text-lg text-center animate-pulse-glow touch-manipulation flex items-center justify-center"

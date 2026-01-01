@@ -15,6 +15,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   const [trailId, setTrailId] = useState(0)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [tapRipples, setTapRipples] = useState<Array<{ x: number; y: number; id: number }>>([])
+  const [particleIdCounter, setParticleIdCounter] = useState(0)
 
   // Detect touch device
   useEffect(() => {
@@ -31,20 +32,27 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
 
       // Add trail for particle and liquid variants
       if (variant === 'particle' || variant === 'liquid') {
-        const newTrailPoint = { x: newPos.x, y: newPos.y, id: Date.now() + Math.random() }
-        setTrail(prev => [...prev.slice(-8), newTrailPoint])
-        setTrailId(prev => prev + 1)
+        setTrailId(prev => {
+          const newId = prev + 1
+          const newTrailPoint = { x: newPos.x, y: newPos.y, id: newId }
+          setTrail(prevTrail => [...prevTrail.slice(-8), newTrailPoint])
+          return newId
+        })
       }
 
       // Add particles for particle variant
       if (variant === 'particle' && Math.random() < 0.3) {
-        const newParticle = { 
-          x: newPos.x + (Math.random() - 0.5) * 30, 
-          y: newPos.y + (Math.random() - 0.5) * 30, 
-          id: Date.now() + Math.random() * 1000, 
-          opacity: 1 
-        }
-        setParticles(prev => [...prev, newParticle])
+        setParticleIdCounter(prev => {
+          const newId = prev + 1
+          const newParticle = { 
+            x: newPos.x + (Math.random() - 0.5) * 30, 
+            y: newPos.y + (Math.random() - 0.5) * 30, 
+            id: newId, 
+            opacity: 1 
+          }
+          setParticles(prevParticles => [...prevParticles, newParticle])
+          return newId
+        })
       }
     }
 
@@ -73,7 +81,11 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0]
       setMousePosition({ x: touch.clientX, y: touch.clientY })
-      setTapRipples(prev => [...prev, { x: touch.clientX, y: touch.clientY, id: Date.now() + Math.random() }])
+      setParticleIdCounter(prev => {
+        const newId = prev + 1
+        setTapRipples(prevRipples => [...prevRipples, { x: touch.clientX, y: touch.clientY, id: newId }])
+        return newId
+      })
       setIsClicking(true)
     }
     const handleTouchEnd = () => setIsClicking(false)

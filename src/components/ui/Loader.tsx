@@ -12,22 +12,29 @@ const loadingSteps = [
 ]
 
 export default function Loader() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [isAnimating, setIsAnimating] = useState(false)
   const [progress, setProgress] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
 
   const hideLoader = () => {
     setIsAnimating(false)
     setTimeout(() => {
       setIsVisible(false)
-      sessionStorage.setItem('portfolio-loader-shown', 'true')
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('portfolio-loader-shown', 'true')
+      }
     }, 600)
   }
 
   useEffect(() => {
+    setIsMounted(true)
+    
     // Check if loader has already been shown in this session
-    const hasShownLoader = sessionStorage.getItem('portfolio-loader-shown')
+    const hasShownLoader = typeof window !== 'undefined' 
+      ? sessionStorage.getItem('portfolio-loader-shown')
+      : null
     
     if (hasShownLoader) { 
       // Don't show loader if already shown in this session

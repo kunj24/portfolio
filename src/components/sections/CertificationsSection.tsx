@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useFadeInAnimation, useStaggerAnimation } from '@/hooks/useGSAP'
 import { Award, ExternalLink, CheckCircle, Calendar } from 'lucide-react'
 import VariableProximity from '@/components/ui/VariableProximity'
@@ -95,6 +95,21 @@ export default function CertificationsSection() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const [backgroundParticles, setBackgroundParticles] = useState<Array<{left: string, top: string, delay: string, duration: string}>>([])
+
+  // Generate particles only on client side to avoid hydration errors
+  useEffect(() => {
+    setMounted(true)
+    setBackgroundParticles(
+      Array.from({ length: 10 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${8 + Math.random() * 12}s`
+      }))
+    )
+  }, [])
 
   // Animations removed to prevent blinking on scroll
 
@@ -112,15 +127,15 @@ export default function CertificationsSection() {
         
         {/* Floating particles - fewer and more subtle */}
         <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
+          {mounted && backgroundParticles.map((particle, i) => (
             <div
               key={i}
               className="absolute w-1.5 h-1.5 bg-primary/20 rounded-full animate-float"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${8 + Math.random() * 12}s`
+                left: particle.left,
+                top: particle.top,
+                animationDelay: particle.delay,
+                animationDuration: particle.duration
               }}
             />
           ))}
@@ -195,22 +210,36 @@ export default function CertificationsSection() {
 
                 {/* Particle effect */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute rounded-full animate-float"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        width: `${3 + Math.random() * 5}px`,
-                        height: `${3 + Math.random() * 5}px`,
-                        backgroundColor: cert.color,
-                        boxShadow: `0 0 ${8 + Math.random() * 12}px ${cert.color}`,
-                        animationDelay: `${i * 0.2}s`,
-                        animationDuration: `${3 + Math.random() * 3}s`
-                      }}
-                    />
-                  ))}
+                  {[...Array(8)].map((_, i) => {
+                    // Use deterministic positions based on index to avoid hydration errors
+                    const positions = [
+                      { left: '10%', top: '20%', size: 4 },
+                      { left: '80%', top: '15%', size: 6 },
+                      { left: '25%', top: '70%', size: 5 },
+                      { left: '65%', top: '60%', size: 3 },
+                      { left: '45%', top: '30%', size: 7 },
+                      { left: '15%', top: '85%', size: 4 },
+                      { left: '90%', top: '75%', size: 5 },
+                      { left: '35%', top: '50%', size: 6 }
+                    ]
+                    const pos = positions[i]
+                    return (
+                      <div
+                        key={i}
+                        className="absolute rounded-full animate-float"
+                        style={{
+                          left: pos.left,
+                          top: pos.top,
+                          width: `${pos.size}px`,
+                          height: `${pos.size}px`,
+                          backgroundColor: cert.color,
+                          boxShadow: `0 0 ${10 + pos.size * 2}px ${cert.color}`,
+                          animationDelay: `${i * 0.2}s`,
+                          animationDuration: `${3 + (i % 3)}s`
+                        }}
+                      />
+                    )
+                  })}
                 </div>
 
                 {/* Content */}

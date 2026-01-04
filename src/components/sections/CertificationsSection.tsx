@@ -116,7 +116,7 @@ export default function CertificationsSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 sm:py-20 md:py-24 px-5 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30 relative overflow-hidden"
+      className="pt-24 sm:pt-28 md:pt-20 lg:pt-24 pb-12 px-4 sm:px-5 md:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30 relative overflow-visible"
     >
       {/* Background Effects - Subtle and calm */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
@@ -144,11 +144,10 @@ export default function CertificationsSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 px-2"
-          >
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-5 lg:mb-6 px-3">
             <VariableProximity
               label="Certifications & Achievements"
               fromFontVariationSettings="'wght' 400, 'wdth' 100"
@@ -168,7 +167,7 @@ export default function CertificationsSection() {
         {/* Certifications Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
         >
           {certifications.map((cert, index) => (
             <div
@@ -178,7 +177,7 @@ export default function CertificationsSection() {
               onMouseEnter={() => setHoveredId(cert.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="relative h-full bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm border border-white/5 rounded-xl sm:rounded-2xl p-5 sm:p-5 md:p-6 transition-all duration-500 active:scale-[1.02] md:hover:scale-[1.08] md:hover:-translate-y-3 md:hover:shadow-[0_20px_80px_rgba(var(--primary-rgb),0.5)] hover:border-primary/50 overflow-hidden transform-gpu">
+              <div className="relative h-full bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm border border-white/5 rounded-lg sm:rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-6 transition-all duration-500 active:scale-[1.01] md:hover:scale-[1.05] md:hover:-translate-y-2 md:hover:shadow-[0_20px_80px_rgba(var(--primary-rgb),0.5)] hover:border-primary/50 overflow-hidden transform-gpu min-h-[220px] sm:min-h-[240px]">
                 {/* Animated gradient overlay - only on hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"
@@ -248,7 +247,7 @@ export default function CertificationsSection() {
                   <div className="flex items-start justify-between mb-3 sm:mb-4">
                     <div className="relative">
                       <div
-                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 relative z-10"
+                        className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 relative z-10"
                         style={{
                           background: `linear-gradient(135deg, ${cert.color}40, ${cert.color}20)`,
                           border: `2px solid ${cert.color}60`,
@@ -256,7 +255,7 @@ export default function CertificationsSection() {
                         }}
                       >
                         <Award
-                          className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-500 group-hover:scale-110"
+                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-500 group-hover:scale-110"
                           style={{ color: cert.color }}
                         />
                       </div>
@@ -291,33 +290,33 @@ export default function CertificationsSection() {
                   </div>
 
                   {/* Title and Issuer */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground mb-2 sm:mb-3 transition-all duration-300 leading-snug">
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-3 transition-all duration-300 leading-snug line-clamp-3 sm:line-clamp-2">
                     {cert.title}
                   </h3>
-                  <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                    <CheckCircle className="w-4 h-4 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
-                    <p className="text-sm sm:text-sm font-semibold text-muted-foreground">
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-2">
+                    <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                    <p className="text-xs sm:text-sm font-semibold text-muted-foreground line-clamp-1">
                       {cert.issuer}
                     </p>
                   </div>
 
                   {/* Date */}
-                  <div className="flex items-center gap-2 mb-3 sm:mb-4 text-sm sm:text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-2.5 sm:mb-3 text-xs sm:text-sm text-muted-foreground">
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                     <span>Issued {cert.date}</span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-2.5 sm:mb-3 leading-relaxed line-clamp-3 sm:line-clamp-4">
                     {cert.description}
                   </p>
 
                   {/* Skills Tags */}
-                  <div className="flex flex-wrap gap-2 sm:gap-2 mb-4 sm:mb-4">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     {cert.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-2.5 sm:px-2.5 py-1 sm:py-1 text-xs sm:text-xs font-medium rounded-full border transition-all duration-300 md:group-hover:scale-110 md:group-hover:shadow-lg md:hover:brightness-125 active:scale-95"
+                        className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium rounded-full border transition-all duration-300 md:group-hover:scale-110 md:group-hover:shadow-lg md:hover:brightness-125 active:scale-95"
                         style={{
                           backgroundColor: `${cert.color}20`,
                           borderColor: `${cert.color}50`,
@@ -333,7 +332,7 @@ export default function CertificationsSection() {
 
                   {/* Credential ID */}
                   {cert.credentialId && (
-                    <div className="text-xs sm:text-xs text-muted-foreground/70 font-mono mb-2 sm:mb-3 truncate">
+                    <div className="text-[10px] sm:text-xs text-muted-foreground/70 font-mono mb-2 truncate">
                       ID: {cert.credentialId}
                     </div>
                   )}
@@ -344,7 +343,7 @@ export default function CertificationsSection() {
                       href={cert.credentialUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 sm:mt-4 inline-flex items-center gap-2 px-4 sm:px-4 py-2.5 sm:py-2 text-sm sm:text-sm font-medium rounded-lg transition-all duration-300 opacity-100 translate-y-0 active:scale-95 md:hover:scale-105 relative overflow-hidden group/btn"
+                      className="mt-2 sm:mt-3 md:mt-4 inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-300 opacity-100 translate-y-0 active:scale-95 md:hover:scale-105 relative overflow-hidden group/btn"
                       style={{
                         backgroundColor: `${cert.color}25`,
                         color: cert.color,
@@ -373,14 +372,14 @@ export default function CertificationsSection() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mt-10 sm:mt-12 md:mt-16 max-w-4xl mx-auto px-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-8 sm:mt-10 md:mt-12 lg:mt-16 max-w-4xl mx-auto px-3 sm:px-4">
           {[
             { number: "6+", label: "Certifications", icon: "🏆" },
             { number: "5+", label: "Platforms", icon: "🌐" },
             { number: "500+", label: "Hours Learning", icon: "⏱️" },
             { number: "100%", label: "Completion Rate", icon: "✨" }
           ].map((stat, idx) => (
-            <div key={idx} className="group text-center p-4 sm:p-4 md:p-5 rounded-xl bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-all duration-500 active:scale-105 md:hover:scale-110 md:hover:shadow-[0_10px_40px_rgba(var(--primary-rgb),0.4)] md:hover:-translate-y-1 relative overflow-hidden transform-gpu">
+            <div key={idx} className="group text-center p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-all duration-500 active:scale-105 md:hover:scale-110 md:hover:shadow-[0_10px_40px_rgba(var(--primary-rgb),0.4)] md:hover:-translate-y-1 relative overflow-hidden transform-gpu min-h-[100px] sm:min-h-[110px] md:min-h-[120px] flex flex-col items-center justify-center">
               {/* Background glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
@@ -398,11 +397,11 @@ export default function CertificationsSection() {
               />
               
               <div className="relative z-10">
-                <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-2 md:group-hover:scale-125 md:group-hover:rotate-12 transition-all duration-500 inline-block">{stat.icon}</div>
-                <div className="text-2xl sm:text-2xl md:text-3xl font-bold gradient-text mb-1 sm:mb-1 md:group-hover:scale-110 transition-transform duration-500">
+                <div className="text-2xl sm:text-3xl md:text-4xl mb-1.5 sm:mb-2 md:group-hover:scale-125 md:group-hover:rotate-12 transition-all duration-500 inline-block">{stat.icon}</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text mb-0.5 sm:mb-1 md:group-hover:scale-110 transition-transform duration-500">
                   {stat.number}
                 </div>
-                <div className="text-xs sm:text-xs md:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-tight">
                   {stat.label}
                 </div>
               </div>

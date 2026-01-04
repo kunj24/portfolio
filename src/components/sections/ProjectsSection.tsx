@@ -51,6 +51,17 @@ const projects = [
     category: "AI/ML",
     featured: true
   }
+  ,
+  {
+    id: 6,
+    title: "Portfolio",
+    description: "Personal portfolio built with Next.js, showcasing projects, 3D scenes, and interactive UI components.",
+    technologies: ["Next.js", "React", "Three.js", "Tailwind CSS", "TypeScript"],
+    githubUrl: "https://github.com/kunj24/portfolio",
+    liveUrl: "",
+    category: "Personal",
+    featured: true
+  }
 ]
 
 interface ProjectCardProps {

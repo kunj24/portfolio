@@ -260,23 +260,23 @@ export default function ProjectsSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-20 px-8 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden"
     >
-      {/* Animated Background Effects */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/10 via-accent/10 to-purple-500/10 rounded-full blur-3xl animate-spin" style={{animationDuration: '20s'}} />
+      {/* Animated Background Effects - reduced on mobile */}
+      <div className="absolute inset-0 opacity-10 sm:opacity-20 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-primary/10 via-accent/10 to-purple-500/10 rounded-full blur-3xl animate-spin" style={{animationDuration: '20s'}} />
       </div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-gradient-x" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2
             ref={titleRef}
-            className="text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4"
           >
             <VariableProximity
               label="Featured Projects"
@@ -288,14 +288,14 @@ export default function ProjectsSection() {
               className=""
             />
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             A collection of my recent work spanning full-stack development, AI/ML, and modern web applications.
           </p>
         </div>
 
         {/* Projects Grid - Mobile-optimized Layout */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {/* All projects in responsive grid */}
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
@@ -303,13 +303,13 @@ export default function ProjectsSection() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 sm:mt-16 px-4">
           <div className="group">
             <a
               href="https://github.com/kunj24"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium transition-all duration-300 md:hover:shadow-lg md:hover:shadow-primary/25 md:hover:drop-shadow-[0_0_12px_rgba(var(--primary-rgb),0.7)] md:hover:transform md:hover:scale-105 relative overflow-hidden touch-manipulation"
+              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 min-h-[48px] bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium transition-all duration-300 md:hover:shadow-lg md:hover:shadow-primary/25 md:hover:drop-shadow-[0_0_12px_rgba(var(--primary-rgb),0.7)] md:hover:transform md:hover:scale-105 relative overflow-hidden touch-manipulation"
             >
               {/* Colored overlay effect like education section */}
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-purple-400/20 to-blue-400/20 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"></div>

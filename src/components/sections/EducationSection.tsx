@@ -28,17 +28,17 @@ export default function EducationSection() {
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2 leading-tight">
                 Bachelor of Computer Science and Engineering
               </h3>
-              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-600 dark:text-neutral-400 mb-2 text-sm sm:text-base">
+              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-700 dark:text-neutral-300 mb-2 text-sm sm:text-base">
                 <div className="flex items-start justify-center sm:justify-start mb-1 sm:mb-0">
-                  <MapPin className="h-4 w-4 mr-2 mt-0.5" />
-                  <span className="font-medium">Charotar University of Science and Technology</span>
+                  <MapPin className="h-4 w-4 mr-2 mt-0.5 text-neutral-500 dark:text-neutral-400" />
+                  <span className="font-semibold">Charotar University of Science and Technology</span>
                 </div>
                 <span className="hidden sm:inline mx-2">•</span>
-                <span className="text-center sm:text-left">Anand, Gujarat</span>
+                <span className="text-center sm:text-left font-medium">Anand, Gujarat</span>
               </div>
-              <div className="flex items-center justify-center sm:justify-start text-neutral-600 dark:text-neutral-400 mb-3 text-sm sm:text-base">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>2022 - 2027</span>
+              <div className="flex items-center justify-center sm:justify-start text-neutral-700 dark:text-neutral-300 mb-3 text-sm sm:text-base">
+                <Calendar className="h-4 w-4 mr-2 text-neutral-500 dark:text-neutral-400" />
+                <span className="font-medium">2022 - 2027</span>
               </div>
               <div className="flex items-center justify-center sm:justify-start">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -60,17 +60,17 @@ export default function EducationSection() {
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2 leading-tight">
                 Higher Secondary Education
               </h3>
-              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-600 dark:text-neutral-400 mb-2 text-sm sm:text-base">
+              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-700 dark:text-neutral-300 mb-2 text-sm sm:text-base">
                 <div className="flex items-center justify-center sm:justify-start mb-1 sm:mb-0">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <span className="font-medium">Javiya Schooling System</span>
+                  <MapPin className="h-4 w-4 mr-2 text-neutral-500 dark:text-neutral-400" />
+                  <span className="font-semibold">Javiya Schooling System</span>
                 </div>
                 <span className="hidden sm:inline mx-2">•</span>
-                <span className="text-center sm:text-left">Junagadh, Gujarat</span>
+                <span className="text-center sm:text-left font-medium">Junagadh, Gujarat</span>
               </div>
-              <div className="flex items-center justify-center sm:justify-start text-neutral-600 dark:text-neutral-400 mb-3 text-sm sm:text-base">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>2022 - 2023</span>
+              <div className="flex items-center justify-center sm:justify-start text-neutral-700 dark:text-neutral-300 mb-3 text-sm sm:text-base">
+                <Calendar className="h-4 w-4 mr-2 text-neutral-500 dark:text-neutral-400" />
+                <span className="font-medium">2022 - 2023</span>
               </div>
               <div className="flex items-center justify-center sm:justify-start">
                 <Award className="h-4 w-4 mr-2 text-green-600" />
@@ -92,17 +92,17 @@ export default function EducationSection() {
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2 leading-tight">
                 Secondary School Education
               </h3>
-              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-600 dark:text-neutral-400 mb-2 text-sm sm:text-base">
+              <div className="flex flex-col sm:flex-row sm:items-center text-neutral-700 dark:text-neutral-300 mb-2 text-sm sm:text-base">
                 <div className="flex items-center justify-center sm:justify-start mb-1 sm:mb-0">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <span className="font-medium">Javiya Schooling System</span>
+                  <MapPin className="h-4 w-4 mr-2 text-neutral-500 dark:text-neutral-400" />
+                  <span className="font-semibold">Javiya Schooling System</span>
                 </div>
                 <span className="hidden sm:inline mx-2">•</span>
-                <span className="text-center sm:text-left">Junagadh, Gujarat</span>
+                <span className="text-center sm:text-left font-medium">Junagadh, Gujarat</span>
               </div>
-              <div className="flex items-center justify-center sm:justify-start text-neutral-600 dark:text-neutral-400 mb-3 text-sm sm:text-base">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>2020 - 2021</span>
+              <div className="flex items-center justify-center sm:justify-start text-neutral-700 dark:text-neutral-300 mb-3 text-sm sm:text-base">
+                <Calendar className="h-4 w-4 mr-2 text-neutral-500 dark:text-neutral-400" />
+                <span className="font-medium">2020 - 2021</span>
               </div>
               <div className="flex items-center justify-center sm:justify-start">
                 <Award className="h-4 w-4 mr-2 text-green-600" />

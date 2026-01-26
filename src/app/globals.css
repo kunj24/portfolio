@@ -2,42 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-/* Mobile-first optimizations */
-@supports (padding: env(safe-area-inset-top)) {
-  .safe-top {
-    padding-top: env(safe-area-inset-top);
-  }
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  .safe-left {
-    padding-left: env(safe-area-inset-left);
-  }
-  .safe-right {
-    padding-right: env(safe-area-inset-right);
-  }
-}
-
-/* Touch optimization */
-@media (hover: none) and (pointer: coarse) {
-  * {
-    -webkit-tap-highlight-color: rgba(46, 230, 193, 0.2);
-  }
-}
-
-/* Smooth scrolling for mobile */
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
-}
-
-body {
-  overflow-x: hidden;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-
 /* Root theme variables */
 :root {
   --background: #0f1724; /* deep slate */
@@ -97,67 +61,6 @@ body {
 /* Base styles */
 * { 
   box-sizing: border-box; 
-}
-
-/* Mobile-specific optimizations */
-@media (max-width: 768px) {
-  /* Reduce motion for better mobile performance */
-  .animate-spin,
-  .animate-pulse,
-  .animate-bounce {
-    animation-duration: 2s !important;
-  }
-
-  /* Optimize text rendering on mobile */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-
-  /* Prevent zoom on input focus (iOS) */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea,
-  select {
-    font-size: 16px !important;
-  }
-
-  /* Better mobile scrolling */
-  .overflow-auto,
-  .overflow-scroll {
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  /* Disable hover effects on touch devices */
-  .hover-scale:hover {
-    transform: none !important;
-  }
-
-  /* Make all interactive elements more touch-friendly */
-  button,
-  a,
-  input,
-  select,
-  textarea {
-    min-height: 44px;
-    min-width: 44px;
-  }
 }
 
 html { 

@@ -47,7 +47,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
           const newParticle = { 
             x: newPos.x + (Math.random() - 0.5) * 30, 
             y: newPos.y + (Math.random() - 0.5) * 30, 
-            id: newId, 
+            id: Date.now() + Math.random(), 
             opacity: 1 
           }
           setParticles(prevParticles => [...prevParticles, newParticle])
@@ -216,7 +216,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
                 ))}
                 {trail.map((point, index) => (
                   <div
-                    key={point.id}
+                    key={`trail-point-${index}-${point.id}`}
                     className="cursor-trail-point"
                     style={{
                       left: `${point.x}px`,

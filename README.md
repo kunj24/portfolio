@@ -1,13 +1,20 @@
 <div align="center">
 
-# 🚀 Modern Portfolio Website
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,16,18,20&height=200&section=header&text=Modern%20Portfolio&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=2ee6c1" alt="header"/>
 
-### A Next-Generation Portfolio Experience with 3D Graphics & Advanced Animations
+# 🚀 Next-Gen Portfolio Website
+
+### *Where Design Meets Innovation*
+
+<p align="center">
+  <strong>🎨 Stunning 3D Graphics</strong> • <strong>⚡ Blazing Performance</strong> • <strong>🌐 Fully Responsive</strong>
+</p>
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Site-2ee6c1?style=for-the-badge&labelColor=0f1724)](https://portfolio-ruby-iota-47.vercel.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-ff4da6?style=for-the-badge&labelColor=0f1724)](./LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Stars](https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724)](https://github.com/kunj24/portfolio/stargazers)
 
 ---
 
@@ -19,9 +26,34 @@
   <img src="https://img.shields.io/badge/Framer_Motion-12.x-0055FF?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion" />
 </p>
 
-*An immersive digital portfolio showcasing cutting-edge web technologies, stunning 3D graphics, and seamless user experiences. Built for developers who demand excellence.*
+<br/>
 
-**[🌟 View Live Demo](https://portfolio-ruby-iota-47.vercel.app)** • **[📖 Documentation](#-quick-start)** • **[🐛 Report Issue](https://github.com/kunj24/portfolio/issues)**
+```ascii
+ ╔═══════════════════════════════════════════════════════════════╗
+ ║  An immersive digital portfolio showcasing cutting-edge web  ║
+ ║  technologies, stunning 3D graphics, and seamless UX.        ║
+ ║  Built for developers who demand excellence.                 ║
+ ╚═══════════════════════════════════════════════════════════════╝
+```
+
+<br/>
+
+### 🎯 Quick Links
+
+**[🌟 Live Demo](https://portfolio-ruby-iota-47.vercel.app)** • **[📖 Get Started](#-quick-start)** • **[🎨 Features](#-features-overview)** • **[🚀 Deploy](#-deployment)** • **[🐛 Issues](https://github.com/kunj24/portfolio/issues)**
+
+</div>
+
+---
+
+## 📊 Project Stats
+
+<div align="center">
+
+![Repo Size](https://img.shields.io/github/repo-size/kunj24/portfolio?style=flat-square&color=2ee6c1&labelColor=0f1724)
+![Last Commit](https://img.shields.io/github/last-commit/kunj24/portfolio?style=flat-square&color=ff4da6&labelColor=0f1724)
+![Languages](https://img.shields.io/github/languages/count/kunj24/portfolio?style=flat-square&color=2ee6c1&labelColor=0f1724)
+![Top Language](https://img.shields.io/github/languages/top/kunj24/portfolio?style=flat-square&color=ff4da6&labelColor=0f1724)
 
 </div>
 
@@ -31,22 +63,20 @@
 
 <div align="center">
 
-| 🌟 Feature | 💡 Benefit |
-|------------|-----------|
-| **3D Interactive Hero** | Captivate visitors with real-time 3D graphics powered by Three.js & R3F |
-| **Smart Cursor System** | 8 unique cursor styles that adapt to user interactions (desktop) |
-| **Cyberpunk Preloader** | Engaging loading experience with matrix effects & sound waves |
-| **Performance Optimized** | Lightning-fast load times with Next.js 15 App Router & code splitting |
-| **Fully Responsive** | Pixel-perfect on mobile, tablet, and desktop with adaptive UI |
-| **Dark/Light Themes** | Seamless theme switching with persistent user preferences |
-| **Type-Safe Codebase** | 100% TypeScript for reliability and maintainability |
-| **Production Ready** | Deploy instantly to Vercel, Netlify, or any platform |
+| 🌟 Feature | 💡 Benefit | 🎨 Visual Impact |
+|------------|-----------|------------------|
+| **3D Interactive Hero** | Captivate visitors instantly | Real-time Three.js graphics |
+| **8 Custom Cursors** | Unique desktop experience | Neon, Particle, Magnetic, Liquid |
+| **Cyberpunk Preloader** | Engaging 15-20s loading | Matrix + Sound waves + 3D logo |
+| **Performance First** | 95+ Lighthouse score | < 1s FCP, < 2s LCP |
+| **Mobile Optimized** | Pixel-perfect responsive | Adaptive components & effects |
+| **Dark/Light Themes** | User preference support | Smooth transitions |
+| **100% TypeScript** | Zero runtime errors | Full type safety |
+| **One-Click Deploy** | Instant production ready | Vercel/Netlify integration |
 
 </div>
 
 ---
-
-## ✨ Features Overview
 
 ## ✨ Features Overview
 
@@ -162,7 +192,11 @@
 
 <div align="center">
 
-### **Get Started in 3 Minutes** ⏱️
+```ascii
+┌─────────────────────────────────────────────────┐
+│  Get Your Portfolio Running in 3 Minutes! ⚡   │
+└─────────────────────────────────────────────────┘
+```
 
 </div>
 
@@ -170,15 +204,20 @@
 
 Ensure you have these installed before proceeding:
 
-| Tool | Version | Download |
-|------|---------|----------|
-| **Node.js** | 18.x or higher | [Download](https://nodejs.org/) |
-| **Package Manager** | npm / yarn / pnpm | Included with Node.js |
-| **Git** | Latest | [Download](https://git-scm.com/) |
+<div align="center">
+
+| Tool | Version | Status | Download |
+|------|---------|--------|----------|
+| **Node.js** | 18.x or higher | Required | [Download](https://nodejs.org/) ⬇️ |
+| **Package Manager** | npm / yarn / pnpm | Required | Included with Node.js ✅ |
+| **Git** | Latest | Required | [Download](https://git-scm.com/) ⬇️ |
+
+</div>
 
 ### 🛠️ Installation Steps
 
-#### **Step 1: Clone the Repository**
+<details open>
+<summary><b>📥 Step 1: Clone the Repository</b></summary>
 
 ```bash
 # Clone via HTTPS
@@ -190,7 +229,10 @@ git clone git@github.com:kunj24/portfolio.git
 cd portfolio
 ```
 
-#### **Step 2: Install Dependencies**
+</details>
+
+<details open>
+<summary><b>📦 Step 2: Install Dependencies</b></summary>
 
 ```bash
 # Using npm (recommended)
@@ -203,7 +245,10 @@ yarn install
 pnpm install
 ```
 
-#### **Step 3: Environment Configuration** (Optional)
+</details>
+
+<details open>
+<summary><b>⚙️ Step 3: Environment Configuration</b> (Optional)</summary>
 
 Create a `.env.local` file for EmailJS contact form:
 
@@ -216,30 +261,55 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 > 💡 **Note:** Contact form will be disabled if credentials are not provided. The rest of the portfolio works perfectly without them.
 
-#### **Step 4: Start Development Server**
+</details>
+
+<details open>
+<summary><b>🚀 Step 4: Start Development Server</b></summary>
 
 ```bash
 npm run dev
 ```
 
-#### **Step 5: Open in Browser** 🌐
+```
+✔ Ready in 2.5s
+○ Local:    http://localhost:3000
+```
+
+</details>
+
+<details open>
+<summary><b>🌐 Step 5: Open in Browser</b></summary>
 
 Visit **[http://localhost:3000](http://localhost:3000)**
 
 <div align="center">
 
-**🎉 Congratulations! Your portfolio is now running locally!**
+```ascii
+╔═══════════════════════════════════════════╗
+║  🎉 Success! Portfolio is Running! 🚀    ║
+╚═══════════════════════════════════════════╝
+```
+
+**Your portfolio is now live at localhost:3000!**
 
 </div>
 
-### 📦 Available Scripts
+</details>
 
-```bash
-npm run dev          # Start development server (http://localhost:3000)
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint checks
-```
+---
+
+### 📦 Available Commands
+
+<div align="center">
+
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `npm run dev` | Start development server | Hot reload at localhost:3000 |
+| `npm run build` | Build for production | Optimized production bundle |
+| `npm run start` | Start production server | Run built application |
+| `npm run lint` | Run ESLint checks | Find code issues |
+
+</div>
 
 ---
 
@@ -301,12 +371,24 @@ portfolio/
 
 ## 🎨 Customization Guide
 
+<div align="center">
+
+```ascii
+┌────────────────────────────────────────────────┐
+│  Make It Yours: Personalize Every Detail  ✨  │
+└────────────────────────────────────────────────┘
+```
+
+</div>
+
 ### 🔧 Quick Customization Checklist
 
 <details>
-<summary><b>📝 Update Personal Information</b></summary>
+<summary><b>📝 1. Update Personal Information</b></summary>
 
-#### Hero Section
+<br/>
+
+#### 👤 Hero Section
 Edit [`src/components/sections/HeroSection.tsx`](src/components/sections/HeroSection.tsx):
 ```typescript
 // Update these values
@@ -316,22 +398,30 @@ const description = "Your description";
 const resumeLink = "your-resume-url";
 ```
 
-#### About Section
+#### 📖 About Section
 Edit [`src/components/sections/AboutSection.tsx`](src/components/sections/AboutSection.tsx):
 ```typescript
-// Modify your professional summary
+// Modify your professional summary and bio
+const aboutText = "Your story here...";
 ```
 
-#### Skills Section  
+#### 🛠️ Skills Section  
 Edit [`src/components/sections/SkillsSection.tsx`](src/components/sections/SkillsSection.tsx):
 ```typescript
 const skills = [
   { name: "Your Skill", level: 90, icon: YourIcon },
   // Add more skills...
 ];
+
+// Update stats
+const stats = [
+  { number: "20+", label: "Technologies" },
+  { number: "10+", label: "Projects" },
+  // ...
+];
 ```
 
-#### Projects Section
+#### 💼 Projects Section
 Edit [`src/components/sections/ProjectsSection.tsx`](src/components/sections/ProjectsSection.tsx):
 ```typescript
 const projects = [
@@ -340,66 +430,105 @@ const projects = [
     description: "Project description",
     technologies: ["Tech1", "Tech2"],
     github: "your-github-url",
-    live: "your-live-demo-url"
+    live: "your-live-demo-url",
+    image: "/images/your-project.png"
   },
   // Add more projects...
 ];
 ```
 
+#### 🎓 Education Section
+Edit [`src/components/sections/EducationSection.tsx`](src/components/sections/EducationSection.tsx):
+```typescript
+// Update your degrees and achievements
+```
+
 </details>
 
 <details>
-<summary><b>🎨 Customize Theme Colors</b></summary>
+<summary><b>🎨 2. Customize Theme Colors</b></summary>
 
-#### Tailwind Configuration
+<br/>
+
+#### 🌈 Update Color Palette
+Edit [`src/app/globals.css`](src/app/globals.css):
+```css
+:root {
+  --primary: #2ee6c1;      /* Teal accent */
+  --accent: #ff4da6;       /* Magenta accent */
+  --background: #0f1724;   /* Dark background */
+  --card: #0b1220;         /* Card background */
+}
+```
+
+#### 🎭 Tailwind Configuration
 Edit [`tailwind.config.ts`](tailwind.config.ts):
 ```typescript
 module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#your-color',
-          // ... more shades
-        }
+        primary: '#2ee6c1',
+        accent: '#ff4da6',
+        // Add your custom colors
       }
     }
   }
 }
 ```
 
-#### CSS Variables
-Edit [`src/app/globals.css`](src/app/globals.css):
-```css
-:root {
-  --primary: your-color;
-  --secondary: your-color;
-  /* Add more variables */
-}
-```
+</details>
+
+<details>
+<summary><b>📧 3. Configure Contact Form</b></summary>
+
+<br/>
+
+1. 📝 Sign up at [EmailJS](https://www.emailjs.com/)
+2. ⚙️ Create an email service (Gmail/Outlook/etc.)
+3. 📄 Create an email template
+4. 🔑 Copy your credentials
+5. 📂 Add to `.env.local` file
+6. ✅ Test the contact form
 
 </details>
 
 <details>
-<summary><b>📧 Configure Contact Form</b></summary>
+<summary><b>🖼️ 4. Add Your Images</b></summary>
 
-1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Create an email service
-3. Create an email template
-4. Copy credentials to `.env.local`
-5. Update [`src/components/sections/ContactSection.tsx`](src/components/sections/ContactSection.tsx) if needed
+<br/>
 
-</details>
+1. 📁 Place images in `public/images/`
+2. 🔗 Reference in components:
 
-<details>
-<summary><b>🖼️ Add Your Images</b></summary>
-
-1. Place images in `public/images/`
-2. Reference them in your components:
 ```typescript
 import Image from 'next/image';
 
-<Image src="/images/your-image.jpg" alt="Description" />
+<Image 
+  src="/images/your-image.jpg" 
+  alt="Description"
+  width={800}
+  height={600}
+  className="rounded-lg"
+/>
+```
+
+**Supported formats:** JPG, PNG, WebP, AVIF
+
+</details>
+
+<details>
+<summary><b>🖱️ 5. Customize Cursor Styles</b></summary>
+
+<br/>
+
+Edit [`src/components/ui/CursorSystem.tsx`](src/components/ui/CursorSystem.tsx):
+
+```typescript
+// Available cursor variants:
+// 'none', 'default', 'neon', 'particle', 'magnetic', 'morphing', 'geometric', 'liquid'
+
+<CustomCursor variant="neon" /> // Change to any variant
 ```
 
 </details>
@@ -504,22 +633,73 @@ docker run -p 3000:3000 my-portfolio
 
 <div align="center">
 
-### Lighthouse Scores
+```ascii
+╔══════════════════════════════════════════════╗
+║     Optimized for Speed & User Experience    ║
+╚══════════════════════════════════════════════╝
+```
 
-| Category | Score |
-|----------|-------|
-| 🎯 Performance | ![95+](https://img.shields.io/badge/95+-brightgreen?style=flat-square) |
-| ♿ Accessibility | ![100](https://img.shields.io/badge/100-brightgreen?style=flat-square) |
-| 💡 Best Practices | ![100](https://img.shields.io/badge/100-brightgreen?style=flat-square) |
-| 🔍 SEO | ![100](https://img.shields.io/badge/100-brightgreen?style=flat-square) |
+<br/>
 
-### Key Metrics
+### 🏆 Lighthouse Scores
 
-- ⚡ **First Contentful Paint:** < 1.0s
-- 🎨 **Largest Contentful Paint:** < 2.0s
-- 🔄 **Cumulative Layout Shift:** < 0.1
-- ⏱️ **Time to Interactive:** < 2.5s
-- 📦 **Bundle Size:** Optimized with code splitting
+<table>
+<tr>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Performance-95+-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Performance"/>
+<br/>
+<strong>⚡ Performance</strong>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Accessibility-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Accessibility"/>
+<br/>
+<strong>♿ Accessibility</strong>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Best_Practices-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Best Practices"/>
+<br/>
+<strong>💡 Best Practices</strong>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/SEO-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="SEO"/>
+<br/>
+<strong>🔍 SEO</strong>
+</td>
+</tr>
+</table>
+
+<br/>
+
+### ⚡ Core Web Vitals
+
+| Metric | Score | Status |
+|--------|-------|--------|
+| **First Contentful Paint (FCP)** | < 1.0s | 🟢 Excellent |
+| **Largest Contentful Paint (LCP)** | < 2.0s | 🟢 Excellent |
+| **Cumulative Layout Shift (CLS)** | < 0.1 | 🟢 Excellent |
+| **Time to Interactive (TTI)** | < 2.5s | 🟢 Excellent |
+| **Total Blocking Time (TBT)** | < 150ms | 🟢 Excellent |
+
+### 🚀 Optimization Techniques
+
+```mermaid
+graph LR
+    A[User Request] --> B[Next.js CDN]
+    B --> C[Code Splitting]
+    C --> D[React Server Components]
+    D --> E[Optimized Images]
+    E --> F[Cached Assets]
+    F --> G[Fast Delivery]
+```
+
+**Key Optimizations:**
+- ✅ Automatic code splitting & tree shaking
+- ✅ Image optimization with Next/Image
+- ✅ React Server Components
+- ✅ CSS-in-JS with zero runtime
+- ✅ Font optimization
+- ✅ Lazy loading for 3D components
+- ✅ Hardware-accelerated animations
 
 </div>
 
@@ -527,22 +707,79 @@ docker run -p 3000:3000 my-portfolio
 
 ## 🤝 Contributing
 
+<div align="center">
+
+```ascii
+┌────────────────────────────────────────────────┐
+│  Contributions Make Open Source Amazing! 💚   │
+└────────────────────────────────────────────────┘
+```
+
+</div>
+
 Contributions are what make the open-source community an amazing place to learn, inspire, and create! Any contributions you make are **greatly appreciated**. 🙏
 
-### How to Contribute
+### 🌟 How to Contribute
 
-1. **Fork the Project**
-2. **Create your Feature Branch** (`git checkout -b feature/AmazingFeature`)
-3. **Commit your Changes** (`git commit -m 'Add some AmazingFeature'`)
-4. **Push to the Branch** (`git push origin feature/AmazingFeature`)
-5. **Open a Pull Request**
+<table>
+<tr>
+<td>
 
-### Development Guidelines
+**1️⃣ Fork the Project**
+```bash
+# Click the Fork button at top right
+```
 
-- Follow the existing code style
-- Write meaningful commit messages
-- Test your changes thoroughly
-- Update documentation as needed
+</td>
+<td>
+
+**2️⃣ Create Branch**
+```bash
+git checkout -b feature/AmazingFeature
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+**3️⃣ Commit Changes**
+```bash
+git commit -m 'Add AmazingFeature'
+```
+
+</td>
+<td>
+
+**4️⃣ Push to Branch**
+```bash
+git push origin feature/AmazingFeature
+```
+
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+
+**5️⃣ Open a Pull Request**
+
+</td>
+</tr>
+</table>
+
+### 📋 Development Guidelines
+
+<div align="center">
+
+| Rule | Description |
+|------|-------------|
+| 📝 **Code Style** | Follow existing patterns and conventions |
+| 💬 **Commit Messages** | Use clear, descriptive commit messages |
+| 🧪 **Testing** | Test thoroughly before submitting |
+| 📖 **Documentation** | Update docs for new features |
+| 🎨 **Design** | Match existing UI/UX patterns |
+
+</div>
 
 ---
 
@@ -640,6 +877,12 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### 🌟 If you found this useful, give it a star!
 
+<br/>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=kunj24/portfolio&type=Date)](https://star-history.com/#kunj24/portfolio&Date)
+
+<br/>
+
 Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 
 **© 2026 Kunj Mungalpara. All Rights Reserved.**
@@ -650,6 +893,12 @@ Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 [![Next.js](https://img.shields.io/badge/Built_with-Next.js-000000?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/Powered_by-React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 
-[⬆ Back to Top](#-modern-portfolio-website)
+<br/>
+
+[⬆ Back to Top](#-next-gen-portfolio-website)
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,16,18,20&height=100&section=footer" alt="footer"/>
 
 </div>

@@ -1,96 +1,105 @@
 <div align="center">
 
-# 🚀 Interactive Portfolio Website
+# 🚀 Modern Portfolio Website
 
-### A Modern, High-Performance Portfolio Built with Next.js 15 & Three.js
+### A Next-Generation Portfolio Experience with 3D Graphics & Advanced Animations
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Site-success?style=for-the-badge)](https://your-demo-url.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
-
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![Three.js](https://img.shields.io/badge/Three.js-Latest-black?style=flat-square&logo=three.js)](https://threejs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![GSAP](https://img.shields.io/badge/GSAP-3.13-88CE02?style=flat-square&logo=greensock&logoColor=white)](https://greensock.com/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Site-2ee6c1?style=for-the-badge&labelColor=0f1724)](https://portfolio-ruby-iota-47.vercel.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-ff4da6?style=for-the-badge&labelColor=0f1724)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 ---
 
-<img src="public/images/demo.gif" alt="Portfolio Demo" width="800" />
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=flat-square&logo=three.js&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/GSAP-3.13-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" />
+  <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/Framer_Motion-12.x-0055FF?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion" />
+</p>
 
-*An immersive portfolio experience featuring stunning 3D animations, smooth transitions, and cutting-edge web technologies.*
+*An immersive digital portfolio showcasing cutting-edge web technologies, stunning 3D graphics, and seamless user experiences. Built for developers who demand excellence.*
 
-[🌟 View Live Demo](https://your-demo-url.vercel.app) • [📝 Documentation](#-documentation) • [🐛 Report Bug](https://github.com/kunj24/portfolio/issues) • [✨ Request Feature](https://github.com/kunj24/portfolio/issues)
+**[🌟 View Live Demo](https://portfolio-ruby-iota-47.vercel.app)** • **[📖 Documentation](#-quick-start)** • **[🐛 Report Issue](https://github.com/kunj24/portfolio/issues)**
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## 🎯 Why This Portfolio Stands Out
 
-- [✨ Features](#-features)
-- [🎯 What Makes This Special](#-what-makes-this-special)
-- [🛠️ Tech Stack](#️-tech-stack)
-- [🚀 Quick Start](#-quick-start)
-- [📁 Project Structure](#-project-structure)
-- [🎨 Customization Guide](#-customization-guide)
-- [🌐 Deployment](#-deployment)
-- [📊 Performance](#-performance)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [📧 Contact](#-contact)
+<div align="center">
+
+| 🌟 Feature | 💡 Benefit |
+|------------|-----------|
+| **3D Interactive Hero** | Captivate visitors with real-time 3D graphics powered by Three.js & R3F |
+| **Smart Cursor System** | 8 unique cursor styles that adapt to user interactions (desktop) |
+| **Cyberpunk Preloader** | Engaging loading experience with matrix effects & sound waves |
+| **Performance Optimized** | Lightning-fast load times with Next.js 15 App Router & code splitting |
+| **Fully Responsive** | Pixel-perfect on mobile, tablet, and desktop with adaptive UI |
+| **Dark/Light Themes** | Seamless theme switching with persistent user preferences |
+| **Type-Safe Codebase** | 100% TypeScript for reliability and maintainability |
+| **Production Ready** | Deploy instantly to Vercel, Netlify, or any platform |
+
+</div>
 
 ---
 
-## ✨ Features
+## ✨ Features Overview
 
-## ✨ Features
+## ✨ Features Overview
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
-### 🎨 **Stunning Visuals**
+### 🎨 **Visual Excellence**
 
-- 🌐 **Interactive 3D Hero** - Immersive Three.js animations with React Three Fiber
-- 🖱️ **Smart Cursor System** - Context-aware custom cursors (desktop)
-- ✨ **Smooth Animations** - GSAP-powered transitions and scroll effects
-- 🌓 **Theme Switching** - Persistent dark/light mode with smooth transitions
-- 💎 **Glowing UI Effects** - Dynamic chroma grid and hover interactions
+- 🌌 **3D Hero Section** - Interactive Three.js scene with animated meshes
+- 🎭 **8 Custom Cursors** - Neon, Particle, Magnetic, Liquid & more (desktop)
+- ⚡ **Cyberpunk Preloader** - Matrix rain, sound waves, 3D rotating logo
+- 🌈 **Dynamic Effects** - Chroma grid, magnetic buttons, hover animations
+- 🎬 **GSAP Animations** - Professional scroll-triggered motion graphics
+- 🌓 **Theme System** - Smooth dark/light mode transitions with persistence
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
-### ⚡ **Performance First**
+### ⚡ **Performance & Tech**
 
-- 🚀 **Next.js 15 App Router** - Latest server components
-- 📦 **Code Splitting** - Automatic bundle optimization
-- 🖼️ **Image Optimization** - Lazy loading & Next.js Image
-- 💯 **Lighthouse Optimized** - High performance scores
-- 🔒 **Type-Safe** - Full TypeScript coverage
+- 🚀 **Next.js 15** - Latest App Router with React Server Components
+- 📦 **Smart Bundling** - Automatic code splitting & tree shaking
+- 🖼️ **Image Optimization** - Next/Image with lazy loading
+- 💯 **95+ Lighthouse** - Optimized for Core Web Vitals
+- 🔒 **Type-Safe** - 100% TypeScript with strict mode
+- 📱 **Mobile-First** - Responsive design with touch optimizations
 
 </td>
 </tr>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
-### 📱 **Responsive Design**
+### 🎯 **Content Sections**
 
-- 📐 **Mobile-First** - Optimized for all screen sizes
-- 👆 **Touch-Friendly** - Smart mobile detection
-- 🎯 **Adaptive Components** - Viewport-aware UI
-- 🔄 **Consistent UX** - Seamless cross-device experience
+- 👤 **About** - Animated text reveals with word-by-word effects
+- 💼 **Projects** - 6 showcase projects with live demos & GitHub links
+- 🛠️ **Skills** - 18+ technologies with animated skill bars & stats
+- 🎓 **Education** - Timeline cards with hover effects & achievements
+- 🏆 **Certifications** - Digital certificates with verification links
+- 📬 **Contact** - Working form with EmailJS integration
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
-### 🎯 **Rich Content**
+### 🎪 **Interactive Elements**
 
-- 👤 **About Section** - Animated introduction
-- 💼 **Projects Showcase** - Interactive project cards
-- 🛠️ **Skills Grid** - 18+ technologies with stats
-- 🎓 **Education Timeline** - Academic background
-- 📬 **Contact Form** - EmailJS integration
+- 🎯 **Scroll Progress** - Animated progress bar with section tracking
+- 🧭 **Smart Navigation** - Sticky header with blur effect
+- 💫 **Ripple Effects** - Touch/click feedback animations
+- 🎨 **Floating Elements** - Ambient animated decorations
+- ⌨️ **Keyboard Navigation** - Full accessibility support
+- 🔄 **Smooth Scrolling** - Hardware-accelerated page transitions
 
 </td>
 </tr>
@@ -98,48 +107,33 @@
 
 ---
 
-## 🎯 What Makes This Special
+## 🛠️ Technology Stack
 
 <div align="center">
 
-| Feature | Description |
-|---------|-------------|
-| 🎪 **3D Graphics** | Real-time 3D animations powered by Three.js and React Three Fiber |
-| 🎬 **Advanced Animations** | Professional-grade animations using GSAP and Framer Motion |
-| 🎨 **Modern UI/UX** | Carefully crafted user experience with attention to detail |
-| 🔧 **Developer Experience** | Full TypeScript, ESLint, and modern tooling |
-| 📱 **Fully Responsive** | Perfect on mobile, tablet, and desktop |
-| ⚡ **Blazing Fast** | Optimized for performance with Next.js 15 |
-| 🎨 **Customizable** | Easy to customize with clear component structure |
-| 📦 **Production Ready** | Deployment-ready with Vercel/Netlify support |
+### **Core Framework**
 
-</div>
+![Next.js](https://img.shields.io/badge/Next.js_15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React_19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript_5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
----
+### **Styling & UI**
 
-## 🛠️ Tech Stack
-
-<div align="center">
-
-### **Frontend**
-
-![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![PostCSS](https://img.shields.io/badge/PostCSS-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white)
 
-### **3D & Animation**
+### **3D Graphics & Animation**
 
 ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
-![React Three Fiber](https://img.shields.io/badge/React_Three_Fiber-000000?style=for-the-badge&logo=three.js&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+![React Three Fiber](https://img.shields.io/badge/R3F-000000?style=for-the-badge&logo=three.js&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP_3.13-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-### **Development Tools**
+### **Developer Experience**
 
 ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 </div>
 
@@ -166,65 +160,86 @@
 
 ## 🚀 Quick Start
 
-### Prerequisites
+<div align="center">
 
-Before you begin, ensure you have the following installed:
+### **Get Started in 3 Minutes** ⏱️
 
-- **Node.js** 18.x or higher ([Download](https://nodejs.org/))
-- **npm**, **yarn**, or **pnpm** package manager
-- **Git** for version control
+</div>
 
-### Installation
+### 📋 Prerequisites
 
-Follow these steps to get your development environment running:
+Ensure you have these installed before proceeding:
 
-#### 1️⃣ Clone the Repository
+| Tool | Version | Download |
+|------|---------|----------|
+| **Node.js** | 18.x or higher | [Download](https://nodejs.org/) |
+| **Package Manager** | npm / yarn / pnpm | Included with Node.js |
+| **Git** | Latest | [Download](https://git-scm.com/) |
+
+### 🛠️ Installation Steps
+
+#### **Step 1: Clone the Repository**
 
 ```bash
+# Clone via HTTPS
 git clone https://github.com/kunj24/portfolio.git
+
+# Or clone via SSH
+git clone git@github.com:kunj24/portfolio.git
+
 cd portfolio
 ```
 
-#### 2️⃣ Install Dependencies
-
-Choose your preferred package manager:
-#### 2️⃣ Install Dependencies
-
-Choose your preferred package manager:
+#### **Step 2: Install Dependencies**
 
 ```bash
-# Using npm
+# Using npm (recommended)
 npm install
 
-# Using yarn
+# Or using yarn
 yarn install
 
-# Using pnpm
+# Or using pnpm (fastest)
 pnpm install
 ```
 
-#### 3️⃣ Configure Environment Variables
+#### **Step 3: Environment Configuration** (Optional)
 
-Create a `.env.local` file in the root directory:
+Create a `.env.local` file for EmailJS contact form:
 
 ```env
-# EmailJS Configuration (for contact form functionality)
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id_here
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id_here
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key_here
+# EmailJS Configuration (Get free credentials at emailjs.com)
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-> 💡 **Tip:** Get your EmailJS credentials from [emailjs.com](https://www.emailjs.com/) by creating a free account.
+> 💡 **Note:** Contact form will be disabled if credentials are not provided. The rest of the portfolio works perfectly without them.
 
-#### 4️⃣ Start Development Server
+#### **Step 4: Start Development Server**
 
 ```bash
 npm run dev
 ```
 
-#### 5️⃣ Open in Browser
+#### **Step 5: Open in Browser** 🌐
 
-Navigate to **[http://localhost:3000](http://localhost:3000)** to see your portfolio in action! 🎉
+Visit **[http://localhost:3000](http://localhost:3000)**
+
+<div align="center">
+
+**🎉 Congratulations! Your portfolio is now running locally!**
+
+</div>
+
+### 📦 Available Scripts
+
+```bash
+npm run dev          # Start development server (http://localhost:3000)
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint checks
+```
 
 ---
 
@@ -393,63 +408,95 @@ import Image from 'next/image';
 
 ## 🌐 Deployment
 
-### Deploy to Vercel (Recommended) ⚡
+<div align="center">
+
+### **Deploy Your Portfolio in Minutes** 🚀
+
+Choose your preferred platform and go live instantly!
+
+</div>
+
+### ⚡ Vercel (Recommended)
+
+**Why Vercel?**
+- ✅ Zero configuration required
+- ✅ Automatic HTTPS & CDN
+- ✅ Instant Git integration
+- ✅ Free for personal projects
+- ✅ Auto-deploys on every push
+
+**Quick Deploy:**
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kunj24/portfolio)
 
 **Manual Deployment:**
 
-1. Push your code to GitHub
-2. Visit [vercel.com](https://vercel.com/new)
-3. Import your repository
-4. Configure environment variables in Vercel dashboard
-5. Click **Deploy**
+```bash
+# Step 1: Push your code to GitHub
+git push origin main
 
-Your site auto-deploys on every push to the main branch! 🚀
+# Step 2: Import to Vercel
+# - Visit vercel.com/new
+# - Import your GitHub repository
+# - Configure environment variables (if using EmailJS)
+# - Click Deploy
 
-### Deploy to Netlify 🌊
+# Your site is live! 🎉
+```
+
+**Environment Variables in Vercel:**
+1. Go to Project Settings → Environment Variables
+2. Add your EmailJS credentials
+3. Redeploy for changes to take effect
+
+---
+
+### 🌊 Netlify
+
+**Quick Deploy:**
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/kunj24/portfolio)
 
-**Manual Deployment:**
+**Build Configuration:**
+- **Build Command:** `npm run build`
+- **Publish Directory:** `.next`
+- **Node Version:** 18.x
 
-1. Push code to GitHub
-2. Visit [netlify.com](https://app.netlify.com/start)
-3. Connect your repository
-4. Configure build settings:
-   - **Build command:** `npm run build`
-   - **Publish directory:** `.next`
-5. Add environment variables
-6. Click **Deploy site**
+---
 
-### Other Platforms
-
-<details>
-<summary><b>Deploy to GitHub Pages</b></summary>
-
-```bash
-npm run build
-npm run export
-# Deploy the 'out' directory to GitHub Pages
-```
-
-</details>
-
-<details>
-<summary><b>Deploy with Docker</b></summary>
+### 🐳 Docker Deployment
 
 ```dockerfile
-FROM node:18-alpine
+FROM node:18-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
+
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV production
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
-CMD ["npm", "start"]
+ENV PORT 3000
+CMD ["node", "server.js"]
 ```
 
-</details>
+**Docker Commands:**
+```bash
+# Build image
+docker build -t my-portfolio .
+
+# Run container
+docker run -p 3000:3000 my-portfolio
+```
 
 ---
 
@@ -511,52 +558,98 @@ This means you can:
 
 ---
 
-## 📧 Contact
+## 📧 Contact & Connect
 
 <div align="center">
 
-**Kunj Mungalpara**
+**Kunj Mungalpara** | Full-Stack Developer & ML Enthusiast
 
-[![GitHub](https://img.shields.io/badge/GitHub-kunj24-181717?style=for-the-badge&logo=github)](https://github.com/kunj24)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio-url.com)
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Site-2ee6c1?style=for-the-badge&labelColor=0f1724)](https://portfolio-ruby-iota-47.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-kunj24-181717?style=for-the-badge&logo=github&labelColor=0f1724)](https://github.com/kunj24)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0f1724)](https://linkedin.com/in/kunj-mungalpara)
+[![Email](https://img.shields.io/badge/Email-Contact-ff4da6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0f1724)](mailto:kunj.mungalpara@example.com)
+
+**💬 Open for collaborations, freelance work, and exciting opportunities!**
 
 </div>
 
 ---
 
-## 🙏 Acknowledgments
+## 💖 Support This Project
 
-Special thanks to these amazing projects and resources:
+<div align="center">
 
-- 🎨 [Next.js](https://nextjs.org/) - The React Framework for Production
-- 🌐 [Three.js](https://threejs.org/) - JavaScript 3D Library
-- ✨ [GSAP](https://greensock.com/) - Professional-Grade Animation
-- 🎭 [Framer Motion](https://www.framer.com/motion/) - Motion Library for React
-- 🎨 [Tailwind CSS](https://tailwindcss.com/) - Utility-First CSS Framework
-- 🚀 [Vercel](https://vercel.com/) - Deployment Platform
-- 📧 [EmailJS](https://www.emailjs.com/) - Email Service
-- 🎯 [Lucide Icons](https://lucide.dev/) - Beautiful Icon Library
+If you find this project helpful, consider:
+
+⭐ **Star this repository** to help others discover it
+
+🍴 **Fork it** to create your own version
+
+🐛 **Report bugs** to help improve it
+
+✨ **Share it** with your developer community
+
+[![Star on GitHub](https://img.shields.io/github/stars/kunj24/portfolio?style=social)](https://github.com/kunj24/portfolio/stargazers)
+[![Fork on GitHub](https://img.shields.io/github/forks/kunj24/portfolio?style=social)](https://github.com/kunj24/portfolio/fork)
+
+</div>
+
+---
+
+## 🙏 Acknowledgments & Credits
+
+Special thanks to these incredible open-source projects:
+
+<div align="center">
+
+| Technology | Purpose |
+|-----------|---------|
+| [Next.js](https://nextjs.org/) | React framework for production |
+| [Three.js](https://threejs.org/) | 3D graphics library |
+| [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) | React renderer for Three.js |
+| [GSAP](https://greensock.com/) | Professional animation library |
+| [Framer Motion](https://www.framer.com/motion/) | Motion library for React |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework |
+| [Lucide Icons](https://lucide.dev/) | Beautiful consistent icons |
+| [EmailJS](https://www.emailjs.com/) | Email service integration |
+| [Vercel](https://vercel.com/) | Deployment & hosting platform |
+
+</div>
 
 ---
 
 <div align="center">
 
-### 🌟 Show Your Support
+## 📜 License
 
-If you found this project helpful or interesting, please consider giving it a star! ⭐
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-It helps others discover the project and motivates me to keep improving it.
+**You are free to:**
+- ✅ Use commercially
+- ✅ Modify and adapt
+- ✅ Distribute
+- ✅ Use privately
 
-[![Star on GitHub](https://img.shields.io/github/stars/kunj24/portfolio?style=social)](https://github.com/kunj24/portfolio/stargazers)
+**Conditions:**
+- 📄 Include copyright notice
+- 📄 Include license text
 
 ---
 
-Made with ❤️ and lots of ☕ by **Kunj Mungalpara**
+<br/>
+
+### 🌟 If you found this useful, give it a star!
+
+Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 
 **© 2026 Kunj Mungalpara. All Rights Reserved.**
 
-[⬆ Back to Top](#-interactive-portfolio-website)
+<br/>
+
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
+[![Next.js](https://img.shields.io/badge/Built_with-Next.js-000000?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org)
+[![React](https://img.shields.io/badge/Powered_by-React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+
+[⬆ Back to Top](#-modern-portfolio-website)
 
 </div>

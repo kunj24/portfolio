@@ -322,7 +322,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
                 }} />
                 {trail.map((point, index) => (
                   <div
-                    key={point.id}
+                    key={`trail-${index}-${point.id}`}
                     className="cursor-liquid-blob"
                     style={{
                       left: `${point.x}px`,

@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,16,18,20&height=200&section=header&text=Modern%20Portfolio&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=2ee6c1" alt="header"/>
-
-# 🚀 Next-Gen Portfolio Website
+# 🚀 Kunj Mungalpara's Portfolio
 
 ### *Where Design Meets Innovation*
 
@@ -16,25 +14,23 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Stars](https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724)](https://github.com/kunj24/portfolio/stargazers)
 
----
+<br/>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=flat-square&logo=three.js&logoColor=white" alt="Three.js" />
-  <img src="https://img.shields.io/badge/GSAP-3.13-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" />
-  <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/Framer_Motion-12.x-0055FF?style=flat-square&logo=framer&logoColor=white" alt="Framer Motion" />
-</p>
+<!-- Repository Preview Card -->
+<a href="https://github.com/kunj24/portfolio">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=kunj24&repo=portfolio&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1" alt="Repository Card" />
+</a>
 
 <br/>
 
-```ascii
- ╔═══════════════════════════════════════════════════════════════╗
- ║  An immersive digital portfolio showcasing cutting-edge web  ║
- ║  technologies, stunning 3D graphics, and seamless UX.        ║
- ║  Built for developers who demand excellence.                 ║
- ╚═══════════════════════════════════════════════════════════════╝
-```
+<!-- Website Preview -->
+<a href="https://portfolio-ruby-iota-47.vercel.app">
+  <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=2ee6c1&down_message=offline&down_color=ff4da6&style=for-the-badge&logo=vercel&logoColor=white&labelColor=0f1724&label=Portfolio" alt="Website Status" />
+</a>
+
+<br/><br/>
+
+An immersive digital portfolio showcasing cutting-edge web technologies, stunning 3D graphics, and seamless UX. Built for developers who demand excellence.
 
 <br/>
 
@@ -43,21 +39,6 @@
 **[🌟 Live Demo](https://portfolio-ruby-iota-47.vercel.app)** • **[📖 Get Started](#-quick-start)** • **[🎨 Features](#-features-overview)** • **[🚀 Deploy](#-deployment)** • **[🐛 Issues](https://github.com/kunj24/portfolio/issues)**
 
 </div>
-
----
-
-## 📊 Project Stats
-
-<div align="center">
-
-![Repo Size](https://img.shields.io/github/repo-size/kunj24/portfolio?style=flat-square&color=2ee6c1&labelColor=0f1724)
-![Last Commit](https://img.shields.io/github/last-commit/kunj24/portfolio?style=flat-square&color=ff4da6&labelColor=0f1724)
-![Languages](https://img.shields.io/github/languages/count/kunj24/portfolio?style=flat-square&color=2ee6c1&labelColor=0f1724)
-![Top Language](https://img.shields.io/github/languages/top/kunj24/portfolio?style=flat-square&color=ff4da6&labelColor=0f1724)
-
-</div>
-
----
 
 ## 🎯 Why This Portfolio Stands Out
 
@@ -190,29 +171,15 @@
 
 ## 🚀 Quick Start
 
-<div align="center">
-
-```ascii
-┌─────────────────────────────────────────────────┐
-│  Get Your Portfolio Running in 3 Minutes! ⚡   │
-└─────────────────────────────────────────────────┘
-```
-
-</div>
-
 ### 📋 Prerequisites
 
 Ensure you have these installed before proceeding:
 
-<div align="center">
-
-| Tool | Version | Status | Download |
-|------|---------|--------|----------|
-| **Node.js** | 18.x or higher | Required | [Download](https://nodejs.org/) ⬇️ |
-| **Package Manager** | npm / yarn / pnpm | Required | Included with Node.js ✅ |
-| **Git** | Latest | Required | [Download](https://git-scm.com/) ⬇️ |
-
-</div>
+| Tool | Version | Download |
+|------|---------|----------|
+| **Node.js** | 18.x or higher | [Download](https://nodejs.org/) |
+| **Package Manager** | npm / yarn / pnpm | Included with Node.js |
+| **Git** | Latest | [Download](https://git-scm.com/) |
 
 ### 🛠️ Installation Steps
 
@@ -282,17 +249,7 @@ npm run dev
 
 Visit **[http://localhost:3000](http://localhost:3000)**
 
-<div align="center">
-
-```ascii
-╔═══════════════════════════════════════════╗
-║  🎉 Success! Portfolio is Running! 🚀    ║
-╚═══════════════════════════════════════════╝
-```
-
-**Your portfolio is now live at localhost:3000!**
-
-</div>
+🎉 **Success! Your portfolio is now running at localhost:3000!**
 
 </details>
 
@@ -370,16 +327,6 @@ portfolio/
 ---
 
 ## 🎨 Customization Guide
-
-<div align="center">
-
-```ascii
-┌────────────────────────────────────────────────┐
-│  Make It Yours: Personalize Every Detail  ✨  │
-└────────────────────────────────────────────────┘
-```
-
-</div>
 
 ### 🔧 Quick Customization Checklist
 
@@ -633,14 +580,6 @@ docker run -p 3000:3000 my-portfolio
 
 <div align="center">
 
-```ascii
-╔══════════════════════════════════════════════╗
-║     Optimized for Speed & User Experience    ║
-╚══════════════════════════════════════════════╝
-```
-
-<br/>
-
 ### 🏆 Lighthouse Scores
 
 <table>
@@ -706,16 +645,6 @@ graph LR
 ---
 
 ## 🤝 Contributing
-
-<div align="center">
-
-```ascii
-┌────────────────────────────────────────────────┐
-│  Contributions Make Open Source Amazing! 💚   │
-└────────────────────────────────────────────────┘
-```
-
-</div>
 
 Contributions are what make the open-source community an amazing place to learn, inspire, and create! Any contributions you make are **greatly appreciated**. 🙏
 
@@ -892,13 +821,10 @@ Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 [![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
 [![Next.js](https://img.shields.io/badge/Built_with-Next.js-000000?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/Powered_by-React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![Three.js](https://img.shields.io/badge/Three.js-r180-000000?style=flat-square&logo=three.js&logoColor=white)](https://threejs.org)
 
 <br/>
 
-[⬆ Back to Top](#-next-gen-portfolio-website)
-
-<br/>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,16,18,20&height=100&section=footer" alt="footer"/>
+[⬆ Back to Top](#-kunj-munpalgaras-portfolio)
 
 </div>

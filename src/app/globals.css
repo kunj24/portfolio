@@ -426,6 +426,30 @@ body.custom-cursor-active [role="button"] {
   cursor: none;
 }
 
+/* Animated gradient border rotation */
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(8px) brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(12px) brightness(1.5);
+  }
+}
+
 /* Glowing cursor animation */
 @keyframes cursor-glow {
   0%, 100% { 

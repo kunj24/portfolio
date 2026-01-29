@@ -148,16 +148,21 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button {
 /* Certificate animations */
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.6;
+    transform: translateY(0px);
   }
-  33% {
-    transform: translateY(-10px) rotate(5deg);
-    opacity: 0.8;
+  50% {
+    transform: translateY(-8px);
   }
-  66% {
-    transform: translateY(-5px) rotate(-3deg);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 

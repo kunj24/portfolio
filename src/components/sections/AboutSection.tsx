@@ -122,38 +122,45 @@ export default function AboutSection() {
             return (
               <div
                 key={index}
-                className="group relative bg-neutral-900/60 backdrop-blur-md rounded-xl p-5 border border-neutral-800/50 transition-all duration-500 overflow-visible hover:scale-105 hover:-translate-y-1"
+                className="group relative bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-lg rounded-xl p-5 border border-neutral-800/50 transition-all duration-700 overflow-visible hover:scale-[1.12] hover:-translate-y-3 hover:shadow-2xl animate-fade-in-up"
                 style={{
-                  animationDelay: `${index * 100}ms`
+                  animationDelay: `${index * 150}ms`,
+                  animationFillMode: 'both'
                 }}
               >
                 {/* Animated gradient border on hover */}
-                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-[-2px] rounded-xl" style={{
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-[-3px] rounded-xl animate-spin-slow" style={{
                     background: `linear-gradient(135deg, ${stat.color.replace('from-', '').replace('to-', ', ').replace(' ', '')})`,
-                    backgroundSize: '200% 200%',
-                    animation: 'gradient-rotate 3s ease-in-out infinite',
-                    filter: 'blur(8px)',
-                    opacity: 0.5
+                    backgroundSize: '400% 400%',
+                    animation: 'gradient 4s ease-in-out infinite, spin-slow 8s linear infinite',
+                    filter: 'blur(14px)',
+                    opacity: 0.75
                   }} />
                 </div>
                 
                 {/* Glow effect on hover */}
                 <div 
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse-slow"
                   style={{
-                    boxShadow: `0 0 25px ${stat.color.includes('blue') ? 'rgba(59, 130, 246, 0.2)' : stat.color.includes('purple') ? 'rgba(168, 85, 247, 0.2)' : stat.color.includes('orange') ? 'rgba(249, 115, 22, 0.2)' : 'rgba(16, 185, 129, 0.2)'}`
+                    boxShadow: `0 0 40px 8px ${stat.color.includes('blue') ? 'rgba(59, 130, 246, 0.5)' : stat.color.includes('purple') ? 'rgba(168, 85, 247, 0.5)' : stat.color.includes('orange') ? 'rgba(249, 115, 22, 0.5)' : 'rgba(16, 185, 129, 0.5)'}, 0 0 60px ${stat.color.includes('blue') ? 'rgba(59, 130, 246, 0.3)' : stat.color.includes('purple') ? 'rgba(168, 85, 247, 0.3)' : stat.color.includes('orange') ? 'rgba(249, 115, 22, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
                   }}
                 />
                 
+                {/* Floating animation on icon */}
                 <div className="relative z-10 flex flex-col items-center text-center space-y-2.5">
-                  <div className={`p-2.5 rounded-lg bg-gradient-to-br ${stat.color} bg-opacity-10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} shadow-lg group-hover:shadow-2xl group-hover:scale-[1.35] group-hover:rotate-12 transition-all duration-700 animate-float`} style={{ animationDelay: `${index * 200}ms` }}>
+                    <Icon className="w-5 h-5 text-white drop-shadow-2xl filter group-hover:brightness-125" />
                   </div>
-                  <div className={`text-2xl sm:text-3xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`text-2xl sm:text-3xl font-bold bg-gradient-to-br ${stat.color} bg-clip-text text-transparent group-hover:scale-125 transition-all duration-500 drop-shadow-lg`}>
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-neutral-400 group-hover:text-neutral-300 transition-colors font-medium">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-neutral-400 group-hover:text-neutral-200 transition-colors duration-300 font-medium">{stat.label}</div>
+                </div>
+                
+                {/* Shimmer effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
                 </div>
               </div>
             )

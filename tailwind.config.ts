@@ -86,6 +86,7 @@ const config: Config = {
         'blob': 'blob 7s infinite',
         'gradient': 'gradient 15s ease infinite',
         'rotate-y-5': 'rotate-y-5 0.6s ease-out',
+        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
       },
       keyframes: {
         float: {
@@ -113,6 +114,16 @@ const config: Config = {
         gradient: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        'fade-in-up': {
+          'from': { 
+            opacity: '0',
+            transform: 'translateY(20px)'
+          },
+          'to': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
         },
         'rotate-y-5': {
           '0%': { transform: 'perspective(1000px) rotateY(0deg)' },

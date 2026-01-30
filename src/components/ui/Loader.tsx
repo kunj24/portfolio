@@ -300,11 +300,12 @@ export default function Loader() {
 
             {/* Core container */}
             <div className="relative group" style={{ perspective: '1000px' }}>
-              {/* Glowing background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2ee6c1]/20 to-[#ff4da6]/20 blur-2xl rounded-full scale-150 animate-pulse-glow-tech" />
+              {/* Enhanced glowing background with multiple layers */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#2ee6c1]/30 to-[#ff4da6]/30 blur-3xl rounded-full scale-150 animate-pulse-glow-tech" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-[#ff4da6]/20 to-[#2ee6c1]/20 blur-2xl rounded-full scale-125 animate-pulse" style={{ animationDelay: '0.5s' }} />
               
-              {/* Main hexagonal shape with 3D rotation */}
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center" style={{ animation: 'rotate-3d 10s ease-in-out infinite' }}>
+              {/* Main hexagonal shape with enhanced 3D rotation */}
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center animate-pulse-slow" style={{ animation: 'rotate-3d 10s ease-in-out infinite, float 3s ease-in-out infinite' }}>
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                   <defs>
                     <linearGradient id="hex-fill" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -316,8 +317,11 @@ export default function Loader() {
                   <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="url(#hex-fill)" stroke="url(#hex-gradient-1)" strokeWidth="2" />
                 </svg>
                 
-                {/* Logo text */}
-                <span className="relative z-10 text-2xl sm:text-3xl font-black tracking-[0.2em] bg-gradient-to-br from-[#2ee6c1] via-white to-[#ff4da6] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(46,230,193,0.5)]">
+                {/* Logo text with enhanced animation */}
+                <span className="relative z-10 text-2xl sm:text-3xl font-black tracking-[0.2em] bg-gradient-to-br from-[#2ee6c1] via-white to-[#ff4da6] bg-clip-text text-transparent animate-pulse-slow" style={{ 
+                  filter: 'drop-shadow(0 0 20px rgba(46,230,193,0.7)) drop-shadow(0 0 40px rgba(255,77,166,0.4))',
+                  animation: 'text-glow 2s ease-in-out infinite'
+                }}>
                   KM
                 </span>
 
@@ -327,12 +331,23 @@ export default function Loader() {
               </div>
             </div>
 
-            {/* Orbital rings */}
+            {/* Orbital rings with enhanced animation */}
             <div className="absolute inset-0 -m-6 sm:-m-8 animate-orbit">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#2ee6c1] shadow-[0_0_10px_rgba(46,230,193,1)]" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2ee6c1] shadow-[0_0_15px_rgba(46,230,193,1),0_0_25px_rgba(46,230,193,0.6)] animate-pulse-slow" />
             </div>
             <div className="absolute inset-0 -m-6 sm:-m-8 animate-orbit-reverse" style={{ animationDelay: '1s' }}>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#ff4da6] shadow-[0_0_10px_rgba(255,77,166,1)]" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#ff4da6] shadow-[0_0_15px_rgba(255,77,166,1),0_0_25px_rgba(255,77,166,0.6)] animate-pulse-slow" />
+            </div>
+            {/* Additional spinning rings */}
+            <div className="absolute inset-0 -m-10 sm:-m-12 opacity-30">
+              <svg className="w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#2ee6c1" strokeWidth="0.5" strokeDasharray="10 5" opacity="0.5" />
+              </svg>
+            </div>
+            <div className="absolute inset-0 -m-14 sm:-m-16 opacity-20">
+              <svg className="w-full h-full" style={{ animation: 'spin 15s linear infinite reverse' }} viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#ff4da6" strokeWidth="0.5" strokeDasharray="5 10" opacity="0.4" />
+              </svg>
             </div>
 
             {/* Sound wave visualization */}
@@ -632,6 +647,15 @@ export default function Loader() {
           }
           75% { 
             transform: rotateY(-15deg) rotateX(-5deg) translateZ(0);
+          }
+        }
+
+        @keyframes text-glow {
+          0%, 100% { 
+            filter: drop-shadow(0 0 20px rgba(46,230,193,0.7)) drop-shadow(0 0 40px rgba(255,77,166,0.4));
+          }
+          50% { 
+            filter: drop-shadow(0 0 30px rgba(46,230,193,1)) drop-shadow(0 0 50px rgba(255,77,166,0.6));
           }
         }
 

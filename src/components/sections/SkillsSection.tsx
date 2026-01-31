@@ -143,8 +143,10 @@ export default function SkillsSection() {
               </div>
               
               {/* Icon with crazy animations */}
-              <div className="relative inline-block text-3xl sm:text-4xl mb-2 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" style={{
+              <div className="relative inline-block text-4xl sm:text-5xl mb-2 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 animate-float" style={{
                 filter: `drop-shadow(0 0 15px ${stat.color}80)`,
+                animationDelay: `${index * 0.2}s`,
+                animationDuration: '4s'
               }}>
                 {stat.icon}
                 {/* Orbiting particles */}

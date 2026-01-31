@@ -112,21 +112,85 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Stats - mobile optimized */}
+        {/* Stats - Crazy Animated without boxes */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-5xl mx-auto px-4">
           {[
-            { number: "18+", label: "Technologies", icon: "🔧" },
-            { number: "4+", label: "Projects", icon: "🚀" },
-            { number: "2+", label: "Months Exp", icon: "⏱️" },
-            { number: "4", label: "Categories", icon: "📁" }
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-4xl mb-2">{stat.icon}</div>
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 sm:mb-2">
-                {stat.number}
+            { number: "18+", label: "Technologies", icon: "🔧", color: "#2ee6c1" },
+            { number: "4+", label: "Projects", icon: "🚀", color: "#ff4da6" },
+            { number: "2+", label: "Months Exp", icon: "⏱️", color: "#06b6d4" },
+            { number: "4", label: "Categories", icon: "📁", color: "#a855f7" }
+          ].map((stat, index) => (
+            <div key={stat.label} className="group text-center relative">
+              {/* Animated circles behind icon */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="relative w-16 h-16 sm:w-18 sm:h-18">
+                  <div className="absolute inset-0 rounded-full border-2 animate-ping" style={{ 
+                    borderColor: stat.color,
+                    opacity: 0.3,
+                    animationDuration: '2s'
+                  }} />
+                  <div className="absolute inset-2 rounded-full border animate-spin-slow" style={{ 
+                    borderColor: stat.color,
+                    borderStyle: 'dashed',
+                    opacity: 0.5,
+                    animationDuration: '3s'
+                  }} />
+                  <div className="absolute inset-0 rounded-full" style={{
+                    background: `radial-gradient(circle, ${stat.color}20, transparent)`,
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }} />
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground">
-                {stat.label}
+              
+              {/* Icon with crazy animations */}
+              <div className="relative inline-block text-3xl sm:text-4xl mb-2 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" style={{
+                filter: `drop-shadow(0 0 15px ${stat.color}80)`,
+              }}>
+                {stat.icon}
+                {/* Orbiting particles */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute top-0 left-1/2 w-1.5 h-1.5 rounded-full animate-orbit" style={{ 
+                    backgroundColor: stat.color,
+                    boxShadow: `0 0 8px ${stat.color}`,
+                    animationDuration: '2s'
+                  }} />
+                  <div className="absolute top-1/2 left-0 w-1 h-1 rounded-full" style={{ 
+                    backgroundColor: stat.color,
+                    boxShadow: `0 0 6px ${stat.color}`,
+                    animation: 'orbit 2.5s linear infinite',
+                    animationDelay: '0.5s'
+                  }} />
+                </div>
+              </div>
+              
+              {/* Number with gradient and glow */}
+              <div className="relative">
+                <div className="text-2xl sm:text-3xl font-black mb-1 transition-all duration-500 group-hover:scale-105 animate-pulse-slow" style={{
+                  background: `linear-gradient(135deg, ${stat.color}, white)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: `drop-shadow(0 0 12px ${stat.color}60)`,
+                  animationDelay: `${index * 0.15}s`
+                }}>
+                  {stat.number}
+                </div>
+                {/* Animated underline */}
+                <div className="h-0.5 w-0 group-hover:w-full transition-all duration-500 mx-auto rounded-full" style={{
+                  backgroundColor: stat.color,
+                  boxShadow: `0 0 8px ${stat.color}`
+                }} />
+              </div>
+              
+              {/* Label with shimmer effect */}
+              <div className="relative overflow-hidden">
+                <div className="text-xs sm:text-sm font-medium transition-all duration-300 group-hover:text-white" style={{
+                  color: `${stat.color}cc`
+                }}>
+                  {stat.label}
+                </div>
+                {/* Shimmer sweep */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               </div>
             </div>
           ))}

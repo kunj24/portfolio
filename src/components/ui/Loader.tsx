@@ -199,6 +199,80 @@ export default function Loader() {
             </div>
           ))}
         </div>
+        
+        {/* DNA Helix effect */}
+        <div className="absolute left-4 sm:left-10 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+          <div className="relative h-64 w-8">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="absolute w-full" style={{ top: `${i * 12.5}%` }}>
+                <div 
+                  className="w-3 h-3 rounded-full bg-[#2ee6c1] absolute"
+                  style={{ 
+                    left: '0%',
+                    animation: `dna-helix-left 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    boxShadow: '0 0 10px rgba(46, 230, 193, 0.8)'
+                  }}
+                />
+                <div 
+                  className="w-3 h-3 rounded-full bg-[#ff4da6] absolute"
+                  style={{ 
+                    right: '0%',
+                    animation: `dna-helix-right 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    boxShadow: '0 0 10px rgba(255, 77, 166, 0.8)'
+                  }}
+                />
+                <div 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-[#2ee6c1] to-[#ff4da6]"
+                  style={{ 
+                    width: '100%',
+                    animation: `dna-connector 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    opacity: 0.5
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* DNA Helix right side */}
+        <div className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
+          <div className="relative h-64 w-8">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="absolute w-full" style={{ top: `${i * 12.5}%` }}>
+                <div 
+                  className="w-3 h-3 rounded-full bg-[#ff4da6] absolute"
+                  style={{ 
+                    left: '0%',
+                    animation: `dna-helix-right 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    boxShadow: '0 0 10px rgba(255, 77, 166, 0.8)'
+                  }}
+                />
+                <div 
+                  className="w-3 h-3 rounded-full bg-[#2ee6c1] absolute"
+                  style={{ 
+                    right: '0%',
+                    animation: `dna-helix-left 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    boxShadow: '0 0 10px rgba(46, 230, 193, 0.8)'
+                  }}
+                />
+                <div 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-[#ff4da6] to-[#2ee6c1]"
+                  style={{ 
+                    width: '100%',
+                    animation: `dna-connector 2s ease-in-out infinite`,
+                    animationDelay: `${i * 0.15}s`,
+                    opacity: 0.5
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Floating animated particles system */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -358,6 +432,36 @@ export default function Loader() {
               <svg className="w-full h-full" style={{ animation: 'spin 15s linear infinite reverse' }} viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="48" fill="none" stroke="#ff4da6" strokeWidth="0.5" strokeDasharray="5 10" opacity="0.4" />
               </svg>
+            </div>
+            
+            {/* New: Electric arc rings */}
+            <div className="absolute inset-0 -m-6 sm:-m-8 opacity-60">
+              <svg className="w-full h-full" style={{ animation: 'spin 3s linear infinite' }} viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#electric-gradient)" strokeWidth="2" strokeDasharray="3 8 15 8" opacity="0.8" />
+                <defs>
+                  <linearGradient id="electric-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2ee6c1" stopOpacity="1" />
+                    <stop offset="50%" stopColor="#fff" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#ff4da6" stopOpacity="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div className="absolute inset-0 -m-4 sm:-m-5 opacity-50">
+              <svg className="w-full h-full" style={{ animation: 'spin 2s linear infinite reverse' }} viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#2ee6c1" strokeWidth="1.5" strokeDasharray="2 5 10 5" opacity="0.9" />
+              </svg>
+            </div>
+            
+            {/* New: Pulsing energy waves */}
+            <div className="absolute inset-0 -m-2 sm:-m-3">
+              <div className="absolute inset-0 rounded-full border-2 border-[#2ee6c1]/40 animate-ping" style={{ animationDuration: '2s' }} />
+            </div>
+            <div className="absolute inset-0 -m-4 sm:-m-5">
+              <div className="absolute inset-0 rounded-full border border-[#ff4da6]/30 animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
+            </div>
+            <div className="absolute inset-0 -m-6 sm:-m-7">
+              <div className="absolute inset-0 rounded-full border border-[#2ee6c1]/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '1s' }} />
             </div>
 
             {/* Sound wave visualization */}
@@ -763,6 +867,21 @@ export default function Loader() {
         @keyframes scan-tech {
           0% { transform: translateY(-100%); }
           100% { transform: translateY(100%); }
+        }
+        
+        @keyframes dna-helix-left {
+          0%, 100% { transform: translateX(0) scale(1); }
+          50% { transform: translateX(20px) scale(0.6); }
+        }
+        
+        @keyframes dna-helix-right {
+          0%, 100% { transform: translateX(0) scale(0.6); }
+          50% { transform: translateX(-20px) scale(1); }
+        }
+        
+        @keyframes dna-connector {
+          0%, 100% { transform: translateX(-50%) translateY(-50%) scaleX(0.3); opacity: 0.3; }
+          50% { transform: translateX(-50%) translateY(-50%) scaleX(1); opacity: 0.8; }
         }
       `}</style>
     </>

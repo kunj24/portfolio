@@ -177,8 +177,12 @@ export default function ContactSection() {
             </div>
 
             {isSubmitted && (
-              <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
-                <p className="text-green-800 dark:text-green-200 font-medium">
+              <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-400 dark:border-green-600 rounded-lg animate-fade-in relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20 animate-pulse" />
+                <p className="text-green-800 dark:text-green-200 font-medium relative z-10 flex items-center gap-2">
+                  <svg className="w-5 h-5 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                   Thanks for your message! I&apos;ll get back to you soon.
                 </p>
               </div>
@@ -206,7 +210,8 @@ export default function ContactSection() {
                     autoCapitalize="words"
                     spellCheck="false"
                     className={cn(
-                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
+                      'w-full px-4 py-3 glass rounded-lg transition-all duration-300 focus:scale-105 focus:-translate-y-1 focus:shadow-[0_0_20px_rgba(46,230,193,0.4)]',
+                      'focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-primary/5',
                       errors.name && 'border-red-500 focus:ring-red-500'
                     )}
                     placeholder="Your name"
@@ -233,7 +238,8 @@ export default function ContactSection() {
                     autoComplete="email"
                     spellCheck="false"
                     className={cn(
-                      'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
+                      'w-full px-4 py-3 glass rounded-lg transition-all duration-300 focus:scale-105 focus:-translate-y-1 focus:shadow-[0_0_20px_rgba(46,230,193,0.4)]',
+                      'focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-primary/5',
                       errors.email && 'border-red-500 focus:ring-red-500'
                     )}
                     placeholder="your@email.com"
@@ -258,7 +264,8 @@ export default function ContactSection() {
                   autoComplete="off"
                   spellCheck="true"
                   className={cn(
-                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200',
+                    'w-full px-4 py-3 glass rounded-lg transition-all duration-300 focus:scale-105 focus:-translate-y-1 focus:shadow-[0_0_20px_rgba(46,230,193,0.4)]',
+                    'focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-primary/5',
                     errors.subject && 'border-red-500 focus:ring-red-500'
                   )}
                   placeholder="What's this about?"
@@ -282,7 +289,8 @@ export default function ContactSection() {
                   autoComplete="off"
                   spellCheck="true"
                   className={cn(
-                    'w-full px-4 py-3 glass rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 resize-none',
+                    'w-full px-4 py-3 glass rounded-lg transition-all duration-300 focus:scale-[1.02] focus:-translate-y-1 focus:shadow-[0_0_20px_rgba(46,230,193,0.4)] resize-none',
+                    'focus:ring-2 focus:ring-primary/50 focus:border-primary focus:bg-primary/5',
                     errors.message && 'border-red-500 focus:ring-red-500'
                   )}
                   placeholder="Tell me about your project..."
@@ -296,13 +304,41 @@ export default function ContactSection() {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  'w-full min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation transition-all duration-300 hover:bg-primary/90 active:scale-95'
+                  'w-full min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(46,230,193,0.6),0_0_50px_rgba(255,77,166,0.4)] active:scale-95 relative overflow-hidden group'
                 )}
               >
+                {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/30 via-primary/30 to-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-gradient-x" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
+                
+                {/* Floating particles */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+                      style={{
+                        left: `${15 + i * 15}%`,
+                        top: `${30 + (i % 2) * 40}%`,
+                        animationDelay: `${i * 0.15}s`,
+                        animationDuration: '1.2s'
+                      }}
+                    />
+                  ))}
+                </div>
+                
                 {isSubmitting ? (
-                  <span className="block text-center text-base">Sending...</span>
+                  <span className="block text-center text-base relative z-10 flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Sending...
+                  </span>
                 ) : (
-                  <span className="block text-center text-base">Send Message</span>
+                  <span className="block text-center text-base relative z-10 group-hover:tracking-wider transition-all duration-500">Send Message</span>
                 )}
               </button>
             </form>
@@ -331,10 +367,12 @@ export default function ContactSection() {
                   <Wrapper
                     key={info.label}
                     {...wrapperProps}
-                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-300 md:hover:scale-105 group touch-manipulation min-h-[64px]"
+                    className="flex items-center p-4 glass rounded-lg hover:bg-primary/5 transition-all duration-500 md:hover:scale-110 md:hover:-translate-y-1 md:hover:shadow-[0_10px_30px_rgba(46,230,193,0.3)] group touch-manipulation min-h-[64px] relative overflow-hidden"
                   >
-                    <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors duration-300">
-                      <info.icon className="w-6 h-6 text-primary" />
+                    {/* Animated background on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="p-3 bg-primary/10 rounded-lg mr-4 group-hover:bg-primary/20 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 relative z-10">
+                      <info.icon className="w-6 h-6 text-primary group-hover:animate-pulse" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">{info.label}</p>
@@ -354,10 +392,16 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={cn('p-3 glass rounded-lg transition-all duration-300 md:hover:scale-110 md:hover:shadow-lg touch-manipulation min-w-[48px] min-h-[48px] flex items-center justify-center', social.color)}
+                    className={cn('p-3 glass rounded-lg transition-all duration-300 md:hover:scale-125 md:hover:rotate-12 md:hover:shadow-lg touch-manipulation min-w-[48px] min-h-[48px] flex items-center justify-center group relative overflow-hidden', social.color)}
                     aria-label={social.name}
                   >
-                    <social.icon className="w-6 h-6 transition-colors duration-300" />
+                    {/* Rotating ring on hover */}
+                    <div className="absolute inset-[-2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 rounded-lg animate-spin-slow" style={{ animationDuration: '3s' }}>
+                        <div className="absolute inset-0 rounded-lg border border-current opacity-50" />
+                      </div>
+                    </div>
+                    <social.icon className="w-6 h-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] relative z-10" />
                   </a>
                 ))}
               </div>

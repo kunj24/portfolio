@@ -85,10 +85,20 @@ export default function Loader() {
     if (!isVisible) return
 
     const previousOverflow = document.body.style.overflow
+    const previousPosition = document.body.style.position
+    const previousWidth = document.body.style.width
+    
+    // Prevent scrolling
     document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = '0'
 
     return () => {
       document.body.style.overflow = previousOverflow
+      document.body.style.position = previousPosition
+      document.body.style.width = previousWidth
+      document.body.style.top = ''
     }
   }, [isVisible])
 

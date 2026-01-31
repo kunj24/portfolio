@@ -177,7 +177,7 @@ export default function CertificationsSection() {
               onMouseEnter={() => setHoveredId(cert.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="relative h-full bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm border border-white/5 rounded-lg sm:rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-6 transition-all duration-500 active:scale-[1.01] md:hover:scale-[1.05] md:hover:-translate-y-2 md:hover:shadow-[0_20px_80px_rgba(var(--primary-rgb),0.5)] hover:border-primary/50 overflow-hidden transform-gpu min-h-[220px] sm:min-h-[240px]">
+              <div className="relative h-full bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm border border-white/5 rounded-lg sm:rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-6 transition-all duration-500 active:scale-[1.01] md:hover:scale-[1.08] md:hover:-translate-y-3 md:hover:shadow-[0_25px_90px_rgba(var(--primary-rgb),0.6)] hover:border-primary/50 overflow-hidden transform-gpu min-h-[220px] sm:min-h-[240px]">
                 {/* Animated gradient overlay - only on hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"
@@ -246,8 +246,28 @@ export default function CertificationsSection() {
                   {/* Header with Icon */}
                   <div className="flex items-start justify-between mb-3 sm:mb-4">
                     <div className="relative">
+                      {/* Rotating dashed/dotted rings */}
+                      <div className="absolute inset-[-2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 rounded-full animate-spin-slow" style={{ animationDuration: '8s' }}>
+                          <div className="absolute inset-0 rounded-full border-2 shadow-lg" style={{ 
+                            borderColor: cert.color,
+                            borderStyle: 'dashed',
+                            boxShadow: `0 0 15px ${cert.color}60`
+                          }} />
+                        </div>
+                      </div>
+                      <div className="absolute inset-[-4px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 rounded-full" style={{ animation: 'spin 12s linear infinite reverse' }}>
+                          <div className="absolute inset-0 rounded-full border-2 shadow-lg" style={{ 
+                            borderColor: cert.color,
+                            borderStyle: 'dotted',
+                            opacity: 0.7,
+                            boxShadow: `0 0 15px ${cert.color}50`
+                          }} />
+                        </div>
+                      </div>
                       <div
-                        className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 relative z-10"
+                        className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 relative z-10"
                         style={{
                           background: `linear-gradient(135deg, ${cert.color}40, ${cert.color}20)`,
                           border: `2px solid ${cert.color}60`,
@@ -255,7 +275,7 @@ export default function CertificationsSection() {
                         }}
                       >
                         <Award
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-500 group-hover:scale-110"
+                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-700 group-hover:scale-125 group-hover:rotate-[360deg]"
                           style={{ color: cert.color }}
                         />
                       </div>
@@ -265,14 +285,6 @@ export default function CertificationsSection() {
                         style={{
                           border: `2px solid ${cert.color}`,
                           animationDuration: '1.5s'
-                        }}
-                      />
-                      {/* Rotating glow ring */}
-                      <div
-                        className="absolute inset-[-4px] rounded-full opacity-0 group-hover:opacity-100 animate-spin-slow"
-                        style={{
-                          background: `conic-gradient(from 0deg, ${cert.color}, transparent, ${cert.color})`,
-                          filter: 'blur(8px)'
                         }}
                       />
                     </div>
@@ -290,8 +302,9 @@ export default function CertificationsSection() {
                   </div>
 
                   {/* Title and Issuer */}
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-3 transition-all duration-300 leading-snug line-clamp-3 sm:line-clamp-2">
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-3 transition-all duration-500 leading-snug line-clamp-3 sm:line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-accent group-hover:to-primary relative overflow-hidden">
                     {cert.title}
+                    <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                   </h3>
                   <div className="flex items-center gap-1.5 sm:gap-2 mb-2">
                     <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
@@ -397,7 +410,14 @@ export default function CertificationsSection() {
               />
               
               <div className="relative z-10">
-                <div className="text-2xl sm:text-3xl md:text-4xl mb-1.5 sm:mb-2 md:group-hover:scale-125 md:group-hover:rotate-12 transition-all duration-500 inline-block">{stat.icon}</div>
+                <div className="relative inline-block">
+                  <div className="text-2xl sm:text-3xl md:text-4xl mb-1.5 sm:mb-2 md:group-hover:scale-125 md:group-hover:rotate-12 transition-all duration-500 inline-block animate-float">{stat.icon}</div>
+                  {/* Orbiting particles */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute w-1 h-1 bg-primary rounded-full animate-orbit" style={{ animationDuration: '2s' }} />
+                    <div className="absolute w-1 h-1 bg-accent rounded-full animate-orbit" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
+                  </div>
+                </div>
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text mb-0.5 sm:mb-1 md:group-hover:scale-110 transition-transform duration-500">
                   {stat.number}
                 </div>

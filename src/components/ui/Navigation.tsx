@@ -118,7 +118,7 @@ export default function Navigation() {
                     'transition-all duration-300 ease-out',
                     'rounded-full cursor-pointer',
                     isActive
-                      ? 'bg-primary/20 text-primary scale-110'
+                      ? 'bg-white/15 text-white scale-110 shadow-md'
                       : 'hover:bg-white/10 hover:scale-105 text-white/70 hover:text-white',
                     isScrolled || isHovered
                       ? 'w-11 h-11'
@@ -126,16 +126,29 @@ export default function Navigation() {
                   )}
                   title={item.name}
                 >
+                  {/* Active animated border */}
+                  {isActive && (
+                    <>
+                      <div className="absolute inset-0 rounded-full border border-white/40" />
+                      <div className="absolute inset-[-2px] rounded-full opacity-50">
+                        <div className="absolute inset-0 rounded-full animate-spin-slow" style={{ animationDuration: '8s' }}>
+                          <div className="absolute inset-0 rounded-full border-t border-white/60" />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  
                   <Icon 
                     className={cn(
-                      'transition-all duration-300',
+                      'transition-all duration-300 relative z-10',
+                      isActive && 'drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]',
                       isScrolled || isHovered ? 'w-5 h-5' : 'w-4 h-4'
                     )}
                   />
                   
-                  {/* Active indicator */}
+                  {/* Active indicator dot */}
                   {isActive && (
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                   )}
                   
                   {/* Tooltip */}
@@ -217,15 +230,25 @@ export default function Navigation() {
                     }}
                     className={cn(
                       'flex items-center space-x-3 px-4 py-4 rounded-xl',
-                      'transition-all duration-300 min-h-[48px]',
+                      'transition-all duration-300 min-h-[48px] relative overflow-hidden',
                       'touch-manipulation cursor-pointer',
                       isActive
-                        ? 'bg-primary/25 text-primary border border-primary/30'
-                        : 'text-white/90 hover:text-white hover:bg-white/15 active:bg-white/20'
+                        ? 'bg-white/15 text-white border border-white/30 shadow-lg'
+                        : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/15'
                     )}
                   >
-                    <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span className="font-medium text-base">{item.name}</span>
+                    {/* Active animated background */}
+                    {isActive && (
+                      <>
+                        <div className="absolute inset-0 bg-white/5" />
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-white rounded-r-full shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                      </>
+                    )}
+                    <Icon className={cn("w-5 h-5 flex-shrink-0 relative z-10", isActive && "drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]")} />
+                    <span className="font-medium text-base relative z-10">{item.name}</span>
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)] relative z-10" />
+                    )}
                   </a>
                 )
               })}

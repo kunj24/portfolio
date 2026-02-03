@@ -8,18 +8,92 @@
   <strong>🎨 Stunning 3D Graphics</strong> • <strong>⚡ Blazing Performance</strong> • <strong>🌐 Fully Responsive</strong>
 </p>
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Site-2ee6c1?style=for-the-badge&labelColor=0f1724)](https://portfolio-ruby-iota-47.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-ff4da6?style=for-the-badge&labelColor=0f1724)](./LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Stars](https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724)](https://github.com/kunj24/portfolio/stargazers)
+<!-- Badges Row 1: Project Status & Live Demo -->
+<p align="center">
+  <a href="https://portfolio-ruby-iota-47.vercel.app">
+    <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-2ee6c1?style=for-the-badge&labelColor=0f1724" alt="Live Demo"/>
+  </a>
+  <a href="https://portfolio-ruby-iota-47.vercel.app">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=2ee6c1&down_message=offline&down_color=ff4da6&style=for-the-badge&logo=vercel&logoColor=white&labelColor=0f1724&label=Status" alt="Website Status"/>
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-ff4da6?style=for-the-badge&labelColor=0f1724" alt="License"/>
+  </a>
+</p>
+
+<!-- Badges Row 2: GitHub Stats -->
+<p align="center">
+  <a href="https://github.com/kunj24/portfolio/stargazers">
+    <img src="https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=2ee6c1&labelColor=0f1724" alt="GitHub Stars"/>
+  </a>
+  <a href="https://github.com/kunj24/portfolio/network/members">
+    <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724" alt="GitHub Forks"/>
+  </a>
+  <a href="https://github.com/kunj24/portfolio/watchers">
+    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=06b6d4&labelColor=0f1724" alt="GitHub Watchers"/>
+  </a>
+</p>
+
+<!-- Badges Row 3: Repository Analytics -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=kunj24&repo=portfolio&label=Repo+Views&color=2ee6c1&style=for-the-badge&labelColor=0f1724" alt="Repository Views"/>
+  <img src="https://img.shields.io/github/repo-size/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724&label=Repo+Size" alt="Repo Size"/>
+  <img src="https://img.shields.io/github/languages/top/kunj24/portfolio?style=for-the-badge&logo=typescript&color=3178C6&labelColor=0f1724" alt="Top Language"/>
+</p>
+
+<!-- Badges Row 4: Technology Stack -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/>
+</p>
+
+<!-- Badges Row 5: Activity Stats -->
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/kunj24/portfolio?style=for-the-badge&logo=git&color=2ee6c1&labelColor=0f1724&label=Last+Commit" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724&label=Commits" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/contributors/kunj24/portfolio?style=for-the-badge&logo=github&color=06b6d4&labelColor=0f1724" alt="Contributors"/>
+</p>
 
 <br/>
 
+<!-- Repository Analytics Dashboard -->
+<table>
+<tr>
+<td align="center" width="50%">
+  
+### 📊 Repository Statistics
+  
+<img src="https://github-readme-stats.vercel.app/api?username=kunj24&show_icons=true&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1&hide_border=false&include_all_commits=true&count_private=true" alt="GitHub Stats" width="100%"/>
+
+</td>
+<td align="center" width="50%">
+
+### 🔥 Most Used Languages
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kunj24&layout=compact&theme=radical&bg_color=0f1724&title_color=2ee6c1&text_color=ffffff&border_color=ff4da6&hide_border=false&langs_count=8" alt="Top Languages" width="100%"/>
+
+</td>
+</tr>
+</table>
+
 <!-- Repository Preview Card -->
-<a href="https://github.com/kunj24/portfolio">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=kunj24&repo=portfolio&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1" alt="Repository Card" />
-</a>
+<p align="center">
+  <a href="https://github.com/kunj24/portfolio">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=kunj24&repo=portfolio&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1" alt="Repository Card" />
+  </a>
+</p>
+
+<!-- Activity Graph -->
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=kunj24&theme=react-dark&bg_color=0f1724&color=2ee6c1&line=ff4da6&point=2ee6c1&area=true&hide_border=false" alt="Contribution Graph" width="95%"/>
+</p>
+
+<!-- Streak Stats -->
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=kunj24&theme=radical&background=0f1724&ring=2ee6c1&fire=ff4da6&currStreakLabel=2ee6c1&sideNums=ffffff&currStreakNum=ffffff&dates=ffffff&sideLabels=2ee6c1&stroke=2ee6c1&border=2ee6c1" alt="GitHub Streak" />
+</p>
 
 <br/>
 

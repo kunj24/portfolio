@@ -639,8 +639,6 @@ export default function Loader() {
             <span className="hidden sm:inline">System loading</span>
             <div className="h-px w-6 sm:w-8 bg-[#2ee6c1]/30" />
             <span>Press <span className="text-[#2ee6c1] font-semibold">ESC</span> to skip</span>
-            <div className="h-px w-6 sm:w-8 bg-[#2ee6c1]/30" />
-            <span className="hidden sm:inline">v1.0</span>
           </div>
         </div>
       </div>

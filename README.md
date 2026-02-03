@@ -5,49 +5,49 @@
 <!-- Badges Row 1: Project Status & Live Demo -->
 <p align="center">
   <a href="https://portfolio-ruby-iota-47.vercel.app">
-    <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-00D9FF?style=for-the-badge&labelColor=000000" alt="Live Demo"/>
+    <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-00D9FF?style=for-the-badge&labelColor=6b7280" alt="Live Demo"/>
   </a>
   <a href="https://portfolio-ruby-iota-47.vercel.app">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=00FF00&down_message=offline&down_color=FF0000&style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000&label=Status" alt="Website Status"/>
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=00FF00&down_message=offline&down_color=FF0000&style=for-the-badge&logo=vercel&logoColor=white&labelColor=6b7280&label=Status" alt="Website Status"/>
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-FF00FF?style=for-the-badge&labelColor=000000" alt="License"/>
+    <img src="https://img.shields.io/badge/License-MIT-FF00FF?style=for-the-badge&labelColor=6b7280" alt="License"/>
   </a>
 </p>
 
 <!-- Badges Row 2: GitHub Stats -->
 <p align="center">
   <a href="https://github.com/kunj24/portfolio/stargazers">
-    <img src="https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=FFD700&labelColor=000000" alt="GitHub Stars"/>
+    <img src="https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=FFD700&labelColor=6b7280" alt="GitHub Stars"/>
   </a>
   <a href="https://github.com/kunj24/portfolio/network/members">
-    <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=FF4500&labelColor=000000" alt="GitHub Forks"/>
+    <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=FF4500&labelColor=6b7280" alt="GitHub Forks"/>
   </a>
   <a href="https://github.com/kunj24/portfolio/watchers">
-    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=1E90FF&labelColor=000000" alt="GitHub Watchers"/>
+    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=1E90FF&labelColor=6b7280" alt="GitHub Watchers"/>
   </a>
 </p>
 
 <!-- Badges Row 3: Repository Analytics -->
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=kunj24&repo=portfolio&label=Repo+Views&color=00D9FF&style=for-the-badge&labelColor=000000" alt="Repository Views"/>
-  <img src="https://img.shields.io/github/repo-size/kunj24/portfolio?style=for-the-badge&logo=github&color=9370DB&labelColor=000000&label=Repo+Size" alt="Repo Size"/>
-  <img src="https://img.shields.io/github/languages/top/kunj24/portfolio?style=for-the-badge&logo=typescript&color=3178C6&labelColor=000000" alt="Top Language"/>
+  <img src="https://komarev.com/ghpvc/?username=kunj24&repo=portfolio&label=Repo+Views&color=00D9FF&style=for-the-badge&labelColor=6b7280" alt="Repository Views"/>
+  <img src="https://img.shields.io/github/repo-size/kunj24/portfolio?style=for-the-badge&logo=github&color=9370DB&labelColor=6b7280&label=Repo+Size" alt="Repo Size"/>
+  <img src="https://img.shields.io/github/languages/top/kunj24/portfolio?style=for-the-badge&logo=typescript&color=3178C6&labelColor=6b7280" alt="Top Language"/>
 </p>
 
 <!-- Badges Row 4: Technology Stack -->
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=000000" alt="Next.js"/>
-  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=000000" alt="React"/>
-  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=000000" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=for-the-badge&logo=three.js&logoColor=white&labelColor=000000" alt="Three.js"/>
+  <img src="https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=6b7280" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=6b7280" alt="React"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=6b7280" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=for-the-badge&logo=three.js&logoColor=white&labelColor=6b7280" alt="Three.js"/>
 </p>
 
 <!-- Badges Row 5: Activity Stats -->
 <p align="center">
-  <img src="https://img.shields.io/github/last-commit/kunj24/portfolio?style=for-the-badge&logo=git&color=32CD32&labelColor=000000&label=Last+Commit" alt="Last Commit"/>
-  <img src="https://img.shields.io/github/commit-activity/m/kunj24/portfolio?style=for-the-badge&logo=github&color=FF1493&labelColor=000000&label=Commits" alt="Commit Activity"/>
-  <img src="https://img.shields.io/github/contributors/kunj24/portfolio?style=for-the-badge&logo=github&color=FFA500&labelColor=000000" alt="Contributors"/>
+  <img src="https://img.shields.io/github/last-commit/kunj24/portfolio?style=for-the-badge&logo=git&color=32CD32&labelColor=6b7280&label=Last+Commit" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/kunj24/portfolio?style=for-the-badge&logo=github&color=FF1493&labelColor=6b7280&label=Commits" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/contributors/kunj24/portfolio?style=for-the-badge&logo=github&color=FFA500&labelColor=6b7280" alt="Contributors"/>
 </p>
 
 <br/>
@@ -57,7 +57,7 @@
 
 <!-- Website Preview -->
 <a href="https://portfolio-ruby-iota-47.vercel.app">
-  <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=2ee6c1&down_message=offline&down_color=ff4da6&style=for-the-badge&logo=vercel&logoColor=white&labelColor=0f1724&label=Portfolio" alt="Website Status" />
+  <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=2ee6c1&down_message=offline&down_color=ff4da6&style=for-the-badge&logo=vercel&logoColor=white&labelColor=6b7280&label=Portfolio" alt="Website Status" />
 </a>
 
 <br/><br/>
@@ -528,10 +528,10 @@ This means you can:
 
 **Kunj Mungalpara** | Full-Stack Developer & ML Enthusiast
 
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Site-2ee6c1?style=for-the-badge&labelColor=0f1724)](https://portfolio-ruby-iota-47.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-kunj24-181717?style=for-the-badge&logo=github&labelColor=0f1724)](https://github.com/kunj24)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0f1724)](https://linkedin.com/in/kunj-mungalpara)
-[![Email](https://img.shields.io/badge/Email-Contact-ff4da6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0f1724)](mailto:kunj.mungalpara@example.com)
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Site-2ee6c1?style=for-the-badge&labelColor=6b7280)](https://portfolio-ruby-iota-47.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-kunj24-181717?style=for-the-badge&logo=github&labelColor=6b7280)](https://github.com/kunj24)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=6b7280)](https://linkedin.com/in/kunj-mungalpara)
+[![Email](https://img.shields.io/badge/Email-Contact-ff4da6?style=for-the-badge&logo=gmail&logoColor=white&labelColor=6b7280)](mailto:kunj.mungalpara@example.com)
 
 **💬 Open for collaborations, freelance work, and exciting opportunities!**
 

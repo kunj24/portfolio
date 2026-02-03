@@ -2,98 +2,56 @@
 
 # 🚀 Kunj Mungalpara's Portfolio
 
-### *Where Design Meets Innovation*
-
-<p align="center">
-  <strong>🎨 Stunning 3D Graphics</strong> • <strong>⚡ Blazing Performance</strong> • <strong>🌐 Fully Responsive</strong>
-</p>
-
 <!-- Badges Row 1: Project Status & Live Demo -->
 <p align="center">
   <a href="https://portfolio-ruby-iota-47.vercel.app">
-    <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-2ee6c1?style=for-the-badge&labelColor=0f1724" alt="Live Demo"/>
+    <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Site-00D9FF?style=for-the-badge&labelColor=000000" alt="Live Demo"/>
   </a>
   <a href="https://portfolio-ruby-iota-47.vercel.app">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=2ee6c1&down_message=offline&down_color=ff4da6&style=for-the-badge&logo=vercel&logoColor=white&labelColor=0f1724&label=Status" alt="Website Status"/>
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&up_message=online&up_color=00FF00&down_message=offline&down_color=FF0000&style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000&label=Status" alt="Website Status"/>
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-ff4da6?style=for-the-badge&labelColor=0f1724" alt="License"/>
+    <img src="https://img.shields.io/badge/License-MIT-FF00FF?style=for-the-badge&labelColor=000000" alt="License"/>
   </a>
 </p>
 
 <!-- Badges Row 2: GitHub Stats -->
 <p align="center">
   <a href="https://github.com/kunj24/portfolio/stargazers">
-    <img src="https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=2ee6c1&labelColor=0f1724" alt="GitHub Stars"/>
+    <img src="https://img.shields.io/github/stars/kunj24/portfolio?style=for-the-badge&logo=github&color=FFD700&labelColor=000000" alt="GitHub Stars"/>
   </a>
   <a href="https://github.com/kunj24/portfolio/network/members">
-    <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724" alt="GitHub Forks"/>
+    <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=FF4500&labelColor=000000" alt="GitHub Forks"/>
   </a>
   <a href="https://github.com/kunj24/portfolio/watchers">
-    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=06b6d4&labelColor=0f1724" alt="GitHub Watchers"/>
+    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=1E90FF&labelColor=000000" alt="GitHub Watchers"/>
   </a>
 </p>
 
 <!-- Badges Row 3: Repository Analytics -->
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=kunj24&repo=portfolio&label=Repo+Views&color=2ee6c1&style=for-the-badge&labelColor=0f1724" alt="Repository Views"/>
-  <img src="https://img.shields.io/github/repo-size/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724&label=Repo+Size" alt="Repo Size"/>
-  <img src="https://img.shields.io/github/languages/top/kunj24/portfolio?style=for-the-badge&logo=typescript&color=3178C6&labelColor=0f1724" alt="Top Language"/>
+  <img src="https://komarev.com/ghpvc/?username=kunj24&repo=portfolio&label=Repo+Views&color=00D9FF&style=for-the-badge&labelColor=000000" alt="Repository Views"/>
+  <img src="https://img.shields.io/github/repo-size/kunj24/portfolio?style=for-the-badge&logo=github&color=9370DB&labelColor=000000&label=Repo+Size" alt="Repo Size"/>
+  <img src="https://img.shields.io/github/languages/top/kunj24/portfolio?style=for-the-badge&logo=typescript&color=3178C6&labelColor=000000" alt="Top Language"/>
 </p>
 
 <!-- Badges Row 4: Technology Stack -->
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/>
-  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
-  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/>
+  <img src="https://img.shields.io/badge/Next.js-15.5.4-000000?style=for-the-badge&logo=next.js&logoColor=white&labelColor=000000" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=000000" alt="React"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=000000" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Three.js-r180-000000?style=for-the-badge&logo=three.js&logoColor=white&labelColor=000000" alt="Three.js"/>
 </p>
 
 <!-- Badges Row 5: Activity Stats -->
 <p align="center">
-  <img src="https://img.shields.io/github/last-commit/kunj24/portfolio?style=for-the-badge&logo=git&color=2ee6c1&labelColor=0f1724&label=Last+Commit" alt="Last Commit"/>
-  <img src="https://img.shields.io/github/commit-activity/m/kunj24/portfolio?style=for-the-badge&logo=github&color=ff4da6&labelColor=0f1724&label=Commits" alt="Commit Activity"/>
-  <img src="https://img.shields.io/github/contributors/kunj24/portfolio?style=for-the-badge&logo=github&color=06b6d4&labelColor=0f1724" alt="Contributors"/>
+  <img src="https://img.shields.io/github/last-commit/kunj24/portfolio?style=for-the-badge&logo=git&color=32CD32&labelColor=000000&label=Last+Commit" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/commit-activity/m/kunj24/portfolio?style=for-the-badge&logo=github&color=FF1493&labelColor=000000&label=Commits" alt="Commit Activity"/>
+  <img src="https://img.shields.io/github/contributors/kunj24/portfolio?style=for-the-badge&logo=github&color=FFA500&labelColor=000000" alt="Contributors"/>
 </p>
 
 <br/>
 
-<!-- Repository Analytics Dashboard -->
-<table>
-<tr>
-<td align="center" width="50%">
-  
-### 📊 Repository Statistics
-  
-<img src="https://github-readme-stats.vercel.app/api?username=kunj24&show_icons=true&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1&hide_border=false&include_all_commits=true&count_private=true" alt="GitHub Stats" width="100%"/>
-
-</td>
-<td align="center" width="50%">
-
-### 🔥 Most Used Languages
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kunj24&layout=compact&theme=radical&bg_color=0f1724&title_color=2ee6c1&text_color=ffffff&border_color=ff4da6&hide_border=false&langs_count=8" alt="Top Languages" width="100%"/>
-
-</td>
-</tr>
-</table>
-
-<!-- Repository Preview Card -->
-<p align="center">
-  <a href="https://github.com/kunj24/portfolio">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=kunj24&repo=portfolio&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=ffffff&border_color=2ee6c1" alt="Repository Card" />
-  </a>
-</p>
-
-<!-- Activity Graph -->
-<p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=kunj24&theme=react-dark&bg_color=0f1724&color=2ee6c1&line=ff4da6&point=2ee6c1&area=true&hide_border=false" alt="Contribution Graph" width="95%"/>
-</p>
-
-<!-- Streak Stats -->
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=kunj24&theme=radical&background=0f1724&ring=2ee6c1&fire=ff4da6&currStreakLabel=2ee6c1&sideNums=ffffff&currStreakNum=ffffff&dates=ffffff&sideLabels=2ee6c1&stroke=2ee6c1&border=2ee6c1" alt="GitHub Streak" />
-</p>
 
 <br/>
 
@@ -103,10 +61,6 @@
 </a>
 
 <br/><br/>
-
-An immersive digital portfolio showcasing cutting-edge web technologies, stunning 3D graphics, and seamless UX. Built for developers who demand excellence.
-
-<br/>
 
 ### 🎯 Quick Links
 
@@ -556,236 +510,6 @@ Edit [`src/components/ui/CursorSystem.tsx`](src/components/ui/CursorSystem.tsx):
 
 ---
 
-## 🌐 Deployment
-
-<div align="center">
-
-### **Deploy Your Portfolio in Minutes** 🚀
-
-Choose your preferred platform and go live instantly!
-
-</div>
-
-### ⚡ Vercel (Recommended)
-
-**Why Vercel?**
-- ✅ Zero configuration required
-- ✅ Automatic HTTPS & CDN
-- ✅ Instant Git integration
-- ✅ Free for personal projects
-- ✅ Auto-deploys on every push
-
-**Quick Deploy:**
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kunj24/portfolio)
-
-**Manual Deployment:**
-
-```bash
-# Step 1: Push your code to GitHub
-git push origin main
-
-# Step 2: Import to Vercel
-# - Visit vercel.com/new
-# - Import your GitHub repository
-# - Configure environment variables (if using EmailJS)
-# - Click Deploy
-
-# Your site is live! 🎉
-```
-
-**Environment Variables in Vercel:**
-1. Go to Project Settings → Environment Variables
-2. Add your EmailJS credentials
-3. Redeploy for changes to take effect
-
----
-
-### 🌊 Netlify
-
-**Quick Deploy:**
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/kunj24/portfolio)
-
-**Build Configuration:**
-- **Build Command:** `npm run build`
-- **Publish Directory:** `.next`
-- **Node Version:** 18.x
-
----
-
-### 🐳 Docker Deployment
-
-```dockerfile
-FROM node:18-alpine AS deps
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
-
-FROM node:18-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV production
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-EXPOSE 3000
-ENV PORT 3000
-CMD ["node", "server.js"]
-```
-
-**Docker Commands:**
-```bash
-# Build image
-docker build -t my-portfolio .
-
-# Run container
-docker run -p 3000:3000 my-portfolio
-```
-
----
-
-## 📊 Performance
-
-<div align="center">
-
-### 🏆 Lighthouse Scores
-
-<table>
-<tr>
-<td align="center" width="25%">
-<img src="https://img.shields.io/badge/Performance-95+-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Performance"/>
-<br/>
-<strong>⚡ Performance</strong>
-</td>
-<td align="center" width="25%">
-<img src="https://img.shields.io/badge/Accessibility-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Accessibility"/>
-<br/>
-<strong>♿ Accessibility</strong>
-</td>
-<td align="center" width="25%">
-<img src="https://img.shields.io/badge/Best_Practices-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="Best Practices"/>
-<br/>
-<strong>💡 Best Practices</strong>
-</td>
-<td align="center" width="25%">
-<img src="https://img.shields.io/badge/SEO-100-brightgreen?style=for-the-badge&logo=lighthouse&logoColor=white" alt="SEO"/>
-<br/>
-<strong>🔍 SEO</strong>
-</td>
-</tr>
-</table>
-
-<br/>
-
-### ⚡ Core Web Vitals
-
-| Metric | Score | Status |
-|--------|-------|--------|
-| **First Contentful Paint (FCP)** | < 1.0s | 🟢 Excellent |
-| **Largest Contentful Paint (LCP)** | < 2.0s | 🟢 Excellent |
-| **Cumulative Layout Shift (CLS)** | < 0.1 | 🟢 Excellent |
-| **Time to Interactive (TTI)** | < 2.5s | 🟢 Excellent |
-| **Total Blocking Time (TBT)** | < 150ms | 🟢 Excellent |
-
-### 🚀 Optimization Techniques
-
-```mermaid
-graph LR
-    A[User Request] --> B[Next.js CDN]
-    B --> C[Code Splitting]
-    C --> D[React Server Components]
-    D --> E[Optimized Images]
-    E --> F[Cached Assets]
-    F --> G[Fast Delivery]
-```
-
-**Key Optimizations:**
-- ✅ Automatic code splitting & tree shaking
-- ✅ Image optimization with Next/Image
-- ✅ React Server Components
-- ✅ CSS-in-JS with zero runtime
-- ✅ Font optimization
-- ✅ Lazy loading for 3D components
-- ✅ Hardware-accelerated animations
-
-</div>
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community an amazing place to learn, inspire, and create! Any contributions you make are **greatly appreciated**. 🙏
-
-### 🌟 How to Contribute
-
-<table>
-<tr>
-<td>
-
-**1️⃣ Fork the Project**
-```bash
-# Click the Fork button at top right
-```
-
-</td>
-<td>
-
-**2️⃣ Create Branch**
-```bash
-git checkout -b feature/AmazingFeature
-```
-
-</td>
-</tr>
-<tr>
-<td>
-
-**3️⃣ Commit Changes**
-```bash
-git commit -m 'Add AmazingFeature'
-```
-
-</td>
-<td>
-
-**4️⃣ Push to Branch**
-```bash
-git push origin feature/AmazingFeature
-```
-
-</td>
-</tr>
-<tr>
-<td colspan="2" align="center">
-
-**5️⃣ Open a Pull Request**
-
-</td>
-</tr>
-</table>
-
-### 📋 Development Guidelines
-
-<div align="center">
-
-| Rule | Description |
-|------|-------------|
-| 📝 **Code Style** | Follow existing patterns and conventions |
-| 💬 **Commit Messages** | Use clear, descriptive commit messages |
-| 🧪 **Testing** | Test thoroughly before submitting |
-| 📖 **Documentation** | Update docs for new features |
-| 🎨 **Design** | Match existing UI/UX patterns |
-
-</div>
-
----
-
 ## 📄 License
 
 Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
@@ -882,10 +606,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 <br/>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=kunj24/portfolio&type=Date)](https://star-history.com/#kunj24/portfolio&Date)
-
-<br/>
-
 Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 
 **© 2026 Kunj Mungalpara. All Rights Reserved.**
@@ -899,6 +619,24 @@ Made with 💙 and ☕ by [Kunj Mungalpara](https://github.com/kunj24)
 
 <br/>
 
-[⬆ Back to Top](#-kunj-munpalgaras-portfolio)
+[⬆ Back to Top](#-kunj-mungalparas-portfolio)
+
+---
+
+<div align="center">
+
+## 🔥 Something Extra Crazy!
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2000&pause=500&color=2EE6C1&center=true&vCenter=true&multiline=true&repeat=true&width=800&height=150&lines=🎉+Thanks+for+Visiting!;%E2%9A%A1+Built+with+Next.js+15+%26+React+19;%F0%9F%9A%80+Powered+by+Three.js+%26+GSAP;%F0%9F%8E%A8+Designed+with+Tailwind+CSS;%F0%9F%92%BB+Coded+with+%E2%9D%A4%EF%B8%8F+%26+%E2%98%95" alt="Typing SVG" />
+
+<br/>
+
+![Matrix SVG](https://raw.githubusercontent.com/rodrigograca31/rodrigograca31/master/matrix.svg)
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,18,20,24&height=150&section=footer&text=Keep%20Coding!&fontSize=50&fontColor=2ee6c1&animation=twinkling&fontAlignY=70" width="100%"/>
+
+</div>
 
 </div>

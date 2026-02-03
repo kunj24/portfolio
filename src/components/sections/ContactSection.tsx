@@ -19,19 +19,19 @@ const socialLinks = [
     name: 'GitHub',
     icon: Github,
     href: 'https://github.com/kunj24',
-    color: 'text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:shadow-gray-700/25 dark:hover:shadow-gray-300/25 hover:drop-shadow-[0_0_12px_rgba(55,65,81,0.7)] dark:hover:drop-shadow-[0_0_12px_rgba(209,213,219,0.7)]'
+    color: 'text-white hover:text-white hover:shadow-white/50 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]'
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
     href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
-    color: 'text-blue-500 hover:text-blue-600 hover:shadow-blue-600/25 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.7)]'
+    color: 'text-blue-400 hover:text-blue-300 hover:shadow-blue-400/50 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.9)]'
   },
   {
     name: 'Instagram',
     icon: Instagram,
     href: 'https://instagram.com/kunj_mungalpara',
-    color: 'text-pink-500 hover:text-pink-600 hover:shadow-pink-600/25 hover:drop-shadow-[0_0_12px_rgba(219,39,119,0.7)]'
+    color: 'text-pink-400 hover:text-pink-300 hover:shadow-pink-400/50 hover:drop-shadow-[0_0_15px_rgba(244,114,182,0.9)]'
   },
   
 ]

@@ -58,7 +58,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       handle: '@jordanchen',
       borderColor: '#10B981',
       gradient: 'linear-gradient(210deg,#10B981,#000)',
-      url: 'https://linkedin.com/in/'
+      url: 'https://www.linkedin.com/in/kunj-mungalpara/'
     },
     {
       image: 'https://i.pravatar.cc/300?img=3',

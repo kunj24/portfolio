@@ -23,9 +23,6 @@
   <a href="https://github.com/kunj24/portfolio/network/members">
     <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=FF4500&labelColor=6b7280" alt="GitHub Forks"/>
   </a>
-  <a href="https://github.com/kunj24/portfolio/watchers">
-    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=1E90FF&labelColor=6b7280" alt="GitHub Watchers"/>
-  </a>
 </p>
 
 <!-- Badges Row 3: Repository Analytics -->

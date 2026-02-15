@@ -9,6 +9,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import InteractiveBackground from "@/components/ui/InteractiveBackground";
 import AnimatedMesh from "@/components/ui/AnimatedMesh";
 import { CursorProvider } from "@/hooks/use-cursor";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
                 <div className="text-sm text-muted-foreground">© 2025 Kunj Mungalpara. All rights reserved.</div>
               </div>
             </footer>
+            <Analytics />
           </CursorProvider>
         </ThemeProvider>
       </body>

@@ -24,7 +24,7 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    href: 'https://www.linkedin.com/in/kunj-mungalpara-539b3a293',
+    href: 'https://www.linkedin.com/in/kunj-mungalpara/',
     color: 'text-blue-400 hover:text-blue-300 hover:shadow-blue-400/50 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.9)]'
   },
   {

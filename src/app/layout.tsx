@@ -60,9 +60,9 @@ export default function RootLayout({
             <Navigation />
             {children}
             <footer className="w-full bg-foreground/5 dark:bg-background/90">
-              <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between border-t border-border">
-                <div className="text-xl font-bold tracking-wider text-primary">Kunj Mungalpara</div>
-                <div className="text-sm text-muted-foreground">© 2025 Kunj Mungalpara. All rights reserved.</div>
+              <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-3 md:gap-0 border-t border-border">
+                <div className="text-lg md:text-xl font-bold tracking-wider text-primary text-center md:text-left">Kunj Mungalpara</div>
+                <div className="text-xs md:text-sm text-muted-foreground text-center md:text-right">© 2025 Kunj Mungalpara. All rights reserved.</div>
               </div>
             </footer>
             <Analytics />

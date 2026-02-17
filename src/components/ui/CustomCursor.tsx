@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface CustomCursorProps {
   variant?: 'none' | 'default' | 'neon' | 'particle' | 'magnetic' | 'morphing' | 'geometric' | 'liquid'
@@ -12,10 +12,9 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
   const [isClicking, setIsClicking] = useState(false)
   const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([])  
   const [particles, setParticles] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([])  
-  const [trailId, setTrailId] = useState(0)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [tapRipples, setTapRipples] = useState<Array<{ x: number; y: number; id: number }>>([])
-  const [particleIdCounter, setParticleIdCounter] = useState(0)
+  const particleIdRef = useRef(0)
 
   // Detect touch device
   useEffect(() => {
@@ -32,27 +31,20 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
 
       // Add trail for particle and liquid variants
       if (variant === 'particle' || variant === 'liquid') {
-        setTrailId(prev => {
-          const newId = prev + 1
-          const newTrailPoint = { x: newPos.x, y: newPos.y, id: newId }
-          setTrail(prevTrail => [...prevTrail.slice(-8), newTrailPoint])
-          return newId
-        })
+        const newTrailPoint = { x: newPos.x, y: newPos.y, id: Date.now() }
+        setTrail(prevTrail => [...prevTrail.slice(-8), newTrailPoint])
       }
 
       // Add particles for particle variant
       if (variant === 'particle' && Math.random() < 0.3) {
-        setParticleIdCounter(prev => {
-          const newId = prev + 1
-          const newParticle = { 
-            x: newPos.x + (Math.random() - 0.5) * 30, 
-            y: newPos.y + (Math.random() - 0.5) * 30, 
-            id: Date.now() + Math.random(), 
-            opacity: 1 
-          }
-          setParticles(prevParticles => [...prevParticles, newParticle])
-          return newId
-        })
+        const particleId = Date.now() + Math.random()
+        const newParticle = { 
+          x: newPos.x + (Math.random() - 0.5) * 30, 
+          y: newPos.y + (Math.random() - 0.5) * 30, 
+          id: particleId, 
+          opacity: 1 
+        }
+        setParticles(prevParticles => [...prevParticles, newParticle])
       }
     }
 
@@ -81,11 +73,8 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0]
       setMousePosition({ x: touch.clientX, y: touch.clientY })
-      setParticleIdCounter(prev => {
-        const newId = prev + 1
-        setTapRipples(prevRipples => [...prevRipples, { x: touch.clientX, y: touch.clientY, id: newId }])
-        return newId
-      })
+      const rippleId = Date.now() + Math.random()
+      setTapRipples(prevRipples => [...prevRipples, { x: touch.clientX, y: touch.clientY, id: rippleId }])
       setIsClicking(true)
     }
     const handleTouchEnd = () => setIsClicking(false)
@@ -118,7 +107,7 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
       document.body.style.cursor = ''
       document.body.classList.remove('custom-cursor-active')
     }
-  }, [variant, trailId, isTouchDevice])
+  }, [variant, isTouchDevice])
 
   // Clean up old particles
   useEffect(() => {
@@ -241,11 +230,13 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
               }} />
             ) : (
               <>
-                <div className="cursor-magnetic-outer" style={{ 
-                  left: `${mousePosition.x}px`, 
-                  top: `${mousePosition.y}px`,
-                  transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1}) rotate(${Date.now() / 50}deg)`
-                }} />
+                <div 
+                  className="cursor-magnetic-outer" 
+                  style={{ 
+                    left: `${mousePosition.x}px`, 
+                    top: `${mousePosition.y}px`,
+                  }} 
+                />
                 <div className="cursor-magnetic-inner" style={{ 
                   left: `${mousePosition.x}px`, 
                   top: `${mousePosition.y}px`,
@@ -289,16 +280,21 @@ export default function CustomCursor({ variant = 'none' }: CustomCursorProps) {
               }} />
             ) : (
               <>
-                <div className="cursor-geo-triangle" style={{ 
-                  left: `${mousePosition.x}px`, 
-                  top: `${mousePosition.y}px`,
-                  transform: `translate(-50%, -50%) rotate(${Date.now() / 20}deg) scale(${isHovering ? 1.5 : 1})`
-                }} />
-                <div className="cursor-geo-square" style={{ 
-                  left: `${mousePosition.x}px`, 
-                  top: `${mousePosition.y}px`,
-                  transform: `translate(-50%, -50%) rotate(${-Date.now() / 30}deg) scale(${isClicking ? 0.5 : 1})`
-                }} />
+                <div 
+                  className="cursor-geo-triangle" 
+                  style={{ 
+                    left: `${mousePosition.x}px`, 
+                    top: `${mousePosition.y}px`,
+                  }} 
+                />
+                <div 
+                  className="cursor-geo-square" 
+                  style={{ 
+                    left: `${mousePosition.x}px`, 
+                    top: `${mousePosition.y}px`,
+                    transform: `translate(-50%, -50%) scale(${isClicking ? 0.5 : 1})`
+                  }} 
+                />
               </>
             )}
           </>

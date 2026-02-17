@@ -166,19 +166,21 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        {/* Mobile Logo - with safe area support */}
-        <div className="fixed top-6 left-4 z-40 safe-top">
+        {/* Mobile Logo - with safe area support and improved design */}
+        <div className="fixed top-4 left-4 z-40 safe-top">
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault()
               scrollToSection('#home')
             }}
-            className="text-base sm:text-lg font-bold gradient-text hover:scale-105 transition-transform duration-300 block py-2 px-2"
+            className="flex items-center gap-2 bg-black/60 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2.5 hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/20"
             style={{ minHeight: '44px' }}
           >
-            <span className="hidden sm:inline">Kunj Mungalpara</span>
-            <span className="sm:hidden">Kunj M.</span>
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-xs font-black text-black shadow-lg">
+              KM
+            </div>
+            <span className="text-sm sm:text-base font-bold gradient-text whitespace-nowrap">Kunj Mungalpara</span>
           </a>
         </div>
 

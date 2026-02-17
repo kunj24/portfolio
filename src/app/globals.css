@@ -499,11 +499,12 @@ body.custom-cursor-active [role="button"] {
   position: fixed;
   width: 60px;
   height: 60px;
-  background: radial-gradient(circle, var(--accent)20, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.2) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9997;
-  transition: transform 0.2s ease;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
   animation: neon-pulse 2s ease-in-out infinite;
 }
 
@@ -558,12 +559,10 @@ body.custom-cursor-active [role="button"] {
   position: fixed;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--primary);
+  border: 2px dashed var(--primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.2s ease;
-  border-style: dashed;
   animation: magnetic-rotate 4s linear infinite;
 }
 
@@ -606,8 +605,9 @@ body.custom-cursor-active [role="button"] {
   border-bottom: 14px solid var(--primary);
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.2s ease;
+  transform: translate(-50%, -50%);
   filter: drop-shadow(0 0 8px var(--primary));
+  animation: geo-triangle-rotate 3s linear infinite;
 }
 
 .cursor-geo-square {
@@ -620,6 +620,17 @@ body.custom-cursor-active [role="button"] {
   transition: transform 0.15s ease;
   border-radius: 2px;
   box-shadow: 0 0 10px var(--accent);
+  animation: geo-square-rotate 4s linear infinite reverse;
+}
+
+@keyframes geo-triangle-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes geo-square-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* Liquid Cursor Variant */
@@ -643,8 +654,8 @@ body.custom-cursor-active [role="button"] {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  filter: blur(1px);
-  mix-blend-mode: multiply;
+  filter: blur(2px);
+  opacity: 0.8;
 }
 
 /* Pointer Cursor Styles for Interactive Elements */

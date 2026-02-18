@@ -1629,3 +1629,42 @@ body.custom-cursor-active [role="button"] {
 .rotate-x-2 {
   transform: perspective(1000px) rotateX(2deg);
 }
+
+/* Mobile optimizations for Technical Skills section */
+@media (max-width: 768px) {
+  /* Reduce StarField intensity on mobile */
+  .star-field {
+    opacity: 0.8;
+  }
+  
+  /* Better touch feedback for skill cards */
+  .touch-manipulation:active {
+    transform: scale(0.96);
+    transition: transform 0.15s ease;
+  }
+  
+  /* Optimize text rendering */
+  .gradient-text {
+    -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Ensure readable text in skill cards */
+  .text-\[0\.65rem\] {
+    font-size: 0.65rem;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  /* Further optimize spacing */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure minimum text size for readability */
+  .text-\[0\.65rem\] {
+    font-size: 0.7rem;
+  }
+}

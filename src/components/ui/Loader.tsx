@@ -1,886 +1,689 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef, useMemo } from 'react'
 
-const loadingSteps = [
-  'System boot sequence...',
-  'Loading core modules...',
-  'Initializing interface...',
-  'Connecting services...',
-  'Ready to launch...',
-  'Complete.'
+/* ── constants ───────────────────────────────────────────────── */
+const GLITCH = '!<>-_\\/[]{}—=+*^?#_アイウエオカキクケコサシスセソ'
+const NAME = 'KUNJ MUNGALPARA'
+const ROLE = 'FULL STACK DEVELOPER'
+
+const PHASES = [
+  { label: 'INITIALIZING CORE', icon: '⚡' },
+  { label: 'LOADING MODULES', icon: '📦' },
+  { label: 'COMPILING SHADERS', icon: '🎨' },
+  { label: 'CONNECTING NODES', icon: '🔗' },
+  { label: 'RENDERING WORLD', icon: '🌐' },
+  { label: 'SYSTEM READY', icon: '🚀' },
 ]
 
-// Generate random floating particles
-const generateParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    duration: Math.random() * 3 + 2,
-    delay: Math.random() * 2,
-    opacity: Math.random() * 0.5 + 0.3
-  }))
-}
-
-// Generate matrix rain columns
-const generateMatrixColumns = (count: number) => {
-  const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: (i / count) * 100,
-    chars: Array.from({ length: 8 }, () => chars[Math.floor(Math.random() * chars.length)]),
-    speed: Math.random() * 3 + 2,
-    delay: Math.random() * 5
-  }))
-}
-
+/* ── component ───────────────────────────────────────────────── */
 export default function Loader() {
-  const [isVisible, setIsVisible] = useState(true)
-  const [isExiting, setIsExiting] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const [exiting, setExiting] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [currentStep, setCurrentStep] = useState(0)
-  const [particles, setParticles] = useState<Array<{
-    id: number
-    x: number
-    y: number
-    size: number
-    duration: number
-    delay: number
-    opacity: number
-  }>>([])
-  const [matrixColumns, setMatrixColumns] = useState<Array<{
-    id: number
-    x: number
-    chars: string[]
-    speed: number
-    delay: number
-  }>>([])
+  const [phase, setPhase] = useState(0)
+  const [nameText, setNameText] = useState('')
+  const [roleText, setRoleText] = useState('')
   const [isMobile, setIsMobile] = useState(false)
+  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 })
+  const [glitch, setGlitch] = useState(false)
+  const [entered, setEntered] = useState(false)       // stagger entrance
+  const [wavePhase, setWavePhase] = useState(0)
+  const [touchRipples, setTouchRipples] = useState<Array<{ id: number; x: number; y: number }>>([])
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rafRef = useRef(0)
+  const rippleId = useRef(0)
 
-  // Detect mobile on client-side
+  /* ── mobile detect ── */
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    const c = () => setIsMobile(window.innerWidth < 768)
+    c(); window.addEventListener('resize', c)
+    return () => window.removeEventListener('resize', c)
   }, [])
 
-  // Generate particles on client-side only to avoid hydration mismatch
+  /* ── stagger entrance ── */
+  useEffect(() => { setTimeout(() => setEntered(true), 150) }, [])
+
+  /* ── mouse / touch tracking ── */
   useEffect(() => {
-    setParticles(generateParticles(isMobile ? 8 : 15))
-    setMatrixColumns(generateMatrixColumns(isMobile ? 5 : 10))
-  }, [isMobile])
-
-  const hideLoader = useCallback(() => {
-    setIsExiting(true)
-    setTimeout(() => {
-      setIsVisible(false)
-    }, 700)
-  }, [])
-
-  // Lock scroll while loader is visible
-  useEffect(() => {
-    if (!isVisible) return
-
-    const previousOverflow = document.body.style.overflow
-    const previousPosition = document.body.style.position
-    const previousWidth = document.body.style.width
-    
-    // Prevent scrolling
-    document.body.style.overflow = 'hidden'
-    document.body.style.position = 'fixed'
-    document.body.style.width = '100%'
-    document.body.style.top = '0'
-
-    return () => {
-      document.body.style.overflow = previousOverflow
-      document.body.style.position = previousPosition
-      document.body.style.width = previousWidth
-      document.body.style.top = ''
-    }
-  }, [isVisible])
-
-  useEffect(() => {
-    // Keyboard shortcut to skip (Escape or Space)
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === ' ') {
-        e.preventDefault()
-        hideLoader()
+    const m = (e: MouseEvent) => setMouse({ x: e.clientX / innerWidth, y: e.clientY / innerHeight })
+    const t = (e: TouchEvent) => {
+      if (e.touches[0]) {
+        const touch = e.touches[0]
+        setMouse({ x: touch.clientX / innerWidth, y: touch.clientY / innerHeight })
+        // Add ripple
+        rippleId.current++
+        const r = { id: rippleId.current, x: touch.clientX, y: touch.clientY }
+        setTouchRipples(prev => [...prev.slice(-4), r])
+        setTimeout(() => setTouchRipples(prev => prev.filter(p => p.id !== r.id)), 1000)
       }
     }
+    addEventListener('mousemove', m); addEventListener('touchstart', t)
+    return () => { removeEventListener('mousemove', m); removeEventListener('touchstart', t) }
+  }, [])
 
-    document.addEventListener('keydown', handleKeyPress)
-
-    // Emergency exit in case something hangs
-    const emergencyExit = setTimeout(() => {
-      hideLoader()
-    }, 12000)
-
-    // Simulated loading progress with smooth easing
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        const increment = prev < 70 ? 2.8 : prev < 90 ? 1.2 : 0.5
-        const next = Math.min(prev + increment, 100)
-
-        const stepIndex = Math.floor((next / 100) * loadingSteps.length)
-        setCurrentStep(Math.min(stepIndex, loadingSteps.length - 1))
-
-        if (next >= 100) {
-          clearInterval(interval)
-          clearTimeout(emergencyExit)
-          setTimeout(() => {
-            hideLoader()
-          }, 500)
+  /* ── text decode effect ── */
+  useEffect(() => {
+    let f = 0
+    const id = setInterval(() => {
+      f++
+      // Name decode
+      const nr = Math.floor((f / 35) * NAME.length)
+      let n = ''
+      for (let i = 0; i < NAME.length; i++) {
+        if (i < nr) n += NAME[i]
+        else if (NAME[i] === ' ') n += ' '
+        else n += GLITCH[~~(Math.random() * GLITCH.length)]
+      }
+      setNameText(n)
+      // Role decode (starts a bit later)
+      if (f > 10) {
+        const rr = Math.floor(((f - 10) / 30) * ROLE.length)
+        let r = ''
+        for (let i = 0; i < ROLE.length; i++) {
+          if (i < rr) r += ROLE[i]
+          else if (ROLE[i] === ' ') r += ' '
+          else r += GLITCH[~~(Math.random() * GLITCH.length)]
         }
+        setRoleText(r)
+      } else {
+        setRoleText(ROLE.split('').map(c => c === ' ' ? ' ' : GLITCH[~~(Math.random() * GLITCH.length)]).join(''))
+      }
+      if (f >= 45) { clearInterval(id); setNameText(NAME); setRoleText(ROLE) }
+    }, 55)
+    return () => clearInterval(id)
+  }, [])
 
-        return next
-      })
-    }, 60)
+  /* ── glitch flicker ── */
+  useEffect(() => {
+    const id = setInterval(() => {
+      setGlitch(true)
+      setTimeout(() => setGlitch(false), 80 + Math.random() * 70)
+    }, 1800 + Math.random() * 2500)
+    return () => clearInterval(id)
+  }, [])
 
-    return () => {
-      clearInterval(interval)
-      clearTimeout(emergencyExit)
-      document.removeEventListener('keydown', handleKeyPress)
+  /* ── audio-style wave ── */
+  useEffect(() => {
+    const id = setInterval(() => setWavePhase(p => p + 1), 100)
+    return () => clearInterval(id)
+  }, [])
+
+  /* ── canvas: interactive particle field ── */
+  useEffect(() => {
+    const cv = canvasRef.current
+    if (!cv) return
+    const ctx = cv.getContext('2d')!
+    let W = cv.width = innerWidth
+    let H = cv.height = innerHeight
+    const N = isMobile ? 80 : 200
+    const mx = { x: W / 2, y: H / 2 }
+
+    type P = { x: number; y: number; vx: number; vy: number; r: number; hue: number; pulse: number }
+    const pts: P[] = Array.from({ length: N }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * 1.5, vy: (Math.random() - .5) * 1.5,
+      r: Math.random() * 2.5 + .5,
+      hue: Math.random() > .5 ? 165 : 330,
+      pulse: Math.random() * Math.PI * 2,
+    }))
+
+    const onMove = (e: MouseEvent) => { mx.x = e.clientX; mx.y = e.clientY }
+    addEventListener('mousemove', onMove)
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H)
+
+      for (const p of pts) {
+        p.pulse += 0.03
+        // Mouse attraction
+        const dx = mx.x - p.x, dy = mx.y - p.y
+        const d = Math.sqrt(dx * dx + dy * dy)
+        if (d < 250) {
+          const force = (250 - d) / 250 * 0.015
+          p.vx += dx * force
+          p.vy += dy * force
+        }
+        p.vx *= 0.985; p.vy *= 0.985
+        p.x += p.vx; p.y += p.vy
+
+        // Wrap
+        if (p.x < -10) p.x = W + 10
+        if (p.x > W + 10) p.x = -10
+        if (p.y < -10) p.y = H + 10
+        if (p.y > H + 10) p.y = -10
+
+        const a = (Math.sin(p.pulse) * 0.3 + 0.5) * 0.7
+        const glow = d < 250 ? 12 : 4
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r * (1 + Math.sin(p.pulse) * 0.3), 0, Math.PI * 2)
+        ctx.fillStyle = `hsla(${p.hue},85%,65%,${a})`
+        ctx.shadowColor = `hsla(${p.hue},85%,65%,${a})`
+        ctx.shadowBlur = glow
+        ctx.fill()
+        ctx.shadowBlur = 0
+      }
+
+      // Connection lines
+      const connDist = isMobile ? 80 : 130
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y
+          const d = Math.sqrt(dx * dx + dy * dy)
+          if (d < connDist) {
+            const a = (1 - d / connDist) * 0.12
+            const hue = pts[i].hue === pts[j].hue ? pts[i].hue : 270
+            ctx.beginPath()
+            ctx.moveTo(pts[i].x, pts[i].y)
+            ctx.lineTo(pts[j].x, pts[j].y)
+            ctx.strokeStyle = `hsla(${hue},70%,60%,${a})`
+            ctx.lineWidth = 0.6
+            ctx.stroke()
+          }
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(draw)
     }
-  }, [hideLoader])
+    draw()
 
-  if (!isVisible) return null
+    const onResize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight }
+    addEventListener('resize', onResize)
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      removeEventListener('mousemove', onMove)
+      removeEventListener('resize', onResize)
+    }
+  }, [isMobile])
+
+  /* ── hide logic ── */
+  const hide = useCallback(() => {
+    setExiting(true)
+    setTimeout(() => setVisible(false), 1400)
+  }, [])
+
+  /* ── scroll lock ── */
+  useEffect(() => {
+    if (!visible) return
+    const s = { o: document.body.style.overflow, p: document.body.style.position, w: document.body.style.width }
+    Object.assign(document.body.style, { overflow: 'hidden', position: 'fixed', width: '100%', top: '0' })
+    return () => { Object.assign(document.body.style, { overflow: s.o, position: s.p, width: s.w, top: '' }) }
+  }, [visible])
+
+  /* ── progress ── */
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === ' ') { e.preventDefault(); hide() }
+    }
+    addEventListener('keydown', handleKey)
+    const em = setTimeout(hide, 12000)
+    const id = setInterval(() => {
+      setProgress(p => {
+        const inc = p < 50 ? 2.8 : p < 80 ? 1.6 : 0.55
+        const n = Math.min(p + inc, 100)
+        setPhase(Math.min(~~((n / 100) * PHASES.length), PHASES.length - 1))
+        if (n >= 100) { clearInterval(id); clearTimeout(em); setTimeout(hide, 500) }
+        return n
+      })
+    }, 50)
+    return () => { clearInterval(id); clearTimeout(em); removeEventListener('keydown', handleKey) }
+  }, [hide])
+
+  /* ── wave bars ── */
+  const waveBars = useMemo(() => Array.from({ length: isMobile ? 24 : 40 }, (_, i) => i), [isMobile])
+
+  if (!visible) return null
+
+  const circ = 2 * Math.PI * 58
+  const dashOff = circ - (progress / 100) * circ
+  const pAngle = -90 + (progress / 100) * 360
 
   return (
     <>
       <div
-        className={`fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden transition-all duration-1000 ${
-          isExiting ? 'opacity-0' : 'opacity-100'
-        }`}
+        className={`fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden select-none
+          ${exiting ? 'pointer-events-none' : ''}`}
+        style={{
+          transition: exiting ? 'all 1.4s cubic-bezier(.4,0,.2,1)' : 'none',
+          opacity: exiting ? 0 : 1,
+          transform: exiting ? 'scale(1.3) rotateX(15deg)' : 'scale(1) rotateX(0deg)',
+          filter: exiting ? 'blur(16px) brightness(2)' : 'blur(0) brightness(1)',
+          perspective: '1200px',
+        }}
       >
-        {/* Darker background with theme colors for loading state */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e1a] via-[#050a14] to-[#0a0e1a]">
-          {/* Stronger focused glows for loading emphasis */}
-          <div className="absolute inset-0 opacity-60">
-            <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#2ee6c1]/25 blur-[80px] md:blur-[120px] animate-pulse-shift" />
-            <div className="absolute bottom-[30%] right-[25%] w-[450px] h-[450px] rounded-full bg-[#ff4da6]/20 blur-[70px] md:blur-[110px] animate-pulse-shift" style={{ animationDelay: '2s' }} />
-            <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#2ee6c1]/15 blur-[90px] md:blur-[140px] animate-pulse-shift" style={{ animationDelay: '1s' }} />
-          </div>
-
-          {/* Animated scan lines */}
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(46, 230, 193, 0.03) 2px, rgba(46, 230, 193, 0.03) 4px)',
-            animation: 'scan-lines 8s linear infinite'
+        {/* ─── BACKGROUND ─── */}
+        <div className="absolute inset-0 bg-[#010810]">
+          {/* Mouse-following spotlight */}
+          <div className="absolute inset-0 pointer-events-none transition-opacity duration-500" style={{
+            background: `radial-gradient(800px circle at ${mouse.x * 100}% ${mouse.y * 100}%, 
+              rgba(46,230,193,0.07) 0%, rgba(255,77,166,0.03) 30%, transparent 60%)`,
           }} />
 
-          {/* Hexagonal grid pattern */}
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%232ee6c1' stroke-width='0.5'/%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }} />
-        </div>
-
-        {/* Glitch effect particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(isMobile ? 6 : 12)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-glitch-float"
-              style={{
-                left: `${(i * 4) % 100}%`,
-                top: `${(i * 6.5) % 100}%`,
-                animationDelay: `${(i * 0.4) % 6}s`,
-                animationDuration: `${12 + (i % 6)}s`,
-              }}
-            >
-              <div 
-                className="w-1 h-1 bg-[#2ee6c1]/70 rounded-full"
-                style={{
-                  boxShadow: '0 0 6px rgba(46, 230, 193, 0.8), 0 0 12px rgba(46, 230, 193, 0.4)'
-                }}
-              />
-            </div>
-          ))}
-        </div>
-        
-        {/* DNA Helix effect */}
-        <div className="absolute left-4 sm:left-10 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
-          <div className="relative h-64 w-8">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="absolute w-full" style={{ top: `${i * 12.5}%` }}>
-                <div 
-                  className="w-3 h-3 rounded-full bg-[#2ee6c1] absolute"
-                  style={{ 
-                    left: '0%',
-                    animation: `dna-helix-left 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    boxShadow: '0 0 10px rgba(46, 230, 193, 0.8)'
-                  }}
-                />
-                <div 
-                  className="w-3 h-3 rounded-full bg-[#ff4da6] absolute"
-                  style={{ 
-                    right: '0%',
-                    animation: `dna-helix-right 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    boxShadow: '0 0 10px rgba(255, 77, 166, 0.8)'
-                  }}
-                />
-                <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-[#2ee6c1] to-[#ff4da6]"
-                  style={{ 
-                    width: '100%',
-                    animation: `dna-connector 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    opacity: 0.5
-                  }}
-                />
-              </div>
-            ))}
+          {/* Aurora bands */}
+          <div className="absolute inset-0 overflow-hidden opacity-40">
+            <div className="absolute w-[200%] h-[60%] -top-[20%] -left-[50%] animate-[aurora_12s_ease-in-out_infinite]"
+              style={{ background: 'linear-gradient(135deg, transparent 20%, rgba(46,230,193,0.08) 35%, rgba(138,43,226,0.06) 50%, rgba(255,77,166,0.08) 65%, transparent 80%)', filter: 'blur(60px)' }} />
+            <div className="absolute w-[200%] h-[50%] -bottom-[10%] -right-[50%] animate-[aurora_15s_ease-in-out_infinite_reverse]"
+              style={{ background: 'linear-gradient(225deg, transparent 25%, rgba(255,77,166,0.06) 40%, rgba(46,230,193,0.07) 55%, transparent 75%)', filter: 'blur(80px)' }} />
           </div>
-        </div>
-        
-        {/* DNA Helix right side */}
-        <div className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
-          <div className="relative h-64 w-8">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="absolute w-full" style={{ top: `${i * 12.5}%` }}>
-                <div 
-                  className="w-3 h-3 rounded-full bg-[#ff4da6] absolute"
-                  style={{ 
-                    left: '0%',
-                    animation: `dna-helix-right 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    boxShadow: '0 0 10px rgba(255, 77, 166, 0.8)'
-                  }}
-                />
-                <div 
-                  className="w-3 h-3 rounded-full bg-[#2ee6c1] absolute"
-                  style={{ 
-                    right: '0%',
-                    animation: `dna-helix-left 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    boxShadow: '0 0 10px rgba(46, 230, 193, 0.8)'
-                  }}
-                />
-                <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-[#ff4da6] to-[#2ee6c1]"
-                  style={{ 
-                    width: '100%',
-                    animation: `dna-connector 2s ease-in-out infinite`,
-                    animationDelay: `${i * 0.15}s`,
-                    opacity: 0.5
-                  }}
-                />
-              </div>
-            ))}
+
+          {/* Cyberpunk grid floor */}
+          <div className="absolute bottom-0 left-0 right-0 h-[45%]" style={{
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 35%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 35%)',
+          }}>
+            <div className="absolute inset-0 opacity-25" style={{
+              backgroundImage: 'linear-gradient(rgba(46,230,193,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(46,230,193,0.2) 1px, transparent 1px)',
+              backgroundSize: '70px 50px',
+              transform: 'perspective(400px) rotateX(65deg)',
+              transformOrigin: 'bottom center',
+              animation: 'gridFlow 3s linear infinite',
+            }} />
+          </div>
+
+          {/* Floating horizontal laser lines */}
+          <div className="absolute left-0 right-0 top-[25%] h-px overflow-hidden">
+            <div className="h-full animate-[laserSweep_5s_ease-in-out_infinite]"
+              style={{ background: 'linear-gradient(90deg, transparent, #2ee6c1, transparent)', width: '30%' }} />
+          </div>
+          <div className="absolute left-0 right-0 top-[75%] h-px overflow-hidden">
+            <div className="h-full animate-[laserSweepReverse_7s_ease-in-out_infinite]"
+              style={{ background: 'linear-gradient(90deg, transparent, #ff4da6, transparent)', width: '25%' }} />
+          </div>
+
+          {/* Vertical scan beam */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-0 bottom-0 w-[3px] animate-[scanBeam_6s_ease-in-out_infinite]"
+              style={{ background: 'linear-gradient(to bottom, transparent, rgba(46,230,193,0.4), rgba(255,77,166,0.3), transparent)', boxShadow: '0 0 20px rgba(46,230,193,0.3)' }} />
           </div>
         </div>
 
-        {/* Floating animated particles system */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {particles.map((particle) => (
-            <div
-              key={particle.id}
-              className="absolute rounded-full"
-              style={{
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                background: `radial-gradient(circle, rgba(46, 230, 193, ${particle.opacity}) 0%, rgba(46, 230, 193, 0) 70%)`,
-                animation: `float-particle ${particle.duration}s ease-in-out infinite`,
-                animationDelay: `${particle.delay}s`,
-                boxShadow: `0 0 ${particle.size * 2}px rgba(46, 230, 193, ${particle.opacity * 0.8})`,
-                willChange: 'transform',
-                transform: 'translateZ(0)'
-              }}
-            />
-          ))}
-        </div>
+        {/* ─── CANVAS PARTICLES ─── */}
+        <canvas ref={canvasRef} className="absolute inset-0 z-[1] pointer-events-none" />
 
-        {/* Matrix rain effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-          {matrixColumns.map((column) => (
-            <div
-              key={column.id}
-              className="absolute top-0 flex flex-col text-[10px] font-mono leading-tight"
-              style={{
-                left: `${column.x}%`,
-                animation: `matrix-fall ${column.speed}s linear infinite`,
-                animationDelay: `${column.delay}s`,
-                color: '#2ee6c1',
-                willChange: 'transform',
-                transform: 'translateZ(0)'
-              }}
-            >
-              {column.chars.map((char, idx) => (
-                <span
-                  key={idx}
-                  style={{
-                    opacity: 1 - (idx * 0.12),
-                    textShadow: `0 0 5px rgba(46, 230, 193, ${1 - (idx * 0.1)})`
-                  }}
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+        {/* ─── TOUCH RIPPLES ─── */}
+        {touchRipples.map(r => (
+          <div key={r.id} className="absolute z-[2] pointer-events-none animate-[rippleOut_1s_ease-out_forwards]"
+            style={{ left: r.x, top: r.y, transform: 'translate(-50%,-50%)' }}>
+            <div className="w-4 h-4 rounded-full border border-[#2ee6c1]/60" />
+          </div>
+        ))}
 
-        {/* Connection lines between particles - desktop only */}
-        {!isMobile && (
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.15 }}>
-          {particles.map((particle, i) => {
-            // Connect to only 1 nearest particle for performance
-            const targetParticle = particles[i + 1]
-            if (!targetParticle) return null
-            
-            const distance = Math.sqrt(
-              Math.pow(particle.x - targetParticle.x, 2) + Math.pow(particle.y - targetParticle.y, 2)
-            )
-            // Only draw lines if particles are close enough
-            if (distance < 30) {
-              return (
-                <line
-                  key={`${particle.id}-${targetParticle.id}`}
-                  x1={`${particle.x}%`}
-                  y1={`${particle.y}%`}
-                  x2={`${targetParticle.x}%`}
-                  y2={`${targetParticle.y}%`}
-                  stroke="#2ee6c1"
-                  strokeWidth="0.5"
-                  strokeOpacity={0.4 - (distance / 100)}
-                />
-              )
-            }
-            return null
-          })}
-        </svg>
+        {/* ─── GLITCH OVERLAY ─── */}
+        {glitch && (
+          <div className="absolute inset-0 z-[6] pointer-events-none">
+            <div className="absolute inset-0 bg-[#2ee6c1]/[0.03]" />
+            <div className="absolute h-[1px] left-0 right-0" style={{ top: `${20 + Math.random() * 60}%`, background: `linear-gradient(90deg, transparent, #2ee6c1, transparent)`, opacity: 0.7 }} />
+            <div className="absolute h-[2px] left-0 right-0" style={{ top: `${30 + Math.random() * 40}%`, background: `linear-gradient(90deg, transparent, #ff4da6, transparent)`, opacity: 0.4 }} />
+            <div className="absolute inset-0" style={{ background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(46,230,193,0.015) 2px, rgba(46,230,193,0.015) 4px)' }} />
+          </div>
         )}
 
-        {/* Main content */}
-        <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 max-w-3xl mx-auto min-h-screen">
-          
-          {/* Hexagonal logo container */}
-          <div className="relative mb-6 sm:mb-12 md:mb-16">
-            {/* Outer hexagon frame */}
-            <div className="absolute inset-0 -m-12 sm:-m-16 opacity-40">
-              <svg className="w-36 sm:w-48 h-36 sm:h-48 animate-rotate-slow" viewBox="0 0 100 100">
-                <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="url(#hex-gradient-1)" strokeWidth="0.5" strokeDasharray="4 3" />
+        {/* ─── MAIN CONTENT ─── */}
+        <div className="relative z-10 flex flex-col items-center px-4 sm:px-8 max-w-4xl mx-auto">
+
+          {/* ── CENTRAL ORB ── */}
+          <div className={`relative mb-6 sm:mb-10 transition-all duration-1000 ${entered ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
+            style={{ transitionDelay: '0.2s' }}>
+
+            {/* Outer rotating rings */}
+            <div className="absolute inset-0 -m-20 sm:-m-28">
+              <svg className="w-full h-full animate-[spin_25s_linear_infinite]" viewBox="0 0 300 300">
                 <defs>
-                  <linearGradient id="hex-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2ee6c1" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#ff4da6" stopOpacity="0.4" />
+                  <linearGradient id="ring1g" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2ee6c1" stopOpacity="0.4" />
+                    <stop offset="50%" stopColor="#2ee6c1" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#ff4da6" stopOpacity="0.3" />
                   </linearGradient>
                 </defs>
+                <circle cx="150" cy="150" r="140" fill="none" stroke="url(#ring1g)" strokeWidth="0.8" strokeDasharray="8 16 2 16" />
+                {/* orbiting dots */}
+                {[0, 90, 180, 270].map(a => {
+                  const cx = Math.round((150 + 140 * Math.cos(a * Math.PI / 180)) * 100) / 100
+                  const cy = Math.round((150 + 140 * Math.sin(a * Math.PI / 180)) * 100) / 100
+                  return (
+                    <circle key={a} cx={cx} cy={cy} r="2.5" fill="#2ee6c1" opacity="0.7">
+                      <animate attributeName="r" values="1.5;3;1.5" dur={`${1.5 + a * 0.005}s`} repeatCount="indefinite" />
+                    </circle>
+                  )
+                })}
               </svg>
             </div>
 
-            {/* Middle hexagon */}
-            <div className="absolute inset-0 -m-8 sm:-m-10">
-              <svg className="w-28 sm:w-36 h-28 sm:h-36 animate-rotate-reverse-slow" viewBox="0 0 100 100">
-                <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="#2ee6c1" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.6" />
+            <div className="absolute inset-0 -m-14 sm:-m-20">
+              <svg className="w-full h-full animate-[spin_18s_linear_infinite_reverse]" viewBox="0 0 300 300">
+                <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(255,77,166,0.12)" strokeWidth="0.6" strokeDasharray="3 20" />
+                <circle cx="150" cy="20" r="2" fill="#ff4da6" opacity="0.8">
+                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+                </circle>
               </svg>
             </div>
 
-            {/* Core container */}
-            <div className="relative group" style={{ perspective: '1000px' }}>
-              {/* Enhanced glowing background with multiple layers */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2ee6c1]/30 to-[#ff4da6]/30 blur-3xl rounded-full scale-150 animate-pulse-glow-tech" />
-              <div className="absolute inset-0 bg-gradient-to-tl from-[#ff4da6]/20 to-[#2ee6c1]/20 blur-2xl rounded-full scale-125 animate-pulse" style={{ animationDelay: '0.5s' }} />
-              
-              {/* Main hexagonal shape with enhanced 3D rotation */}
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center animate-pulse-slow" style={{ animation: 'rotate-3d 10s ease-in-out infinite, float 3s ease-in-out infinite' }}>
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                  <defs>
-                    <linearGradient id="hex-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#2ee6c1" stopOpacity="0.2" />
-                      <stop offset="50%" stopColor="#2ee6c1" stopOpacity="0.1" />
-                      <stop offset="100%" stopColor="#ff4da6" stopOpacity="0.2" />
-                    </linearGradient>
-                  </defs>
-                  <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="url(#hex-fill)" stroke="url(#hex-gradient-1)" strokeWidth="2" />
+            {/* 3D rotating wireframe cube (behind orb) */}
+            <div className="absolute inset-0 -m-10 sm:-m-14 flex items-center justify-center" style={{ perspective: '400px' }}>
+              <div className="w-full h-full animate-[spinCube_10s_linear_infinite]" style={{ transformStyle: 'preserve-3d' }}>
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" style={{ opacity: 0.15 }}>
+                  <rect x="15" y="15" width="70" height="70" fill="none" stroke="#2ee6c1" strokeWidth="0.5" rx="2" />
                 </svg>
-                
-                {/* Logo text with enhanced animation */}
-                <span className="relative z-10 text-2xl sm:text-3xl font-black tracking-[0.2em] bg-gradient-to-br from-[#2ee6c1] via-white to-[#ff4da6] bg-clip-text text-transparent animate-pulse-slow" style={{ 
-                  filter: 'drop-shadow(0 0 20px rgba(46,230,193,0.7)) drop-shadow(0 0 40px rgba(255,77,166,0.4))',
-                  animation: 'text-glow 2s ease-in-out infinite'
-                }}>
-                  KM
-                </span>
-
-                {/* Corner indicators */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-1 h-3 bg-gradient-to-b from-[#2ee6c1] to-transparent animate-pulse-tech" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2 w-1 h-3 bg-gradient-to-t from-[#ff4da6] to-transparent animate-pulse-tech" style={{ animationDelay: '0.5s' }} />
               </div>
             </div>
 
-            {/* Orbital rings with enhanced animation */}
-            <div className="absolute inset-0 -m-6 sm:-m-8 animate-orbit">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2ee6c1] shadow-[0_0_15px_rgba(46,230,193,1),0_0_25px_rgba(46,230,193,0.6)] animate-pulse-slow" />
-            </div>
-            <div className="absolute inset-0 -m-6 sm:-m-8 animate-orbit-reverse" style={{ animationDelay: '1s' }}>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#ff4da6] shadow-[0_0_15px_rgba(255,77,166,1),0_0_25px_rgba(255,77,166,0.6)] animate-pulse-slow" />
-            </div>
-            {/* Additional spinning rings */}
-            <div className="absolute inset-0 -m-10 sm:-m-12 opacity-30">
-              <svg className="w-full h-full animate-spin-slow" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#2ee6c1" strokeWidth="0.5" strokeDasharray="10 5" opacity="0.5" />
-              </svg>
-            </div>
-            <div className="absolute inset-0 -m-14 sm:-m-16 opacity-20">
-              <svg className="w-full h-full" style={{ animation: 'spin 15s linear infinite reverse' }} viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="48" fill="none" stroke="#ff4da6" strokeWidth="0.5" strokeDasharray="5 10" opacity="0.4" />
-              </svg>
-            </div>
-            
-            {/* New: Electric arc rings */}
-            <div className="absolute inset-0 -m-6 sm:-m-8 opacity-60">
-              <svg className="w-full h-full" style={{ animation: 'spin 3s linear infinite' }} viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="url(#electric-gradient)" strokeWidth="2" strokeDasharray="3 8 15 8" opacity="0.8" />
+            {/* Circular progress ring (main) */}
+            <div className="absolute inset-0 -m-8 sm:-m-12">
+              <svg className="w-full h-full -rotate-90" viewBox="0 0 130 130">
+                {/* Track */}
+                <circle cx="65" cy="65" r="58" fill="none" stroke="rgba(46,230,193,0.08)" strokeWidth="3" />
+                {/* Tick marks */}
+                {Array.from({ length: 60 }, (_, i) => {
+                  const a = (i / 60) * 360
+                  const rad = a * Math.PI / 180
+                  const r1 = 54, r2 = 58
+                  const cos = Math.round(Math.cos(rad) * 10000) / 10000
+                  const sin = Math.round(Math.sin(rad) * 10000) / 10000
+                  return (
+                    <line key={i}
+                      x1={65 + r1 * cos} y1={65 + r1 * sin}
+                      x2={65 + r2 * cos} y2={65 + r2 * sin}
+                      stroke={i % 5 === 0 ? 'rgba(46,230,193,0.2)' : 'rgba(46,230,193,0.06)'}
+                      strokeWidth={i % 5 === 0 ? '1' : '0.5'}
+                    />
+                  )
+                })}
+                {/* Progress arc */}
+                <circle cx="65" cy="65" r="58" fill="none"
+                  stroke="url(#progGrad)" strokeWidth="3" strokeLinecap="round"
+                  strokeDasharray={circ} strokeDashoffset={dashOff}
+                  className="transition-[stroke-dashoffset] duration-200 ease-out"
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(46,230,193,0.7))' }} />
+                {/* Leading dot */}
+                <circle
+                  cx={Math.round((65 + 58 * Math.cos(pAngle * Math.PI / 180)) * 100) / 100}
+                  cy={Math.round((65 + 58 * Math.sin(pAngle * Math.PI / 180)) * 100) / 100}
+                  r="4" fill="#2ee6c1"
+                  style={{ filter: 'drop-shadow(0 0 10px #2ee6c1)', transition: 'cx 0.2s, cy 0.2s' }}>
+                  <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
+                </circle>
                 <defs>
-                  <linearGradient id="electric-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2ee6c1" stopOpacity="1" />
-                    <stop offset="50%" stopColor="#fff" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#ff4da6" stopOpacity="1" />
+                  <linearGradient id="progGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2ee6c1" />
+                    <stop offset="80%" stopColor="#2ee6c1" />
+                    <stop offset="100%" stopColor="#ff4da6" />
                   </linearGradient>
                 </defs>
               </svg>
             </div>
-            <div className="absolute inset-0 -m-4 sm:-m-5 opacity-50">
-              <svg className="w-full h-full" style={{ animation: 'spin 2s linear infinite reverse' }} viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="35" fill="none" stroke="#2ee6c1" strokeWidth="1.5" strokeDasharray="2 5 10 5" opacity="0.9" />
+
+            {/* CORE: morphing blob + hexagon + text */}
+            <div className="relative w-32 h-32 sm:w-44 sm:h-44 flex items-center justify-center group">
+              {/* Morphing blob */}
+              <svg className="absolute inset-0 w-full h-full animate-[blobRotate_20s_linear_infinite]" viewBox="0 0 200 200">
+                <defs>
+                  <radialGradient id="blobG">
+                    <stop offset="0%" stopColor="#2ee6c1" stopOpacity="0.15" />
+                    <stop offset="60%" stopColor="#2ee6c1" stopOpacity="0.04" />
+                    <stop offset="100%" stopColor="#ff4da6" stopOpacity="0.1" />
+                  </radialGradient>
+                </defs>
+                <path fill="url(#blobG)" stroke="#2ee6c1" strokeWidth="0.6" strokeOpacity="0.3">
+                  <animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+                    M100,25C145,25 175,55 175,100C175,145 145,175 100,175C55,175 25,145 25,100C25,55 55,25 100,25Z;
+                    M105,20C155,35 180,65 170,115C160,155 130,180 85,175C40,170 15,140 25,95C35,50 55,5 105,20Z;
+                    M95,22C150,30 185,70 168,120C152,165 115,182 70,170C30,158 12,120 28,75C44,30 40,14 95,22Z;
+                    M100,25C145,25 175,55 175,100C175,145 145,175 100,175C55,175 25,145 25,100C25,55 55,25 100,25Z
+                  " />
+                </path>
               </svg>
-            </div>
-            
-            {/* New: Pulsing energy waves */}
-            <div className="absolute inset-0 -m-2 sm:-m-3">
-              <div className="absolute inset-0 rounded-full border-2 border-[#2ee6c1]/40 animate-ping" style={{ animationDuration: '2s' }} />
-            </div>
-            <div className="absolute inset-0 -m-4 sm:-m-5">
-              <div className="absolute inset-0 rounded-full border border-[#ff4da6]/30 animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
-            </div>
-            <div className="absolute inset-0 -m-6 sm:-m-7">
-              <div className="absolute inset-0 rounded-full border border-[#2ee6c1]/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '1s' }} />
+
+              {/* Spinning triangle */}
+              <svg className="absolute inset-3 w-[calc(100%-24px)] h-[calc(100%-24px)] animate-[spin_8s_linear_infinite]" viewBox="0 0 100 100" style={{ opacity: 0.12 }}>
+                <polygon points="50,5 95,85 5,85" fill="none" stroke="#ff4da6" strokeWidth="0.6" strokeDasharray="4 6" />
+              </svg>
+
+              {/* Spinning hexagon */}
+              <svg className="absolute inset-4 w-[calc(100%-32px)] h-[calc(100%-32px)] animate-[spin_15s_linear_infinite_reverse]" viewBox="0 0 100 100" style={{ opacity: 0.18 }}>
+                <polygon points="50,5 91,27 91,73 50,95 9,73 9,27" fill="none" stroke="#2ee6c1" strokeWidth="0.5" strokeDasharray="2 8" />
+              </svg>
+
+              {/* Center percentage / KM */}
+              <div className="relative z-10 flex flex-col items-center">
+                {progress < 100 ? (
+                  <>
+                    <span className="text-4xl sm:text-5xl font-black font-mono tabular-nums bg-gradient-to-b from-white to-[#2ee6c1] bg-clip-text text-transparent"
+                      style={{ filter: 'drop-shadow(0 0 25px rgba(46,230,193,0.9))', textShadow: '0 0 40px rgba(46,230,193,0.5)' }}>
+                      {Math.round(progress)}
+                    </span>
+                    <span className="text-[9px] sm:text-[11px] font-mono text-[#2ee6c1]/50 tracking-[0.4em] mt-1 uppercase">percent</span>
+                  </>
+                ) : (
+                  <div className="animate-[pulseGlow_2s_ease-in-out_infinite]">
+                    <span className="text-4xl sm:text-5xl font-black bg-gradient-to-br from-[#2ee6c1] via-white to-[#ff4da6] bg-clip-text text-transparent"
+                      style={{ filter: 'drop-shadow(0 0 30px rgba(46,230,193,1)) drop-shadow(0 0 60px rgba(255,77,166,0.5))' }}>
+                      KM
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Sound wave visualization */}
-            <div className="absolute -bottom-8 sm:-bottom-12 left-1/2 -translate-x-1/2 flex items-end gap-0.5 sm:gap-1 h-6 sm:h-8">
-              {[...Array(isMobile ? 7 : 11)].map((_, i) => {
-                const centerIndex = isMobile ? 3 : 5
-                const isCenter = i === centerIndex
-                const distanceFromCenter = Math.abs(i - centerIndex)
-                const baseHeight = isCenter ? 100 : 70 - (distanceFromCenter * 10)
-                const delay = i * 0.1
-                
-                return (
-                  <div
-                    key={i}
-                    className="w-1 rounded-full transition-all duration-300"
-                    style={{
-                      height: `${(baseHeight * progress) / 100}%`,
-                      background: `linear-gradient(to top, #2ee6c1, #ff4da6)`,
-                      animation: `sound-wave 0.6s ease-in-out infinite`,
-                      animationDelay: `${delay}s`,
-                      boxShadow: `0 0 8px rgba(46, 230, 193, 0.6), 0 0 4px rgba(255, 77, 166, 0.4)`,
-                      opacity: 0.7 + (progress / 200)
-                    }}
-                  />
-                )
-              })}
+            {/* Floating code snippets (desktop) */}
+            {!isMobile && (
+              <>
+                <div className="absolute -top-8 -right-20 text-[8px] font-mono text-[#2ee6c1]/30 animate-[floatUp_4s_ease-in-out_infinite] whitespace-nowrap">
+                  const portfolio = <span className="text-[#ff4da6]/40">await</span> init()
+                </div>
+                <div className="absolute -bottom-6 -left-24 text-[8px] font-mono text-[#ff4da6]/30 animate-[floatUp_5s_ease-in-out_infinite_1s] whitespace-nowrap">
+                  &lt;Loader <span className="text-[#2ee6c1]/40">progress=</span>{`{${Math.round(progress)}}`}/&gt;
+                </div>
+                <div className="absolute top-1/2 -right-32 text-[8px] font-mono text-[#2ee6c1]/25 animate-[floatUp_3.5s_ease-in-out_infinite_0.5s]">
+                  0x{Math.round(progress).toString(16).toUpperCase().padStart(2, '0')}FF
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* ── AUDIO WAVE VISUALIZER ── */}
+          <div className={`flex items-center justify-center gap-[2px] sm:gap-[3px] mb-5 sm:mb-8 h-8 sm:h-12 transition-all duration-700 ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            style={{ transitionDelay: '0.5s' }}>
+            {waveBars.map(i => {
+              const h = Math.abs(Math.sin((wavePhase * 0.15) + i * 0.3)) * (progress / 100)
+              const hue = 165 + (i / waveBars.length) * 165
+              return (
+                <div key={i} className="rounded-full transition-all duration-150" style={{
+                  width: isMobile ? '2px' : '3px',
+                  height: `${4 + h * (isMobile ? 24 : 40)}px`,
+                  background: `hsl(${hue}, 80%, 60%)`,
+                  opacity: 0.4 + h * 0.6,
+                  boxShadow: h > 0.5 ? `0 0 6px hsla(${hue},80%,60%,0.4)` : 'none',
+                }} />
+              )
+            })}
+          </div>
+
+          {/* ── NAME + ROLE ── */}
+          <div className={`relative mb-2 sm:mb-4 transition-all duration-700 ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ transitionDelay: '0.7s' }}>
+            {/* Glitch copies */}
+            {glitch && (
+              <>
+                <div className="absolute inset-0 text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-[0.06em] text-[#ff4da6]/25 font-mono"
+                  style={{ transform: 'translate(4px,-2px)', clipPath: 'inset(15% 0 50% 0)' }}>{nameText}</div>
+                <div className="absolute inset-0 text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-[0.06em] text-[#2ee6c1]/25 font-mono"
+                  style={{ transform: 'translate(-4px,3px)', clipPath: 'inset(55% 0 5% 0)' }}>{nameText}</div>
+              </>
+            )}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-[0.06em] font-mono bg-gradient-to-r from-[#2ee6c1] via-white to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent animate-[shimmer_5s_ease-in-out_infinite] text-center"
+              style={{ filter: 'drop-shadow(0 0 35px rgba(46,230,193,0.3))' }}>
+              {nameText}
+            </h1>
+          </div>
+
+          {/* Role subtitle */}
+          <div className={`transition-all duration-700 ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ transitionDelay: '0.9s' }}>
+            <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-10 justify-center">
+              <div className="h-px w-6 sm:w-12 bg-gradient-to-r from-transparent to-[#2ee6c1]/30" />
+              <span className="text-[10px] sm:text-sm font-mono tracking-[0.3em] sm:tracking-[0.4em] text-[#2ee6c1]/40">
+                {roleText}
+              </span>
+              <div className="h-px w-6 sm:w-12 bg-gradient-to-l from-transparent to-[#ff4da6]/30" />
             </div>
           </div>
 
-          {/* Title section with tech brackets */}
-          <div className="relative text-center mb-6 sm:mb-10 md:mb-12">
-            {/* Decorative tech brackets */}
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 hidden sm:block">
-              <div className="flex flex-col gap-1 text-[#2ee6c1]/50">
-                <div className="text-xl font-mono">[</div>
-                <div className="text-xl font-mono">[</div>
-              </div>
-            </div>
-            <div className="absolute -right-8 top-1/2 -translate-y-1/2 hidden sm:block">
-              <div className="flex flex-col gap-1 text-[#2ee6c1]/50">
-                <div className="text-xl font-mono">]</div>
-                <div className="text-xl font-mono">]</div>
-              </div>
-            </div>
+          {/* ── PROGRESS BAR ── */}
+          <div className={`w-full max-w-sm sm:max-w-lg transition-all duration-700 ${entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{ transitionDelay: '1.1s' }}>
 
-            <div className="space-y-2 sm:space-y-3 md:space-y-4">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight">
-                <span className="inline-block bg-gradient-to-r from-[#2ee6c1] via-white to-[#ff4da6] bg-clip-text text-transparent animate-text-glow bg-[length:200%_auto] filter drop-shadow-[0_0_20px_rgba(46,230,193,0.3)]">
-                  KUNJ MUNGALPARA
-                </span>
-              </h1>
-              
-              <div className="flex items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#2ee6c1]/70 font-mono">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#2ee6c1]/50" />
-                <span className="animate-pulse-slow-tech">PORTFOLIO SYSTEM</span>
-                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#2ee6c1]/50" />
-              </div>
-            </div>
-          </div>
-
-          {/* Progress section */}
-          <div className="w-full max-w-xl">
-            {/* Status header */}
-            <div className="flex items-center justify-between mb-5 text-[11px] sm:text-xs text-[#2ee6c1]/60 font-mono uppercase tracking-wider">
+            {/* Status */}
+            <div className="flex items-center justify-between mb-3 text-[10px] sm:text-xs font-mono">
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <div className="w-2 h-2 rounded-full bg-[#2ee6c1] animate-ping absolute" />
-                  <div className="w-2 h-2 rounded-full bg-[#2ee6c1] relative" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#2ee6c1] animate-ping absolute opacity-50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#2ee6c1] relative" style={{ boxShadow: '0 0 10px #2ee6c1' }} />
                 </div>
-                <span className="text-[#2ee6c1]/80">{loadingSteps[currentStep]}</span>
+                <span className="text-[#2ee6c1]/60 tracking-wider">
+                  {PHASES[phase]?.icon} {PHASES[phase]?.label}
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-bold">{Math.round(progress)}%</span>
-              </div>
+              <span className="text-white/70 font-bold tabular-nums text-xs sm:text-sm tracking-wider">
+                {Math.round(progress)}<span className="text-[#2ee6c1]/40">%</span>
+              </span>
             </div>
 
-            {/* Tech progress bar container */}
+            {/* Bar */}
             <div className="relative">
-              {/* Outer frame */}
-              <div className="absolute -inset-2 border border-[#2ee6c1]/20 rounded bg-[#2ee6c1]/5 backdrop-blur-sm" />
-              
-              {/* Progress bar */}
-              <div className="relative h-4 sm:h-5 bg-gradient-to-r from-slate-900/80 via-slate-800/80 to-slate-900/80 rounded border border-[#2ee6c1]/30 overflow-hidden">
-                {/* Background segments */}
+              <div className="absolute -inset-1.5 rounded-xl bg-gradient-to-r from-[#2ee6c1]/10 via-purple-500/5 to-[#ff4da6]/10 blur-md" />
+              <div className="relative h-2.5 sm:h-3 bg-white/[0.03] rounded-full overflow-hidden border border-white/[0.08] backdrop-blur-sm">
+                {/* Segments */}
                 <div className="absolute inset-0 flex">
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} className="flex-1 border-r border-[#2ee6c1]/20" />
-                  ))}
+                  {Array.from({ length: 25 }, (_, i) => <div key={i} className="flex-1 border-r border-white/[0.04]" />)}
                 </div>
-
-                {/* Glow trail */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-[#2ee6c1]/10 via-[#2ee6c1]/20 to-[#ff4da6]/10 transition-all duration-500"
-                  style={{ width: `${progress}%` }}
-                />
-
-                {/* Main progress fill */}
-                <div 
-                  className="absolute inset-0 transition-all duration-500 ease-out"
-                  style={{ width: `${progress}%` }}
-                >
-                  <div className="h-full bg-gradient-to-r from-[#2ee6c1] via-[#2ee6c1] to-[#ff4da6]">
-                    {/* Top shine */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
-                    {/* Animated scan */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-scan-tech" />
+                {/* Fill */}
+                <div className="absolute inset-y-0 left-0 rounded-full transition-all duration-200 ease-out" style={{ width: `${progress}%` }}>
+                  <div className="h-full rounded-full bg-gradient-to-r from-[#2ee6c1] via-[#2ee6c1] to-[#ff4da6] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-transparent" style={{ height: '45%' }} />
+                    <div className="absolute inset-0 animate-[barScan_1.2s_ease-in-out_infinite]"
+                      style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%)', width: '40%' }} />
                   </div>
                 </div>
-
-                {/* Leading edge particles */}
-                <div 
-                  className="absolute inset-y-0 w-20 transition-all duration-500"
-                  style={{ 
-                    left: `${Math.max(0, progress - 10)}%`,
-                    background: 'linear-gradient(90deg, transparent, rgba(46, 230, 193, 0.4), rgba(255, 77, 166, 0.6))',
-                    filter: 'blur(10px)'
-                  }}
-                />
-
-                {/* Percentage readout */}
-                <div 
-                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 transition-all duration-500"
-                  style={{ left: `${progress}%` }}
-                >
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-[#2ee6c1] blur-lg opacity-70 rounded" />
-                    <div className="relative px-2 sm:px-3 py-0.5 sm:py-1 bg-gradient-to-r from-[#2ee6c1] to-[#ff4da6] rounded border border-[#2ee6c1]/50 shadow-lg">
-                      <span className="text-[10px] sm:text-xs font-bold text-white font-mono tracking-wider">
-                        {Math.round(progress)}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                {/* Leading glow */}
+                <div className="absolute inset-y-0 w-12 transition-all duration-200" style={{
+                  left: `calc(${progress}% - 24px)`,
+                  background: 'radial-gradient(ellipse at center, rgba(46,230,193,0.5), transparent)',
+                  filter: 'blur(6px)',
+                }} />
               </div>
 
-              {/* Corner accents */}
-              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#2ee6c1]/60 animate-pulse-tech" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[#2ee6c1]/60 animate-pulse-tech" style={{ animationDelay: '0.5s' }} />
-              <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[#ff4da6]/60 animate-pulse-tech" style={{ animationDelay: '1s' }} />
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#ff4da6]/60 animate-pulse-tech" style={{ animationDelay: '1.5s' }} />
+              {/* Corner brackets */}
+              <div className="absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-[#2ee6c1]/40 rounded-tl-sm" />
+              <div className="absolute -top-2 -right-2 w-3 h-3 border-t-2 border-r-2 border-[#2ee6c1]/40 rounded-tr-sm" />
+              <div className="absolute -bottom-2 -left-2 w-3 h-3 border-b-2 border-l-2 border-[#ff4da6]/40 rounded-bl-sm" />
+              <div className="absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-[#ff4da6]/40 rounded-br-sm" />
             </div>
 
-            {/* Stage indicators */}
-            <div className="mt-5 sm:mt-8 flex justify-between items-center gap-1 sm:gap-0">
-              {loadingSteps.map((step, idx) => (
-                <div key={idx} className="flex flex-col items-center gap-1 sm:gap-2">
-                  <div 
-                    className={`relative transition-all duration-500 ${
-                      idx <= currentStep ? 'scale-100' : 'scale-75'
-                    }`}
-                  >
-                    {idx <= currentStep && (
-                      <div className="absolute inset-0 bg-[#2ee6c1] blur-sm sm:blur-md animate-pulse" />
+            {/* Phase indicators */}
+            <div className="flex justify-between mt-4 sm:mt-5 px-0.5">
+              {PHASES.map((p, i) => (
+                <div key={i} className="flex flex-col items-center gap-1">
+                  <div className="flex items-center">
+                    <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-500 ${
+                      i <= phase ? 'scale-100' : 'scale-50 opacity-30'
+                    }`} style={{
+                      background: i <= phase ? `linear-gradient(135deg, #2ee6c1, #ff4da6)` : 'rgba(255,255,255,0.1)',
+                      boxShadow: i <= phase ? '0 0 10px rgba(46,230,193,0.6)' : 'none',
+                    }} />
+                    {i < PHASES.length - 1 && (
+                      <div className={`h-px w-4 sm:w-8 md:w-12 transition-all duration-500 ${
+                        i < phase ? 'bg-gradient-to-r from-[#2ee6c1]/50 to-[#ff4da6]/30' : 'bg-white/5'
+                      }`} />
                     )}
-                    <div 
-                      className={`relative w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-sm rotate-45 transition-all duration-500 ${
-                        idx <= currentStep 
-                          ? 'bg-gradient-to-br from-[#2ee6c1] to-[#ff4da6] shadow-[0_0_8px_rgba(46,230,193,0.8)]' 
-                          : 'bg-slate-700/40 border border-slate-600/30'
-                      }`}
-                    />
                   </div>
-                  {idx < loadingSteps.length - 1 && (
-                    <div className={`h-px w-4 sm:w-8 md:w-12 transition-all duration-500 ${
-                      idx < currentStep ? 'bg-gradient-to-r from-[#2ee6c1]/80 to-[#ff4da6]/60' : 'bg-slate-700/30'
-                    }`} />
-                  )}
+                  <span className={`text-[7px] sm:text-[8px] font-mono tracking-wider transition-all duration-300 ${
+                    i <= phase ? 'text-[#2ee6c1]/50' : 'text-white/10'
+                  } hidden sm:block`}>{p.icon}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Bottom info */}
-          <div className="mt-6 sm:mt-10 md:mt-14 flex items-center gap-2 sm:gap-4 text-[9px] sm:text-[10px] md:text-xs text-[#2ee6c1]/40 uppercase tracking-[0.15em] sm:tracking-[0.2em] font-mono flex-wrap justify-center">
-            <span className="hidden sm:inline">System loading</span>
-            <div className="h-px w-6 sm:w-8 bg-[#2ee6c1]/30" />
-            <span>Press <span className="text-[#2ee6c1] font-semibold">ESC</span> to skip</span>
+          {/* ── BOTTOM ── */}
+          <div className={`mt-6 sm:mt-10 transition-all duration-700 ${entered ? 'opacity-100' : 'opacity-0'}`}
+            style={{ transitionDelay: '1.4s' }}>
+            <div className="flex items-center gap-3 text-[9px] sm:text-[10px] text-white/20 font-mono tracking-wider justify-center">
+              <span className="animate-pulse">●</span>
+              <span>PRESS <span className="text-[#2ee6c1]/40 font-semibold">ESC</span> TO SKIP</span>
+              <span className="animate-pulse">●</span>
+            </div>
+          </div>
+
+          {/* Corner HUD */}
+          <div className="fixed top-3 left-3 sm:top-5 sm:left-5 text-[7px] sm:text-[9px] font-mono text-[#2ee6c1]/15 leading-5 hidden sm:block">
+            <div className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 bg-[#2ee6c1]/30 rounded-full animate-pulse" /> SYS.BOOT</div>
+            <div>MEM: {Math.round(progress * 10.24)}KB / 1024KB</div>
+            <div>CPU: {Math.min(99, Math.round(progress * 0.8 + 12))}%</div>
+          </div>
+          <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 text-[7px] sm:text-[9px] font-mono text-[#2ee6c1]/15 leading-5 text-right hidden sm:block">
+            <div>PORTFOLIO.EXE</div>
+            <div>BUILD: 2026.02.18</div>
+            <div>FPS: {Math.min(62, 58 + Math.round(progress * 0.04))}</div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes pulse-shift {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.1); }
+        @keyframes aurora {
+          0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+          33% { transform: translateX(5%) translateY(-3%) rotate(2deg); }
+          66% { transform: translateX(-3%) translateY(2%) rotate(-1deg); }
         }
-        @keyframes scan-lines {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(10px); }
+        @keyframes gridFlow {
+          0% { transform: perspective(400px) rotateX(65deg) translateY(0px); }
+          100% { transform: perspective(400px) rotateX(65deg) translateY(50px); }
         }
-        @keyframes glitch-float {
-          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
-          25% { transform: translate(15px, -30px); opacity: 0.8; }
-          50% { transform: translate(-10px, -60px); opacity: 1; }
-          75% { transform: translate(-20px, -30px); opacity: 0.8; }
-        }
-        @keyframes rotate-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes rotate-reverse-slow {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        @keyframes pulse-glow-tech {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 0.8; }
-        }
-        @keyframes pulse-tech {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 1; }
-        }
-        @keyframes pulse-slow-tech {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-        @keyframes orbit {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes orbit-reverse {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        @keyframes text-glow {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        @keyframes scan-tech {
+        @keyframes laserSweep {
           0% { transform: translateX(-100%); }
-          100% { transform: translateX(200%); }
+          50% { transform: translateX(400%); }
+          100% { transform: translateX(-100%); }
         }
-        .animate-pulse-shift {
-          animation: pulse-shift 6s ease-in-out infinite;
+        @keyframes laserSweepReverse {
+          0% { transform: translateX(400%); }
+          50% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
         }
-        .animate-glitch-float {
-          animation: glitch-float 18s ease-in-out infinite;
+        @keyframes scanBeam {
+          0% { left: -3px; }
+          100% { left: 100%; }
         }
-        .animate-rotate-slow {
-          animation: rotate-slow 20s linear infinite;
-        }
-        .animate-rotate-reverse-slow {
-          animation: rotate-reverse-slow 15s linear infinite;
-        }
-        .animate-pulse-glow-tech {
-          animation: pulse-glow-tech 4s ease-in-out infinite;
-        }
-        .animate-pulse-tech {
-          animation: pulse-tech 2s ease-in-out infinite;
-        }
-        .animate-pulse-slow-tech {
-          animation: pulse-slow-tech 3s ease-in-out infinite;
-        }
-        .animate-orbit {
-          animation: orbit 8s linear infinite;
-        }
-        .animate-orbit-reverse {
-          animation: orbit-reverse 6s linear infinite;
-        }
-        .animate-text-glow {
-          animation: text-glow 5s ease-in-out infinite;
-        }
-        .animate-scan-tech {
-          animation: scan-tech 2.5s ease-in-out infinite;
-        }
-
-        @keyframes float-particle {
-          0%, 100% { 
-            transform: translate3d(0, 0, 0);
-            opacity: 0.3;
-          }
-          25% { 
-            transform: translate3d(10px, -15px, 0);
-            opacity: 0.8;
-          }
-          50% { 
-            transform: translate3d(-8px, -25px, 0);
-            opacity: 0.5;
-          }
-          75% { 
-            transform: translate3d(-15px, -10px, 0);
-            opacity: 0.7;
-          }
-        }
-
-        @keyframes rotate-3d {
-          0%, 100% { 
-            transform: rotateY(0deg) rotateX(0deg) translateZ(0);
-          }
-          25% { 
-            transform: rotateY(15deg) rotateX(-5deg) translateZ(0);
-          }
-          50% { 
-            transform: rotateY(0deg) rotateX(10deg) translateZ(0);
-          }
-          75% { 
-            transform: rotateY(-15deg) rotateX(-5deg) translateZ(0);
-          }
-        }
-
-        @keyframes text-glow {
-          0%, 100% { 
-            filter: drop-shadow(0 0 20px rgba(46,230,193,0.7)) drop-shadow(0 0 40px rgba(255,77,166,0.4));
-          }
-          50% { 
-            filter: drop-shadow(0 0 30px rgba(46,230,193,1)) drop-shadow(0 0 50px rgba(255,77,166,0.6));
-          }
-        }
-
-        @keyframes sound-wave {
-          0%, 100% { 
-            transform: scaleY(0.6);
-          }
-          50% { 
-            transform: scaleY(1);
-          }
-        }
-
-        @keyframes matrix-fall {
-          0% { 
-            transform: translateY(-100%);
-            opacity: 0;
-          }
-          10% { 
-            opacity: 1;
-          }
-          90% { 
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-
-        @keyframes pulse-line {
-          0%, 100% { 
-            stroke-opacity: 0.2;
-          }
-          50% { 
-            stroke-opacity: 0.5;
-          }
-        }
-
-        @keyframes pulse-shift {
-          0%, 100% { transform: scale(1); opacity: 0.5; }
-          50% { transform: scale(1.1); opacity: 0.7; }
-        }
-
-        @keyframes scan-lines {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(4px); }
-        }
-
-        @keyframes glitch-float {
-          0%, 100% { transform: translate(0, 0); }
-          33% { transform: translate(-10px, -20px); }
-          66% { transform: translate(10px, -10px); }
-        }
-
-        @keyframes rotate-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes rotate-reverse-slow {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-
-        @keyframes pulse-glow-tech {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.05); }
-        }
-
-        @keyframes pulse-tech {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 1; }
-        }
-
-        @keyframes pulse-slow-tech {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-
-        @keyframes orbit {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes orbit-reverse {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-
-        @keyframes text-glow {
-          0%, 100% { background-position: 0% 50%; }
+        @keyframes shimmer {
+          0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
-
-        @keyframes scan-tech {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
+        @keyframes floatUp {
+          0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+          25% { transform: translateY(-6px) translateX(2px); opacity: 0.5; }
+          75% { transform: translateY(4px) translateX(-2px); opacity: 0.2; }
         }
-        
-        @keyframes dna-helix-left {
-          0%, 100% { transform: translateX(0) scale(1); }
-          50% { transform: translateX(20px) scale(0.6); }
+        @keyframes pulseGlow {
+          0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(46,230,193,0.8)); }
+          50% { transform: scale(1.05); filter: drop-shadow(0 0 50px rgba(46,230,193,1)) drop-shadow(0 0 80px rgba(255,77,166,0.5)); }
         }
-        
-        @keyframes dna-helix-right {
-          0%, 100% { transform: translateX(0) scale(0.6); }
-          50% { transform: translateX(-20px) scale(1); }
+        @keyframes blobRotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
-        
-        @keyframes dna-connector {
-          0%, 100% { transform: translateX(-50%) translateY(-50%) scaleX(0.3); opacity: 0.3; }
-          50% { transform: translateX(-50%) translateY(-50%) scaleX(1); opacity: 0.8; }
+        @keyframes spinCube {
+          0% { transform: rotateX(0deg) rotateY(0deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg); }
         }
+        @keyframes barScan {
+          0% { transform: translateX(-150%); }
+          100% { transform: translateX(400%); }
+        }
+        @keyframes rippleOut {
+          0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+          100% { transform: translate(-50%, -50%) scale(30); opacity: 0; }
+        }
+        .duration-1400 { transition-duration: 1400ms; }
       `}</style>
     </>
   )

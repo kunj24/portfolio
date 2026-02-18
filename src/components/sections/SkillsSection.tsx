@@ -29,9 +29,16 @@ const skills = [
 // StarField component for background particles
 function StarField() {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    // Detect mobile for performance optimization
+    setIsMobile(window.innerWidth < 768)
+    
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   // Don't render on server to avoid hydration mismatch
@@ -39,9 +46,12 @@ function StarField() {
     return <div className="star-field" />
   }
 
+  // Fewer particles on mobile for better performance
+  const particleCount = isMobile ? 50 : 80
+
   return (
     <div className="star-field">
-      {Array.from({ length: 80 }).map((_, i) => (
+      {Array.from({ length: particleCount }).map((_, i) => (
         <div
           key={i}
           className="star"
@@ -71,7 +81,7 @@ export default function SkillsSection() {
       className="min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-muted/30 via-background to-muted/30"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <h2
             ref={titleRef}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
@@ -86,9 +96,9 @@ export default function SkillsSection() {
               className=""
             />
           </h2>
-          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6" />
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            Technologies I work with
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-4 sm:mb-6 rounded-full" />
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            Technologies and frameworks I work with
           </p>
         </div>
 
@@ -113,7 +123,7 @@ export default function SkillsSection() {
         </div>
 
         {/* Stats - Crazy Animated without boxes */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-5xl mx-auto px-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8 mt-10 sm:mt-16 max-w-5xl mx-auto px-4">
           {[
             { number: "18+", label: "Technologies", icon: "🔧", color: "#2ee6c1" },
             { number: "4+", label: "Projects", icon: "🚀", color: "#ff4da6" },

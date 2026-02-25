@@ -13,19 +13,33 @@ interface Particle {
   hue: number
 }
 
+// Maximum live particles – lower on desktop to guard performance
+const MAX_PARTICLES = 60
+
 export default function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouseRef = useRef({ x: 0, y: 0, pressed: false })
   const particlesRef = useRef<Particle[]>([])
   const animationFrameRef = useRef<number | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    // Touch / mobile detection – no mouse events exist, skip entirely
+    const mobile =
+      window.innerWidth < 768 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    setIsMobile(mobile)
+    if (mobile) return   // ← bail out: no canvas, no RAF, no CPU waste
+
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
     const resizeCanvas = () => {
@@ -37,76 +51,54 @@ export default function InteractiveBackground() {
       const angle = Math.random() * Math.PI * 2
       const speed = (Math.random() * 2 + 1) * force
       return {
-        x,
-        y,
+        x, y,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
         maxLife: Math.random() * 60 + 30,
         size: Math.random() * 3 + 1,
-        hue: Math.random() * 60 + 180 // Cyan to blue range
+        hue: Math.random() * 60 + 180,
       }
     }
 
     const updateParticles = () => {
       const particles = particlesRef.current
-      
       for (let i = particles.length - 1; i >= 0; i--) {
-        const particle = particles[i]
-        
-        // Update position
-        particle.x += particle.vx
-        particle.y += particle.vy
-        
-        // Apply gravity and friction
-        particle.vy += 0.05
-        particle.vx *= 0.99
-        particle.vy *= 0.99
-        
-        // Update life
-        particle.life--
-        
-        // Remove dead particles
-        if (particle.life <= 0) {
-          particles.splice(i, 1)
-        }
+        const p = particles[i]
+        p.x += p.vx
+        p.y += p.vy
+        p.vy += 0.05
+        p.vx *= 0.99
+        p.vy *= 0.99
+        p.life--
+        if (p.life <= 0) particles.splice(i, 1)
       }
     }
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
       const particles = particlesRef.current
-      
-      particles.forEach(particle => {
-        const alpha = particle.life / particle.maxLife
-        const size = particle.size * alpha
-        
-        // Create gradient for each particle
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, size * 2
-        )
-        
-        gradient.addColorStop(0, `hsla(${particle.hue}, 70%, 60%, ${alpha * 0.8})`)
-        gradient.addColorStop(1, `hsla(${particle.hue}, 70%, 60%, 0)`)
-        
-        ctx.fillStyle = gradient
+      for (const p of particles) {
+        const alpha = p.life / p.maxLife
+        const size = p.size * alpha
+
+        // Radial gradient gives glow without expensive shadowBlur
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size * 2)
+        gradient.addColorStop(0, `hsla(${p.hue}, 70%, 60%, ${alpha * 0.8})`)
+        gradient.addColorStop(1, `hsla(${p.hue}, 70%, 60%, 0)`)
+
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2)
+        ctx.arc(p.x, p.y, size * 2, 0, Math.PI * 2)
+        ctx.fillStyle = gradient
         ctx.fill()
-        
-        // Add glow effect
-        ctx.shadowBlur = size * 2
-        ctx.shadowColor = `hsl(${particle.hue}, 70%, 60%)`
-        ctx.fill()
-        ctx.shadowBlur = 0
-      })
+      }
     }
 
     const animate = () => {
-      updateParticles()
-      drawParticles()
+      if (!document.hidden) {
+        updateParticles()
+        drawParticles()
+      }
       animationFrameRef.current = requestAnimationFrame(animate)
     }
 
@@ -114,9 +106,8 @@ export default function InteractiveBackground() {
       const rect = canvas.getBoundingClientRect()
       mouseRef.current.x = e.clientX - rect.left
       mouseRef.current.y = e.clientY - rect.top
-      
-      // Create particles on mouse movement
-      if (Math.random() < 0.3) {
+      // Throttle particle creation + respect cap
+      if (Math.random() < 0.3 && particlesRef.current.length < MAX_PARTICLES) {
         particlesRef.current.push(
           createParticle(mouseRef.current.x, mouseRef.current.y, 0.5)
         )
@@ -125,25 +116,21 @@ export default function InteractiveBackground() {
 
     const handleMouseDown = () => {
       mouseRef.current.pressed = true
-      // Burst effect on click
-      for (let i = 0; i < 15; i++) {
+      const burst = Math.min(15, MAX_PARTICLES - particlesRef.current.length)
+      for (let i = 0; i < burst; i++) {
         particlesRef.current.push(
           createParticle(mouseRef.current.x, mouseRef.current.y, 2)
         )
       }
     }
 
-    const handleMouseUp = () => {
-      mouseRef.current.pressed = false
-    }
+    const handleMouseUp = () => { mouseRef.current.pressed = false }
 
-    // Initialize
     resizeCanvas()
     animate()
 
-    // Event listeners
-    window.addEventListener('resize', resizeCanvas)
-    canvas.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('resize', resizeCanvas, { passive: true })
+    canvas.addEventListener('mousemove', handleMouseMove, { passive: true })
     canvas.addEventListener('mousedown', handleMouseDown)
     canvas.addEventListener('mouseup', handleMouseUp)
 
@@ -152,13 +139,11 @@ export default function InteractiveBackground() {
       canvas.removeEventListener('mousemove', handleMouseMove)
       canvas.removeEventListener('mousedown', handleMouseDown)
       canvas.removeEventListener('mouseup', handleMouseUp)
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
-      }
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current)
     }
   }, [])
 
-  if (!mounted) return null
+  if (!mounted || isMobile) return null
 
   return (
     <canvas

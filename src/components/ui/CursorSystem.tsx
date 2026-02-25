@@ -24,7 +24,7 @@ export default function CursorSystem() {
 
   return (
     <>
-      <CustomCursor variant={variant} />
+      {mounted && !isMobile && <CustomCursor variant={variant} />}
       {mounted && !isMobile && <CursorSelector currentCursor={variant} onCursorChange={setVariant} />}
     </>
   )

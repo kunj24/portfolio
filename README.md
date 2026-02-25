@@ -23,6 +23,9 @@
   <a href="https://github.com/kunj24/portfolio/network/members">
     <img src="https://img.shields.io/github/forks/kunj24/portfolio?style=for-the-badge&logo=github&color=FF4500&labelColor=6b7280" alt="GitHub Forks"/>
   </a>
+  <a href="https://github.com/kunj24/portfolio/watchers">
+    <img src="https://img.shields.io/github/watchers/kunj24/portfolio?style=for-the-badge&logo=github&color=1E90FF&labelColor=6b7280" alt="GitHub Watchers"/>
+  </a>
 </p>
 
 <!-- Badges Row 3: Repository Analytics -->
@@ -51,33 +54,6 @@
 
 
 <br/>
-
-<!-- 🌐 Website Preview -->
-<h3>🖥️ Website Preview</h3>
-
-<a href="https://portfolio-ruby-iota-47.vercel.app">
-  <img src="https://api.microlink.io/?url=https%3A%2F%2Fportfolio-ruby-iota-47.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient(225deg%2C%20%23010810%200%25%2C%20%230f1724%2050%25%2C%20%23010810%20100%25)&waitForTimeout=8000" alt="Portfolio Website Preview" width="800" style="border-radius: 12px; border: 2px solid #2ee6c1;" />
-</a>
-
-<br/><br/>
-
-<!-- 📦 GitHub Repository Viewer -->
-<h3>📦 Repository Overview</h3>
-
-<a href="https://github.com/kunj24/portfolio">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=kunj24&repo=portfolio&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=c9d1d9&border_color=2ee6c1&border_radius=12&show_owner=true" alt="GitHub Repo Viewer" />
-</a>
-
-<br/><br/>
-
-<a href="https://github.com/kunj24/portfolio">
-  <img src="https://github-readme-stats.vercel.app/api?username=kunj24&show_icons=true&theme=radical&bg_color=0f1724&title_color=2ee6c1&icon_color=ff4da6&text_color=c9d1d9&border_color=2ee6c1&border_radius=12&hide_border=false&count_private=true" alt="GitHub Stats" width="49%" />
-</a>
-<a href="https://github.com/kunj24/portfolio">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kunj24&layout=compact&theme=radical&bg_color=0f1724&title_color=2ee6c1&text_color=c9d1d9&border_color=2ee6c1&border_radius=12&hide_border=false&langs_count=8" alt="Top Languages" width="41%" />
-</a>
-
-<br/><br/>
 
 <!-- Website Preview -->
 <a href="https://portfolio-ruby-iota-47.vercel.app">

@@ -99,7 +99,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={cardRef}
-      className="project-card group relative bg-gradient-to-br from-black/80 to-gray-900/90 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 md:hover:transform md:hover:scale-110 md:hover:rotate-2 md:hover:shadow-2xl md:hover:shadow-primary/30 animate-card-glow md:animate-morph w-full min-h-[450px]"
+      className="project-card group relative bg-gradient-to-br from-black/80 to-gray-900/90 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-700 md:hover:transform md:hover:scale-110 md:hover:rotate-2 md:hover:shadow-2xl md:hover:shadow-primary/30 animate-card-glow md:animate-morph w-full min-h-[340px] sm:min-h-[380px] md:min-h-[450px]"
       style={{ 
         animationDelay: `${index * 0.15}s`,
         transform: (!isTouch && isHovered) 
@@ -112,35 +112,39 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       role="region"
       aria-label={`Project ${project.title}`}
     >
-      {/* Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-br from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-            style={{
-              left: `${15 + i * 14}%`,
-              top: `${10 + (i % 3) * 30}%`,
-              animation: `float 3s ease-in-out infinite`,
-              animationDelay: `${i * 0.3}s`,
-              boxShadow: '0 0 10px currentColor'
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Animated rotating border */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute inset-0 rounded-2xl animate-spin-slow" style={{ animationDuration: '8s' }}>
-          <div className="absolute inset-[-2px] rounded-2xl" style={{
-            background: 'linear-gradient(90deg, #2ee6c1, #ff4da6, #2ee6c1)',
-            backgroundSize: '200% 100%',
-            animation: 'gradient-rotate 3s linear infinite',
-            filter: 'blur(8px)',
-            opacity: 0.4
-          }} />
+      {/* Floating Particles - hidden on mobile */}
+      {!isTouch && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-br from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              style={{
+                left: `${15 + i * 14}%`,
+                top: `${10 + (i % 3) * 30}%`,
+                animation: `float 3s ease-in-out infinite`,
+                animationDelay: `${i * 0.3}s`,
+                boxShadow: '0 0 10px currentColor'
+              }}
+            />
+          ))}
         </div>
-      </div>
+      )}
+      
+      {/* Animated rotating border - desktop only */}
+      {!isTouch && (
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute inset-0 rounded-2xl animate-spin-slow" style={{ animationDuration: '8s' }}>
+            <div className="absolute inset-[-2px] rounded-2xl" style={{
+              background: 'linear-gradient(90deg, #2ee6c1, #ff4da6, #2ee6c1)',
+              backgroundSize: '200% 100%',
+              animation: 'gradient-rotate 3s linear infinite',
+              filter: 'blur(8px)',
+              opacity: 0.4
+            }} />
+          </div>
+        </div>
+      )}
       
       {/* Animated Gradient Overlay */}
       <div 
@@ -152,17 +156,19 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         }}
       />
       
-      {/* Dynamic Glow Effect */}
-      <div 
-        className={`absolute inset-0 transition-all duration-700 ${isHovered ? 'opacity-80' : 'opacity-0'}`}
-        style={{
-          background: isHovered 
-            ? `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--primary-rgb), 0.4), rgba(var(--accent-rgb), 0.3), transparent 60%)`
-            : undefined,
-          filter: 'blur(20px)',
-          transform: isHovered ? 'scale(1.2)' : 'scale(1)'
-        }}
-      />
+      {/* Dynamic Glow Effect - desktop only (blur is expensive) */}
+      {!isTouch && (
+        <div 
+          className={`absolute inset-0 transition-all duration-700 ${isHovered ? 'opacity-80' : 'opacity-0'}`}
+          style={{
+            background: isHovered 
+              ? `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(var(--primary-rgb), 0.4), rgba(var(--accent-rgb), 0.3), transparent 60%)`
+              : undefined,
+            filter: 'blur(20px)',
+            transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+          }}
+        />
+      )}
 
       {/* Animated Border */}
       <div 
@@ -179,14 +185,14 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       {/* Dark overlay for better contrast */}
       <div className="absolute inset-0 bg-black/20 rounded-2xl" />
       
-      <div className="relative z-10 p-8 h-full flex flex-col">
+      <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start justify-between mb-3 sm:mb-4 md:mb-6">
           <div className="flex-1 pr-4">
             <span className="inline-block px-3 py-1.5 text-sm font-medium bg-primary/20 text-primary rounded-full mb-3">
               {project.category}
             </span>
-            <h3 className="text-3xl font-bold text-white mb-3 leading-tight transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:via-accent group-hover:to-primary group-hover:drop-shadow-[0_0_15px_rgba(46,230,193,0.6)]">{project.title}</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight transition-all duration-500 md:group-hover:text-transparent md:group-hover:bg-clip-text md:group-hover:bg-gradient-to-r md:group-hover:from-primary md:group-hover:via-accent md:group-hover:to-primary md:group-hover:drop-shadow-[0_0_15px_rgba(46,230,193,0.6)]">{project.title}</h3>
           </div>
           <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12">
             {/* Animated rotating ring */}
@@ -207,12 +213,12 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground mb-6 flex-grow leading-relaxed text-base">
+        <p className="text-muted-foreground mb-3 sm:mb-4 md:mb-6 flex-grow leading-relaxed text-sm sm:text-base">
           {project.description}
         </p>
 
         {/* Technologies with stagger animation */}
-        <div className="mb-6">
+        <div className="mb-3 sm:mb-4 md:mb-6">
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, techIndex) => (
               <span
@@ -305,9 +311,9 @@ export default function ProjectsSection() {
     >
       {/* Animated Background Effects - reduced on mobile */}
       <div className="absolute inset-0 opacity-10 sm:opacity-20 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-primary/10 via-accent/10 to-purple-500/10 rounded-full blur-3xl animate-spin" style={{animationDuration: '20s'}} />
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-xl sm:blur-3xl sm:animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-accent/20 rounded-full blur-xl sm:blur-3xl sm:animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-primary/10 via-accent/10 to-purple-500/10 rounded-full blur-xl sm:blur-3xl hidden sm:block sm:animate-spin" style={{animationDuration: '20s'}} />
       </div>
 
       {/* Gradient Overlay */}

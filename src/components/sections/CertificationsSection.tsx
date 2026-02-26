@@ -120,13 +120,13 @@ export default function CertificationsSection() {
     >
       {/* Background Effects - Subtle and calm */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
-        {/* Animated gradient blobs - more subtle */}
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl animate-blob" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        {/* Animated gradient blobs - simplified on mobile */}
+        <div className="absolute top-1/4 left-1/4 w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] bg-primary/10 rounded-full blur-xl sm:blur-3xl sm:animate-blob" />
+        <div className="absolute bottom-1/4 right-1/4 w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] bg-accent/10 rounded-full blur-xl sm:blur-3xl sm:animate-blob animation-delay-2000" />
+        <div className="hidden sm:block absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
         
-        {/* Floating particles - fewer and more subtle */}
-        <div className="absolute inset-0">
+        {/* Floating particles - hidden on mobile */}
+        <div className="hidden sm:block absolute inset-0">
           {mounted && backgroundParticles.map((particle, i) => (
             <div
               key={i}
@@ -202,13 +202,13 @@ export default function CertificationsSection() {
                   }}
                 />
 
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                {/* Shine effect on hover - desktop only */}
+                <div className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                   <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
                 </div>
 
-                {/* Particle effect */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                {/* Particle effect - desktop only */}
+                <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                   {[...Array(8)].map((_, i) => {
                     // Use deterministic positions based on index to avoid hydration errors
                     const positions = [
@@ -246,8 +246,8 @@ export default function CertificationsSection() {
                   {/* Header with Icon */}
                   <div className="flex items-start justify-between mb-3 sm:mb-4">
                     <div className="relative">
-                      {/* Rotating dashed/dotted rings */}
-                      <div className="absolute inset-[-2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      {/* Rotating dashed/dotted rings - desktop only */}
+                      <div className="hidden md:block absolute inset-[-2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="absolute inset-0 rounded-full animate-spin-slow" style={{ animationDuration: '8s' }}>
                           <div className="absolute inset-0 rounded-full border-2 shadow-lg" style={{ 
                             borderColor: cert.color,
@@ -256,7 +256,7 @@ export default function CertificationsSection() {
                           }} />
                         </div>
                       </div>
-                      <div className="absolute inset-[-4px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="hidden md:block absolute inset-[-4px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="absolute inset-0 rounded-full" style={{ animation: 'spin 12s linear infinite reverse' }}>
                           <div className="absolute inset-0 rounded-full border-2 shadow-lg" style={{ 
                             borderColor: cert.color,
@@ -279,9 +279,9 @@ export default function CertificationsSection() {
                           style={{ color: cert.color }}
                         />
                       </div>
-                      {/* Pulsing ring */}
+                      {/* Pulsing ring - desktop only */}
                       <div
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"
+                        className="hidden md:block absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"
                         style={{
                           border: `2px solid ${cert.color}`,
                           animationDuration: '1.5s'

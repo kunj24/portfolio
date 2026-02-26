@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 
@@ -40,6 +40,14 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   const setX = useRef<SetterFn | null>(null)
   const setY = useRef<SetterFn | null>(null)
   const pos = useRef({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const demo: ChromaItem[] = [
     {
@@ -178,8 +186,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
             // glass-like subtle background so gradients remain elegant
             background: c.gradient || 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))',
             border: '1px solid rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
+            ...(isMobile ? {} : { backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }),
             // soft shadow with a faint colored glow using the provided borderColor
             boxShadow: `0 6px 18px rgba(2,6,23,0.55), 0 0 18px ${c.borderColor ? `${c.borderColor}33` : 'transparent'}`
           } as React.CSSProperties}
@@ -220,33 +227,39 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           </footer>
         </article>
       ))}
-      <div
-        className="absolute inset-0 pointer-events-none z-30"
-        style={{
-          backdropFilter: 'grayscale(1) brightness(0.6)',
-          WebkitBackdropFilter: 'grayscale(1) brightness(0.6)',
-          background: 'rgba(0,0,0,0.001)',
-          maskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 20%,rgba(0,0,0,0.15) 35%,rgba(0,0,0,0.35)50%,rgba(0,0,0,0.55)65%,rgba(0,0,0,0.75)80%,rgba(0,0,0,0.90)92%,white 100%)',
-          WebkitMaskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 20%,rgba(0,0,0,0.15) 35%,rgba(0,0,0,0.35)50%,rgba(0,0,0,0.55)65%,rgba(0,0,0,0.75)80%,rgba(0,0,0,0.90)92%,white 100%)'
-        }}
-      />
-      <div
-        ref={fadeRef}
-        className="absolute inset-0 pointer-events-none transition-opacity duration-[250ms] z-40"
-        style={{
-          backdropFilter: 'grayscale(0) brightness(2) saturate(1.8) contrast(1.2)',
-          WebkitBackdropFilter: 'grayscale(0) brightness(2) saturate(1.8) contrast(1.2)',
-          background: 'radial-gradient(circle calc(var(--r) * 0.8) at var(--x) var(--y), rgba(255,255,255,0.08), transparent)',
-          maskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(255,255,255,0.85)0%, rgba(255,255,255,0.92)45%, rgba(255,255,255,1)60%, rgba(255,255,255,0.95)72%, rgba(255,255,255,0.80)85%, rgba(255,255,255,0.50)95%, transparent 100%)',
-          WebkitMaskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(255,255,255,0.85)0%, rgba(255,255,255,0.92)45%, rgba(255,255,255,1)60%, rgba(255,255,255,0.95)72%, rgba(255,255,255,0.80)85%, rgba(255,255,255,0.50)95%, transparent 100%)',
-          opacity: 0,
-          boxShadow: '0 0 200px rgba(255, 255, 255, 0.6), 0 0 300px rgba(255, 255, 255, 0.4)'
-        }}
-      />
+      {/* Grayscale/brightness overlay - DESKTOP ONLY (backdrop-filter is extremely expensive on mobile) */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none z-30"
+          style={{
+            backdropFilter: 'grayscale(1) brightness(0.6)',
+            WebkitBackdropFilter: 'grayscale(1) brightness(0.6)',
+            background: 'rgba(0,0,0,0.001)',
+            maskImage:
+              'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 20%,rgba(0,0,0,0.15) 35%,rgba(0,0,0,0.35)50%,rgba(0,0,0,0.55)65%,rgba(0,0,0,0.75)80%,rgba(0,0,0,0.90)92%,white 100%)',
+            WebkitMaskImage:
+              'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 20%,rgba(0,0,0,0.15) 35%,rgba(0,0,0,0.35)50%,rgba(0,0,0,0.55)65%,rgba(0,0,0,0.75)80%,rgba(0,0,0,0.90)92%,white 100%)'
+          }}
+        />
+      )}
+      {/* Brightness/saturate overlay - DESKTOP ONLY */}
+      {!isMobile && (
+        <div
+          ref={fadeRef}
+          className="absolute inset-0 pointer-events-none transition-opacity duration-[250ms] z-40"
+          style={{
+            backdropFilter: 'grayscale(0) brightness(2) saturate(1.8) contrast(1.2)',
+            WebkitBackdropFilter: 'grayscale(0) brightness(2) saturate(1.8) contrast(1.2)',
+            background: 'radial-gradient(circle calc(var(--r) * 0.8) at var(--x) var(--y), rgba(255,255,255,0.08), transparent)',
+            maskImage:
+              'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(255,255,255,0.85)0%, rgba(255,255,255,0.92)45%, rgba(255,255,255,1)60%, rgba(255,255,255,0.95)72%, rgba(255,255,255,0.80)85%, rgba(255,255,255,0.50)95%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(255,255,255,0.85)0%, rgba(255,255,255,0.92)45%, rgba(255,255,255,1)60%, rgba(255,255,255,0.95)72%, rgba(255,255,255,0.80)85%, rgba(255,255,255,0.50)95%, transparent 100%)',
+            opacity: 0,
+            boxShadow: '0 0 200px rgba(255, 255, 255, 0.6), 0 0 300px rgba(255, 255, 255, 0.4)'
+          }}
+        />
+      )}
     </div>
   )
 }

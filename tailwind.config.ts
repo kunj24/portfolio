@@ -87,6 +87,7 @@ const config: Config = {
         'gradient': 'gradient 15s ease infinite',
         'rotate-y-5': 'rotate-y-5 0.6s ease-out',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+        'bounce-x': 'bounce-x 1.4s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -128,6 +129,10 @@ const config: Config = {
         'rotate-y-5': {
           '0%': { transform: 'perspective(1000px) rotateY(0deg)' },
           '100%': { transform: 'perspective(1000px) rotateY(5deg)' },
+        },
+        'bounce-x': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(5px)' },
         },
       },
       backdropBlur: {

@@ -94,9 +94,27 @@ export default function CertificationsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
-  const [backgroundParticles, setBackgroundParticles] = useState<Array<{left: string, top: string, delay: string, duration: string}>>([])
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [backgroundParticles, setBackgroundParticles] = useState<Array<{left: string, top: string, delay: string, duration: string}>>([]
+  )
+
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return
+    const el = carouselRef.current
+    const cardWidth = el.scrollWidth / certifications.length
+    const idx = Math.round(el.scrollLeft / cardWidth)
+    setActiveIndex(Math.min(Math.max(idx, 0), certifications.length - 1))
+  }
+
+  const scrollToCard = (idx: number) => {
+    if (!carouselRef.current) return
+    const el = carouselRef.current
+    const cardWidth = el.scrollWidth / certifications.length
+    el.scrollTo({ left: cardWidth * idx, behavior: 'smooth' })
+  }
 
   // Generate particles only on client side to avoid hydration errors
   useEffect(() => {
@@ -164,10 +182,152 @@ export default function CertificationsSection() {
           </p>
         </div>
 
-        {/* Certifications Grid */}
+        {/* ── MOBILE CAROUSEL (hidden on md+) ── */}
+        <div className="block md:hidden">
+          {/* Swipe hint */}
+          <div className="flex items-center justify-center gap-1.5 mb-4 text-xs text-muted-foreground/60">
+            <svg className="w-4 h-4 animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" /></svg>
+            <span>Swipe to explore</span>
+            <svg className="w-4 h-4 animate-bounce-x scale-x-[-1]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" /></svg>
+          </div>
+
+          {/* Scrollable carousel */}
+          <div
+            ref={carouselRef}
+            onScroll={handleCarouselScroll}
+            className="flex overflow-x-auto gap-4 pb-4 px-2 snap-x snap-mandatory scrollbar-hide"
+            style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
+          >
+            {certifications.map((cert, index) => (
+              <div
+                key={cert.id}
+                className="snap-center flex-shrink-0 w-[calc(100vw-3rem)] max-w-sm"
+              >
+                {/* Card */}
+                <div className="relative h-full rounded-2xl overflow-hidden border border-white/10 bg-card/80 backdrop-blur-sm shadow-lg active:scale-[0.98] transition-transform duration-150">
+                  {/* Accent top bar */}
+                  <div
+                    className="h-1.5 w-full"
+                    style={{ background: `linear-gradient(90deg, ${cert.color}, ${cert.color}60)` }}
+                  />
+
+                  {/* Coloured backdrop blob */}
+                  <div
+                    className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-[0.08] -translate-y-10 translate-x-10 pointer-events-none"
+                    style={{ background: cert.color, filter: 'blur(32px)' }}
+                  />
+
+                  <div className="p-5 relative z-10">
+                    {/* Top row: icon + external link */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{
+                          background: `linear-gradient(135deg, ${cert.color}30, ${cert.color}15)`,
+                          border: `1.5px solid ${cert.color}50`,
+                          boxShadow: `0 0 18px ${cert.color}30`
+                        }}
+                      >
+                        <Award className="w-6 h-6" style={{ color: cert.color }} />
+                      </div>
+                      {cert.credentialUrl && (
+                        <a
+                          href={cert.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full active:scale-95 transition-transform"
+                          style={{
+                            background: `${cert.color}20`,
+                            color: cert.color,
+                            border: `1px solid ${cert.color}40`
+                          }}
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          View
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-bold text-base leading-snug text-foreground mb-2 line-clamp-2">
+                      {cert.title}
+                    </h3>
+
+                    {/* Issuer + Date */}
+                    <div className="flex flex-col gap-1 mb-3">
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                        <p className="text-xs font-semibold text-muted-foreground line-clamp-1">{cert.issuer}</p>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-muted-foreground/60 flex-shrink-0" />
+                        <p className="text-xs text-muted-foreground/70">Issued {cert.date}</p>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 mb-3">
+                      {cert.description}
+                    </p>
+
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {cert.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 text-[10px] font-medium rounded-full border"
+                          style={{
+                            background: `${cert.color}18`,
+                            borderColor: `${cert.color}45`,
+                            color: cert.color
+                          }}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Credential ID */}
+                    {cert.credentialId && (
+                      <p className="text-[10px] font-mono text-muted-foreground/50 truncate">
+                        ID: {cert.credentialId}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dot indicators */}
+          <div className="flex items-center justify-center gap-2 mt-3">
+            {certifications.map((cert, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollToCard(idx)}
+                aria-label={`Go to ${cert.title}`}
+                className="transition-all duration-300 rounded-full"
+                style={{
+                  width: activeIndex === idx ? '24px' : '8px',
+                  height: '8px',
+                  background: activeIndex === idx ? cert.color : 'var(--muted-foreground)',
+                  opacity: activeIndex === idx ? 1 : 0.35,
+                  boxShadow: activeIndex === idx ? `0 0 8px ${cert.color}80` : 'none'
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Card counter */}
+          <p className="text-center text-xs text-muted-foreground/50 mt-2">
+            {activeIndex + 1} / {certifications.length}
+          </p>
+        </div>
+
+        {/* ── DESKTOP GRID (hidden below md) ── */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8"
         >
           {certifications.map((cert, index) => (
             <div

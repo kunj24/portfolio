@@ -121,6 +121,10 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button {
 ::-webkit-scrollbar-track { background: rgba(2,8,12,0.3); }
 ::-webkit-scrollbar-thumb { background: rgba(46,230,193,0.9); border-radius: 3px; }
 
+/* Hide scrollbar utility (used by mobile carousel) */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
 /* Utility classes */
 .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); }
 .dark .glass { background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.04); }
@@ -1025,57 +1029,6 @@ body.custom-cursor-active [role="button"] {
   .blur-xl {
     filter: blur(8px);
   }
-
-  /* Disable float animation on project cards - saves GPU on mobile */
-  .project-card:nth-child(odd),
-  .project-card:nth-child(even) {
-    animation: none;
-  }
-
-  /* Disable ::before sweep animation on project cards */
-  .project-card::before {
-    display: none;
-  }
-
-  /* Simplify backdrop-filter on glass elements */
-  .backdrop-blur-sm {
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  /* Reduce blur-3xl which is extremely expensive on mobile GPUs */
-  .blur-3xl {
-    filter: blur(16px);
-  }
-
-  /* Disable animate-blob on mobile (multiple 400px elements with blur are heavy) */
-  .animate-blob {
-    animation: none;
-  }
-
-  /* Reduce expensive box-shadow glow animations */
-  .animate-pulse-glow {
-    animation: none;
-  }
-
-  /* Disable gradient-shift animation on gradient-text to reduce repaints */
-  .gradient-text {
-    animation: none;
-  }
-
-  /* Simplify .premium-skill-card hover glow on mobile */
-  .premium-skill-card:hover .skill-card-inner {
-    animation: none;
-  }
-
-  .premium-skill-card::before {
-    display: none;
-  }
-
-  /* Reduce will-change usage on mobile to save memory */
-  .transform-gpu {
-    will-change: auto;
-  }
 }
 
 /* Mobile-specific utility classes */
@@ -1137,26 +1090,6 @@ body.custom-cursor-active [role="button"] {
   .loading-dots span {
     width: 4px;
     height: 4px;
-  }
-
-  /* Simplify card-glow animation on mobile */
-  .animate-card-glow {
-    animation: none;
-  }
-
-  /* Reduce drop-shadow filters on mobile (very expensive) */
-  [style*="drop-shadow"] {
-    filter: none !important;
-  }
-
-  /* Prevent hover-only animations from triggering on mobile tap */
-  .group:hover .animate-ping {
-    animation: none;
-  }
-
-  /* Simplify spin-slow animations on mobile */
-  .animate-spin-slow {
-    animation: none;
   }
 }
 

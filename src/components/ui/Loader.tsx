@@ -243,9 +243,11 @@ export default function Loader() {
   return (
     <>
       <div
-        className={`fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden select-none
+        className={`fixed top-0 left-0 z-[10000] flex items-center justify-center overflow-hidden select-none
           ${exiting ? 'pointer-events-none' : ''}`}
         style={{
+          width: '100vw',
+          height: isMobile ? '100svh' : '100vh',
           transition: exiting ? `all ${isMobile ? '0.8s' : '1.4s'} cubic-bezier(.4,0,.2,1)` : 'none',
           opacity: exiting ? 0 : 1,
           transform: exiting ? (isMobile ? 'scale(1.1)' : 'scale(1.3) rotateX(15deg)') : 'scale(1) rotateX(0deg)',
@@ -664,17 +666,6 @@ export default function Loader() {
             </button>
           </div>
 
-          {/* Corner HUD */}
-          <div className="fixed top-3 left-3 sm:top-5 sm:left-5 text-[7px] sm:text-[9px] font-mono text-[#2ee6c1]/15 leading-5 hidden sm:block">
-            <div className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 bg-[#2ee6c1]/30 rounded-full animate-pulse" /> SYS.BOOT</div>
-            <div>MEM: {Math.round(progress * 10.24)}KB / 1024KB</div>
-            <div>CPU: {Math.min(99, Math.round(progress * 0.8 + 12))}%</div>
-          </div>
-          <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 text-[7px] sm:text-[9px] font-mono text-[#2ee6c1]/15 leading-5 text-right hidden sm:block">
-            <div>PORTFOLIO.EXE</div>
-            <div>BUILD: 2026.02.18</div>
-            <div>FPS: {Math.min(62, 58 + Math.round(progress * 0.04))}</div>
-          </div>
         </div>
       </div>
 

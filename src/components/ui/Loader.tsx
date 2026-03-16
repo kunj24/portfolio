@@ -32,12 +32,17 @@ export default function Loader() {
   const [touchRipples] = useState<Array<{ id: number; x: number; y: number }>>([])
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef(0)
+  const loaderStartRef = useRef(0)
 
   /* ── mobile detect ── */
   useEffect(() => {
     const c = () => setIsMobile(window.innerWidth < 768)
     c(); window.addEventListener('resize', c)
     return () => window.removeEventListener('resize', c)
+  }, [])
+
+  useEffect(() => {
+    loaderStartRef.current = Date.now()
   }, [])
 
   /* ── stagger entrance ── */
@@ -195,8 +200,14 @@ export default function Loader() {
 
   /* ── hide logic ── */
   const hide = useCallback(() => {
-    setExiting(true)
-    setTimeout(() => setVisible(false), isMobile ? 800 : 1400)
+    const MIN_MOBILE_VISIBLE_MS = 2000
+    const elapsed = Date.now() - loaderStartRef.current
+    const waitBeforeExit = isMobile ? Math.max(0, MIN_MOBILE_VISIBLE_MS - elapsed) : 0
+
+    setTimeout(() => {
+      setExiting(true)
+      setTimeout(() => setVisible(false), isMobile ? 800 : 1400)
+    }, waitBeforeExit)
   }, [isMobile])
 
   /* ── scroll lock ── */

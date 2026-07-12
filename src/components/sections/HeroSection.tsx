@@ -135,7 +135,7 @@ export default function HeroSection() {
                 <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-accent p-1 hover-scale animate-pulse-glow animate-breathe mx-auto">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 relative">
                     <Image
-                      src="/images/kunj-profile.jpg"
+                      src="/images/kunj-profile1.jpg"
                       alt="Kunj Mungalpara - Full Stack Developer"
                       fill
                       className="object-cover object-center hover:scale-110 transition-transform duration-500"
